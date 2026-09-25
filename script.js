@@ -113,6 +113,10 @@ function openDeveloperResponse() {
 
 function closeDeveloperResponse(event) {
 
+    /*
+     * If this function was triggered by clicking
+     * inside the modal content, do nothing.
+     */
     if (
         event &&
         event.target !== event.currentTarget
@@ -409,30 +413,40 @@ function setFlowStep(step) {
 
 function getFormData() {
 
+    const emailElement =
+        document.getElementById("email");
+
+    const firstNameElement =
+        document.getElementById("firstName");
+
+    const lastNameElement =
+        document.getElementById("lastName");
+
+    const passwordElement =
+        document.getElementById("password");
+
+
     return {
 
         email:
-            document
-                .getElementById("email")
-                .value
-                .trim(),
+            emailElement
+                ? emailElement.value.trim()
+                : "",
 
         first_name:
-            document
-                .getElementById("firstName")
-                .value
-                .trim(),
+            firstNameElement
+                ? firstNameElement.value.trim()
+                : "",
 
         last_name:
-            document
-                .getElementById("lastName")
-                .value
-                .trim(),
+            lastNameElement
+                ? lastNameElement.value.trim()
+                : "",
 
         password:
-            document
-                .getElementById("password")
-                .value
+            passwordElement
+                ? passwordElement.value
+                : ""
 
     };
 }
@@ -1442,6 +1456,29 @@ function resetSignupState() {
 // ---------------------------------------------------------
 
 function initializePage() {
+
+    /*
+     * Always begin with the Developer modal closed.
+     *
+     * The Developer BUTTON remains visible at all times.
+     * Only the modal itself is forced closed here.
+     */
+    const developerModal =
+        document.getElementById(
+            "developerModal"
+        );
+
+    if (developerModal) {
+
+        developerModal.classList.remove(
+            "visible"
+        );
+
+        developerModal.style.display =
+            "none";
+
+    }
+
 
     const otp =
         document.getElementById("otp");
