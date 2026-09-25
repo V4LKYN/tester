@@ -223,16 +223,25 @@ function setSignupStep(step) {
 
             element.classList.remove("active");
 
+            element.style.display = "none";
+
         });
+
 
     const target =
         document.getElementById(
             "signupStep" + step
         );
 
+
     if (target) {
+
         target.classList.add("active");
+
+        target.style.display = "block";
+
     }
+
 
     setFlowStep(step);
 }
