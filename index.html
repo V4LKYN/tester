@@ -1,87 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 
-<head>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta charset="UTF-8">
+<title>
+    Merchant Portal
+</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+<link rel="stylesheet" href="styles.css">
+
+</head><body><div class="container"><div class="header">
+
+    <h1>
+        Merchant Portal
+    </h1>
+
+    <p>
+        Manage your merchant account and access
+        your services.
+    </p>
+
+    <div class="environment">
+        DEVELOPMENT
+    </div>
+
+</div>
+
+
+<div class="card">
+
+
+    <!-- =================================================
+         AUTHENTICATION CHOICE
+         ================================================= -->
+
+    <div
+        id="authChoice"
+        class="step active"
     >
 
-    <title>
-        Onboarding API Tester
-    </title>
+        <div class="auth-container">
 
-    <link rel="stylesheet" href="styles.css">
+            <h2 class="step-title">
+                Welcome
+            </h2>
 
-</head>
+            <p class="step-description">
+                Sign in to your merchant account or
+                create a new account to get started.
+            </p>
 
-<body>
 
-<div class="container">
+            <button
+                class="button primary"
+                onclick="showLogin()"
+            >
+                Log In
+            </button>
 
-    <div class="header">
 
-        <h1>
-            Onboarding API Tester
-        </h1>
+            <button
+                class="button secondary"
+                onclick="showSignup()"
+            >
+                Create Account
+            </button>
 
-        <p>
-            Development interface for testing the
-            merchant account creation flow.
-        </p>
-
-        <div class="environment">
-            DEVELOPMENT
         </div>
 
     </div>
 
 
-    <div class="card">
+    <!-- =================================================
+         LOGIN
+         ================================================= -->
+
+    <div
+        id="login"
+        class="step"
+    >
+
+        <div class="auth-container">
+
+            <h2 class="step-title">
+                Log In
+            </h2>
+
+            <p class="step-description">
+                Enter your email address and password
+                to access your merchant account.
+            </p>
 
 
-        <!-- =================================================
-             SERVER STATUS
-             ================================================= -->
+            <div class="section">
 
-        <div class="server-status">
-
-            <div class="server-status-left">
-
-                <div class="server-status-title">
-                    Main Server
+                <div class="section-title">
+                    Account Information
                 </div>
 
-                <div
-                    id="serverStatus"
-                    class="server-status-value"
-                >
-                    Not tested
+
+                <div class="field">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="merchant@example.com"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        autocomplete="current-password"
+                    >
+
                 </div>
 
             </div>
 
 
             <button
-                id="healthButton"
-                class="small-button"
-                onclick="testServer()"
+                id="loginButton"
+                class="button primary"
+                onclick="login()"
             >
-                Test Server
+                Log In
+            </button>
+
+
+            <button
+                class="button secondary"
+                onclick="showAuthChoice()"
+            >
+                Back
             </button>
 
         </div>
 
+    </div>
 
-        <!-- =================================================
-             FLOW
-             ================================================= -->
+
+    <!-- =================================================
+         SIGN UP
+         ================================================= -->
+
+    <div
+        id="signup"
+        class="step"
+    >
 
         <div class="flow">
-
 
             <div class="flow-step">
 
@@ -96,7 +179,7 @@
                     id="flowLabel1"
                     class="flow-label active"
                 >
-                    Start
+                    Account
                 </span>
 
             </div>
@@ -154,23 +237,19 @@
         </div>
 
 
-        <!-- =================================================
-             STATUS
-             ================================================= -->
-
         <div
-            id="status"
+            id="signupStatus"
             class="status"
         ></div>
 
 
-        <!-- =================================================
-             STEP 1
-             ================================================= -->
+        <!-- =============================================
+             SIGN UP STEP 1
+             ============================================= -->
 
         <div
-            id="step1"
-            class="step active"
+            id="signupStep1"
+            class="signup-step active"
         >
 
             <h2 class="step-title">
@@ -180,15 +259,9 @@
 
             <p class="step-description">
                 Enter the basic information required to
-                create your merchant account. Business
-                information will be collected later during
-                account configuration.
+                create your merchant account.
             </p>
 
-
-            <!-- =============================================
-                 ACCOUNT INFORMATION
-                 ============================================= -->
 
             <div class="section">
 
@@ -251,10 +324,6 @@
             </div>
 
 
-            <!-- =============================================
-                 ACCOUNT SECURITY
-                 ============================================= -->
-
             <div class="section">
 
                 <div class="section-title">
@@ -312,16 +381,24 @@
                 Create Account
             </button>
 
+
+            <button
+                class="button secondary"
+                onclick="showAuthChoice()"
+            >
+                Back
+            </button>
+
         </div>
 
 
-        <!-- =================================================
-             STEP 2
-             ================================================= -->
+        <!-- =============================================
+             SIGN UP STEP 2
+             ============================================= -->
 
         <div
-            id="step2"
-            class="step"
+            id="signupStep2"
+            class="signup-step"
         >
 
             <div class="otp-container">
@@ -337,9 +414,9 @@
 
 
                 <p class="step-description">
-                    A 6-digit verification code was sent to
-                    your email address. Enter it below to
-                    complete your account creation.
+                    A 6-digit verification code was sent
+                    to your email address. Enter it below
+                    to complete your account creation.
                 </p>
 
 
@@ -348,11 +425,11 @@
                     <div class="session-row">
 
                         <span class="session-label">
-                            Onboarding ID
+                            Email
                         </span>
 
                         <span
-                            id="onboardingIdDisplay"
+                            id="signupEmailDisplay"
                             class="session-value"
                         >
                             —
@@ -405,11 +482,10 @@
 
 
                 <button
-                    id="restartButton"
                     class="button secondary"
-                    onclick="restartTest()"
+                    onclick="showSignup()"
                 >
-                    Start New Test
+                    Start Over
                 </button>
 
             </div>
@@ -417,13 +493,13 @@
         </div>
 
 
-        <!-- =================================================
-             STEP 3
-             ================================================= -->
+        <!-- =============================================
+             SIGN UP STEP 3
+             ============================================= -->
 
         <div
-            id="step3"
-            class="step"
+            id="signupStep3"
+            class="signup-step"
         >
 
             <div class="completion">
@@ -465,22 +541,6 @@
                     <div class="result-row">
 
                         <span class="result-label">
-                            Onboarding ID
-                        </span>
-
-                        <span
-                            id="resultOnboardingId"
-                            class="result-value"
-                        >
-                            —
-                        </span>
-
-                    </div>
-
-
-                    <div class="result-row">
-
-                        <span class="result-label">
                             Merchant ID
                         </span>
 
@@ -497,70 +557,144 @@
 
 
                 <button
-                    class="button success"
-                    onclick="restartTest()"
+                    class="button primary"
+                    onclick="showLogin()"
                 >
-                    Start New Test
+                    Log In
                 </button>
 
             </div>
 
         </div>
-
-
-        <!-- =================================================
-             DEVELOPER RESPONSE
-             ================================================= -->
-
-        <div class="developer-area">
-
-            <div class="developer-header">
-
-                <h2>
-                    Developer Response
-                </h2>
-
-
-                <button
-                    id="developerToggle"
-                    class="small-button"
-                    onclick="toggleDeveloperResponse()"
-                >
-                    Show
-                </button>
-
-            </div>
-
-
-            <div
-                id="developerResponse"
-                class="developer-response"
-            >
-
-                <div
-                    id="developerMeta"
-                    class="developer-meta"
-                >
-                    No request has been made yet.
-                </div>
-
-
-                <pre
-                    id="developerResponseText"
-                >No response yet.</pre>
-
-            </div>
-
-        </div>
-
 
     </div>
 
+
+    <!-- =================================================
+         DASHBOARD
+         ================================================= -->
+
+    <div
+        id="dashboard"
+        class="step"
+    >
+
+        <div class="dashboard">
+
+            <h2 class="step-title">
+                Welcome
+            </h2>
+
+
+            <p class="step-description">
+                You are signed in to your merchant account.
+            </p>
+
+
+            <div class="result-box">
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Account
+                    </span>
+
+                    <span
+                        id="dashboardEmail"
+                        class="result-value"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+
+                <div class="result-row">
+
+                    <span class="result-label">
+                        Merchant ID
+                    </span>
+
+                    <span
+                        id="dashboardMerchantId"
+                        class="result-value"
+                    >
+                        —
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="button secondary"
+                onclick="logout()"
+            >
+                Log Out
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         DEVELOPER BUTTON
+         ================================================= -->
+
+    <button
+        id="developerButton"
+        class="developer-button"
+        onclick="openDeveloperResponse()"
+    >
+        Developer
+    </button>
+
+
 </div>
 
+</div><!-- =====================================================
+     DEVELOPER RESPONSE MODAL
+     ===================================================== --><div
+    id="developerModal"
+    class="modal"
+    onclick="closeDeveloperResponse(event)"
+><div
+    class="modal-content"
+    onclick="event.stopPropagation()"
+>
 
-<script src="script.js"></script>
+    <div class="modal-header">
 
-</body>
+        <h2>
+            Developer Response
+        </h2>
 
-</html>
+
+        <button
+            class="modal-close"
+            onclick="closeDeveloperResponse()"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div
+        id="developerMeta"
+        class="developer-meta"
+    >
+        No request has been made yet.
+    </div>
+
+
+    <pre
+        id="developerResponseText"
+    >No response yet.</pre>
+
+</div>
+
+</div><script src="script.js"></script></body></html>
