@@ -745,3 +745,15 @@ MOBILE MODAL
 }
 
 }
+
+/* =========================================================
+   SIGNUP STEP VISIBILITY
+   ========================================================= */
+
+.signup-step {
+    display: none !important;
+}
+
+.signup-step.active {
+    display: block !important;
+}
