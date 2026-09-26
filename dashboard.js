@@ -34,20 +34,24 @@ const merchantId =
 const email =
     sessionStorage.getItem("merchantEmail");
 
+const accountType =
+    sessionStorage.getItem("merchantType");
+
 /*
- * For now this is a mock dashboard.
- *
- * If there is no login session, return the
- * user to the authentication page.
+ * If there is no login session,
+ * return the user to the
+ * authentication page.
  */
 
 if (!authToken) {
 
-    window.location.href = "index.html";
+    window.location.href =
+        "index.html";
 
     return;
 
 }
+
 
 const displayEmail =
     email || "merchant@example.com";
@@ -55,48 +59,126 @@ const displayEmail =
 const displayMerchantId =
     merchantId || "m_example";
 
+const displayAccountType =
+    accountType || "BASIC";
+
+
+/*
+ * Account header
+ */
+
 setText(
     "accountEmail",
     displayEmail
 );
+
 
 setText(
     "menuEmail",
     displayEmail
 );
 
+
+/*
+ * Account details
+ */
+
 setText(
     "detailEmail",
     displayEmail
 );
+
 
 setText(
     "merchantId",
     displayMerchantId
 );
 
+
+/*
+ * Welcome section
+ *
+ * This is still using the email
+ * as a temporary display name until
+ * the authenticated account endpoint
+ * provides first_name.
+ */
+
 const firstName =
-    getFirstNameFromEmail(displayEmail);
+    getFirstNameFromEmail(
+        displayEmail
+    );
+
 
 setText(
     "welcomeName",
     "Welcome, " + firstName
 );
 
+
 setText(
     "accountName",
     firstName
 );
 
-const initial =
-    firstName
-        ? firstName.charAt(0).toUpperCase()
-        : "M";
+
+/*
+ * Account type
+ */
 
 setText(
-    "accountInitial",
-    initial
+    "accountTypeMetric",
+    displayAccountType
 );
+
+
+/*
+ * Account status
+ */
+
+setText(
+    "accountStatusMetric",
+    "Active"
+);
+
+
+/*
+ * Update the account heading.
+ *
+ * Example:
+ * BASIC Account
+ */
+
+const accountHeading =
+    document.querySelector(
+        ".dashboard-card .card-header h2"
+    );
+
+if (accountHeading) {
+
+    accountHeading.textContent =
+        displayAccountType +
+        " Account";
+
+}
+
+
+/*
+ * Update the Merchant ID displayed
+ * underneath the account heading.
+ */
+
+const accountDescription =
+    document.querySelector(
+        ".dashboard-card .card-header p"
+    );
+
+if (accountDescription) {
+
+    accountDescription.textContent =
+        displayMerchantId;
+
+}
 
 }
 
@@ -110,13 +192,16 @@ value
 ) {
 
 const element =
-    document.getElementById(elementId);
+    document.getElementById(
+        elementId
+    );
 
 if (!element) {
     return;
 }
 
-element.textContent = value;
+element.textContent =
+    value;
 
 }
 
@@ -169,7 +254,9 @@ Account Menu
 function toggleAccountMenu() {
 
 const menu =
-    document.getElementById("accountMenu");
+    document.getElementById(
+        "accountMenu"
+    );
 
 if (!menu) {
     return;
@@ -188,15 +275,20 @@ menu.classList.toggle(
 function closeAccountMenu() {
 
 const menu =
-    document.getElementById("accountMenu");
+    document.getElementById(
+        "accountMenu"
+    );
 
 if (!menu) {
     return;
 }
 
-accountMenuOpen = false;
+accountMenuOpen =
+    false;
 
-menu.classList.remove("open");
+menu.classList.remove(
+    "open"
+);
 
 }
 
@@ -213,7 +305,11 @@ if (!container) {
     return;
 }
 
-if (!container.contains(event.target)) {
+if (
+    !container.contains(
+        event.target
+    )
+) {
 
     closeAccountMenu();
 
@@ -237,6 +333,10 @@ sessionStorage.removeItem(
 
 sessionStorage.removeItem(
     "merchantEmail"
+);
+
+sessionStorage.removeItem(
+    "merchantType"
 );
 
 window.location.href =
@@ -349,7 +449,9 @@ if (!modal) {
     return;
 }
 
-modal.classList.add("open");
+modal.classList.add(
+    "open"
+);
 
 }
 
@@ -377,7 +479,9 @@ if (!modal) {
     return;
 }
 
-modal.classList.remove("open");
+modal.classList.remove(
+    "open"
+);
 
 }
 
