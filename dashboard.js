@@ -1,23 +1,24 @@
 let accountMenuOpen = false;
 
+
 /* ==============================
 Initialization
 ============================== */
 
 document.addEventListener(
-"DOMContentLoaded",
-function() {
+    "DOMContentLoaded",
+    function() {
 
-    initializeDashboard();
+        initializeDashboard();
 
-    document.addEventListener(
-        "click",
-        handleDocumentClick
-    );
+        document.addEventListener(
+            "click",
+            handleDocumentClick
+        );
 
-}
-
+    }
 );
+
 
 /* ==============================
 Dashboard Initialization
@@ -25,227 +26,231 @@ Dashboard Initialization
 
 function initializeDashboard() {
 
-const authToken =
-    sessionStorage.getItem("authToken");
+    const authToken =
+        sessionStorage.getItem("authToken");
 
-const merchantId =
-    sessionStorage.getItem("merchantId");
+    const merchantId =
+        sessionStorage.getItem("merchantId");
 
-const email =
-    sessionStorage.getItem("merchantEmail");
+    const email =
+        sessionStorage.getItem("merchantEmail");
 
-const accountType =
-    sessionStorage.getItem("merchantType");
-
-/*
- * If there is no login session,
- * return the user to the
- * authentication page.
- */
-
-if (!authToken) {
-
-    window.location.href =
-        "index.html";
-
-    return;
-
-}
+    const accountType =
+        sessionStorage.getItem("merchantType");
 
 
-const displayEmail =
-    email || "merchant@example.com";
+    /*
+     * If there is no login session,
+     * return the user to the
+     * authentication page.
+     */
 
-const displayMerchantId =
-    merchantId || "m_example";
+    if (!authToken) {
 
-const displayAccountType =
-    accountType || "BASIC";
+        window.location.href =
+            "index.html";
 
+        return;
 
-/*
- * Account header
- */
-
-setText(
-    "accountEmail",
-    displayEmail
-);
+    }
 
 
-setText(
-    "menuEmail",
-    displayEmail
-);
+    /*
+     * Use the values supplied by the
+     * authenticated login session.
+     *
+     * Do not invent an account type.
+     */
+
+    const displayEmail =
+        email || "—";
+
+    const displayMerchantId =
+        merchantId || "—";
+
+    const displayAccountType =
+        accountType || "—";
 
 
-/*
- * Account details
- */
+    /*
+     * Account header
+     */
 
-setText(
-    "detailEmail",
-    displayEmail
-);
-
-
-setText(
-    "merchantId",
-    displayMerchantId
-);
-
-
-/*
- * Welcome section
- *
- * This is still using the email
- * as a temporary display name until
- * the authenticated account endpoint
- * provides first_name.
- */
-
-const firstName =
-    getFirstNameFromEmail(
+    setText(
+        "accountEmail",
         displayEmail
     );
 
 
-setText(
-    "welcomeName",
-    "Welcome, " + firstName
-);
-
-
-setText(
-    "accountName",
-    firstName
-);
-
-
-/*
- * Account type
- */
-
-setText(
-    "accountTypeMetric",
-    displayAccountType
-);
-
-
-/*
- * Account status
- */
-
-setText(
-    "accountStatusMetric",
-    "Active"
-);
-
-
-/*
- * Update the account heading.
- *
- * Example:
- * BASIC Account
- */
-
-const accountHeading =
-    document.querySelector(
-        ".dashboard-card .card-header h2"
+    setText(
+        "menuEmail",
+        displayEmail
     );
 
-if (accountHeading) {
 
-    accountHeading.textContent =
-        displayAccountType +
-        " Account";
+    /*
+     * Merchant ID
+     */
 
-}
-
-
-/*
- * Update the Merchant ID displayed
- * underneath the account heading.
- */
-
-const accountDescription =
-    document.querySelector(
-        ".dashboard-card .card-header p"
+    setText(
+        "merchantId",
+        displayMerchantId
     );
 
-if (accountDescription) {
 
-    accountDescription.textContent =
-        displayMerchantId;
+    setText(
+        "accountMerchantId",
+        displayMerchantId
+    );
+
+
+    /*
+     * Welcome section
+     *
+     * First name is temporarily derived
+     * from the email until the dashboard
+     * has an authenticated account endpoint.
+     */
+
+    const firstName =
+        getFirstNameFromEmail(
+            displayEmail
+        );
+
+
+    setText(
+        "welcomeName",
+        "Welcome, " + firstName
+    );
+
+
+    /*
+     * Account Type
+     *
+     * This is the actual account type
+     * returned by the server during login.
+     */
+
+    setText(
+        "accountTypeHeading",
+        displayAccountType + " Account"
+    );
+
+
+    setText(
+        "configurationAccountType",
+        displayAccountType
+    );
+
+
+    /*
+     * Account Status
+     */
+
+    setText(
+        "accountStatusBadge",
+        "Active"
+    );
+
+
+    /*
+     * Endpoints / API Keys
+     *
+     * These remain zero until their
+     * respective configuration systems
+     * are implemented.
+     */
+
+    setText(
+        "configurationEndpointCount",
+        "0 configured"
+    );
+
+
+    setText(
+        "configurationApiKeyCount",
+        "0 active"
+    );
 
 }
 
-}
 
 /* ==============================
 Helpers
 ============================== */
 
 function setText(
-elementId,
-value
+    elementId,
+    value
 ) {
 
-const element =
-    document.getElementById(
-        elementId
-    );
-
-if (!element) {
-    return;
-}
-
-element.textContent =
-    value;
-
-}
-
-function getFirstNameFromEmail(
-email
-) {
-
-if (!email) {
-    return "Merchant";
-}
-
-const localPart =
-    email.split("@")[0];
-
-if (!localPart) {
-    return "Merchant";
-}
-
-const cleaned =
-    localPart
-        .replace(/[._-]+/g, " ")
-        .trim();
-
-if (!cleaned) {
-    return "Merchant";
-}
-
-return cleaned
-    .split(" ")
-    .map(function(word) {
-
-        if (!word) {
-            return "";
-        }
-
-        return (
-            word.charAt(0).toUpperCase() +
-            word.slice(1)
+    const element =
+        document.getElementById(
+            elementId
         );
 
-    })
-    .join(" ");
+    if (!element) {
+        return;
+    }
+
+    element.textContent =
+        value;
 
 }
+
+
+function getFirstNameFromEmail(
+    email
+) {
+
+    if (
+        !email ||
+        email === "—"
+    ) {
+
+        return "Merchant";
+
+    }
+
+
+    const localPart =
+        email.split("@")[0];
+
+
+    if (!localPart) {
+        return "Merchant";
+    }
+
+
+    const cleaned =
+        localPart
+            .replace(/[._-]+/g, " ")
+            .trim();
+
+
+    if (!cleaned) {
+        return "Merchant";
+    }
+
+
+    return cleaned
+        .split(" ")
+        .map(function(word) {
+
+            if (!word) {
+                return "";
+            }
+
+            return (
+                word.charAt(0).toUpperCase() +
+                word.slice(1)
+            );
+
+        })
+        .join(" ");
+
+}
+
 
 /* ==============================
 Account Menu
@@ -253,69 +258,80 @@ Account Menu
 
 function toggleAccountMenu() {
 
-const menu =
-    document.getElementById(
-        "accountMenu"
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        !accountMenuOpen;
+
+
+    menu.classList.toggle(
+        "open",
+        accountMenuOpen
     );
 
-if (!menu) {
-    return;
 }
 
-accountMenuOpen =
-    !accountMenuOpen;
-
-menu.classList.toggle(
-    "open",
-    accountMenuOpen
-);
-
-}
 
 function closeAccountMenu() {
 
-const menu =
-    document.getElementById(
-        "accountMenu"
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        false;
+
+
+    menu.classList.remove(
+        "open"
     );
 
-if (!menu) {
-    return;
 }
 
-accountMenuOpen =
-    false;
-
-menu.classList.remove(
-    "open"
-);
-
-}
 
 function handleDocumentClick(
-event
+    event
 ) {
 
-const container =
-    document.querySelector(
-        ".account-container"
-    );
+    const container =
+        document.querySelector(
+            ".account-container"
+        );
 
-if (!container) {
-    return;
+
+    if (!container) {
+        return;
+    }
+
+
+    if (
+        !container.contains(
+            event.target
+        )
+    ) {
+
+        closeAccountMenu();
+
+    }
+
 }
 
-if (
-    !container.contains(
-        event.target
-    )
-) {
-
-    closeAccountMenu();
-
-}
-
-}
 
 /* ==============================
 Logout
@@ -323,26 +339,28 @@ Logout
 
 function logout() {
 
-sessionStorage.removeItem(
-    "authToken"
-);
+    sessionStorage.removeItem(
+        "authToken"
+    );
 
-sessionStorage.removeItem(
-    "merchantId"
-);
+    sessionStorage.removeItem(
+        "merchantId"
+    );
 
-sessionStorage.removeItem(
-    "merchantEmail"
-);
+    sessionStorage.removeItem(
+        "merchantEmail"
+    );
 
-sessionStorage.removeItem(
-    "merchantType"
-);
+    sessionStorage.removeItem(
+        "merchantType"
+    );
 
-window.location.href =
-    "index.html";
+
+    window.location.href =
+        "index.html";
 
 }
+
 
 /* ==============================
 Copy Merchant ID
@@ -350,89 +368,105 @@ Copy Merchant ID
 
 async function copyMerchantId() {
 
-const element =
-    document.getElementById(
-        "merchantId"
-    );
+    const element =
+        document.getElementById(
+            "merchantId"
+        );
 
-if (!element) {
-    return;
+
+    if (!element) {
+        return;
+    }
+
+
+    const merchantId =
+        element.textContent.trim();
+
+
+    if (
+        !merchantId ||
+        merchantId === "—"
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        await navigator.clipboard.writeText(
+            merchantId
+        );
+
+        showCopyState();
+
+    } catch (error) {
+
+        /*
+         * Clipboard APIs may not be available
+         * in every testing environment.
+         */
+
+        console.log(
+            "Unable to copy Merchant ID.",
+            error
+        );
+
+    }
+
 }
 
-const merchantId =
-    element.textContent.trim();
-
-if (!merchantId) {
-    return;
-}
-
-try {
-
-    await navigator.clipboard.writeText(
-        merchantId
-    );
-
-    showCopyState();
-
-} catch (error) {
-
-    /*
-     * Clipboard APIs may not be available
-     * in every testing environment.
-     */
-
-    console.log(
-        "Unable to copy Merchant ID.",
-        error
-    );
-
-}
-
-}
 
 function showCopyState() {
 
-const button =
-    document.querySelector(
-        ".copy-button"
+    const button =
+        document.querySelector(
+            ".copy-button"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    const originalText =
+        button.textContent;
+
+
+    button.textContent =
+        "Copied";
+
+
+    setTimeout(
+        function() {
+
+            button.textContent =
+                originalText;
+
+        },
+        1200
     );
 
-if (!button) {
-    return;
 }
 
-const originalText =
-    button.textContent;
-
-button.textContent =
-    "Copied";
-
-setTimeout(
-    function() {
-
-        button.textContent =
-            originalText;
-
-    },
-    1200
-);
-
-}
 
 /* ==============================
 Coming Soon
 ============================== */
 
 function showComingSoon(
-section
+    section
 ) {
 
-alert(
-    section +
-    " configuration is coming soon."
-);
+    alert(
+        section +
+        " configuration is coming soon."
+    );
 
 }
+
 
 /* ==============================
 Developer Response
@@ -440,67 +474,74 @@ Developer Response
 
 function openDeveloperResponse() {
 
-const modal =
-    document.getElementById(
-        "developerModal"
+    const modal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.add(
+        "open"
     );
 
-if (!modal) {
-    return;
 }
 
-modal.classList.add(
-    "open"
-);
-
-}
 
 function closeDeveloperResponse(
-event
+    event
 ) {
 
-if (
-    event &&
-    event.target &&
-    event.target.id !==
-        "developerModal"
-) {
+    if (
+        event &&
+        event.target &&
+        event.target.id !==
+            "developerModal"
+    ) {
 
-    return;
+        return;
 
-}
+    }
 
-const modal =
-    document.getElementById(
-        "developerModal"
+
+    const modal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.remove(
+        "open"
     );
 
-if (!modal) {
-    return;
 }
 
-modal.classList.remove(
-    "open"
-);
-
-}
 
 /* ==============================
 Escape Key
 ============================== */
 
 document.addEventListener(
-"keydown",
-function(event) {
+    "keydown",
+    function(event) {
 
-    if (event.key !== "Escape") {
-        return;
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        closeAccountMenu();
+
+        closeDeveloperResponse();
+
     }
-
-    closeAccountMenu();
-
-    closeDeveloperResponse();
-
-}
-
 );
