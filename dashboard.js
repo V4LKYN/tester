@@ -88,6 +88,8 @@ function initializeDashboard() {
 
     /*
      * Merchant ID.
+     *
+     * Configuration card.
      */
 
     setText(
@@ -117,14 +119,33 @@ function initializeDashboard() {
 
 
     /*
+     * Account Overview.
+     *
+     * This card is display-only.
+     */
+
+    setText(
+        "overviewAccountType",
+        displayAccountType
+    );
+
+
+    setText(
+        "overviewMerchantId",
+        displayMerchantId
+    );
+
+
+    setText(
+        "overviewStatusBadge",
+        "Active"
+    );
+
+
+    /*
+     * Account Configuration.
+     *
      * Account Type.
-     *
-     * This is the actual account type
-     * returned by the login API.
-     *
-     * Login stores the value as:
-     *
-     * merchantType
      */
 
     setText(
