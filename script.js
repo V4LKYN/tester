@@ -1217,7 +1217,7 @@ try {
      * authentication page into a dashboard.
      */
 
-    window.location.href =
+    window.location.replace =
         "dashboard.html";
 
 } catch (error) {
