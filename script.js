@@ -113,10 +113,6 @@ function openDeveloperResponse() {
 
 function closeDeveloperResponse(event) {
 
-    /*
-     * If this function was triggered by clicking
-     * inside the modal content, do nothing.
-     */
     if (
         event &&
         event.target !== event.currentTarget
@@ -136,6 +132,270 @@ function closeDeveloperResponse(event) {
 
 
 // ---------------------------------------------------------
+// ACCOUNT MENU
+// ---------------------------------------------------------
+
+function updateAccountMenu() {
+
+    const storedEmail =
+        sessionStorage.getItem(
+            "merchantEmail"
+        );
+
+    const storedMerchantId =
+        sessionStorage.getItem(
+            "merchantId"
+        );
+
+
+    const menuEmail =
+        document.getElementById(
+            "accountMenuEmail"
+        );
+
+    const dropdownEmail =
+        document.getElementById(
+            "accountDropdownEmail"
+        );
+
+    const dropdownMerchantId =
+        document.getElementById(
+            "accountDropdownMerchantId"
+        );
+
+    const dashboardEmail =
+        document.getElementById(
+            "dashboardEmail"
+        );
+
+    const dashboardMerchantId =
+        document.getElementById(
+            "dashboardMerchantId"
+        );
+
+
+    if (menuEmail) {
+
+        menuEmail.textContent =
+            storedEmail || "—";
+
+    }
+
+
+    if (dropdownEmail) {
+
+        dropdownEmail.textContent =
+            storedEmail || "—";
+
+    }
+
+
+    if (dropdownMerchantId) {
+
+        dropdownMerchantId.textContent =
+            storedMerchantId || "—";
+
+    }
+
+
+    if (dashboardEmail) {
+
+        dashboardEmail.textContent =
+            storedEmail || "—";
+
+    }
+
+
+    if (dashboardMerchantId) {
+
+        dashboardMerchantId.textContent =
+            storedMerchantId || "—";
+
+    }
+}
+
+
+function toggleAccountMenu() {
+
+    const dropdown =
+        document.getElementById(
+            "accountDropdown"
+        );
+
+    const button =
+        document.getElementById(
+            "accountMenuButton"
+        );
+
+    if (!dropdown || !button) {
+        return;
+    }
+
+
+    const isOpen =
+        dropdown.classList.contains(
+            "visible"
+        );
+
+
+    if (isOpen) {
+
+        closeAccountMenu();
+
+    } else {
+
+        dropdown.classList.add(
+            "visible"
+        );
+
+        button.classList.add(
+            "open"
+        );
+
+        button.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
+}
+
+
+function closeAccountMenu() {
+
+    const dropdown =
+        document.getElementById(
+            "accountDropdown"
+        );
+
+    const button =
+        document.getElementById(
+            "accountMenuButton"
+        );
+
+
+    if (dropdown) {
+
+        dropdown.classList.remove(
+            "visible"
+        );
+
+    }
+
+
+    if (button) {
+
+        button.classList.remove(
+            "open"
+        );
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    }
+}
+
+
+async function copyMerchantId(event) {
+
+    if (event) {
+
+        event.stopPropagation();
+
+    }
+
+
+    const storedMerchantId =
+        sessionStorage.getItem(
+            "merchantId"
+        );
+
+
+    if (!storedMerchantId) {
+        return;
+    }
+
+
+    try {
+
+        await navigator.clipboard.writeText(
+            storedMerchantId
+        );
+
+        const button =
+            event
+                ? event.currentTarget
+                : null;
+
+
+        if (button) {
+
+            button.classList.add(
+                "copied"
+            );
+
+
+            const original =
+                button.innerHTML;
+
+
+            button.innerHTML =
+                `
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <polyline
+                        points="20 6 9 17 4 12"
+                    ></polyline>
+                </svg>
+                `;
+
+
+            setTimeout(
+                function() {
+
+                    button.classList.remove(
+                        "copied"
+                    );
+
+                    button.innerHTML =
+                        original;
+
+                },
+                1200
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Unable to copy merchant ID:",
+            error
+        );
+
+    }
+}
+
+
+function openAccountSettings() {
+
+    closeAccountMenu();
+
+    alert(
+        "Account Settings will be available here."
+    );
+}
+
+
+// ---------------------------------------------------------
 // AUTHENTICATION NAVIGATION
 // ---------------------------------------------------------
 
@@ -145,7 +405,9 @@ function hideAllScreens() {
         .querySelectorAll(".step")
         .forEach(function(element) {
 
-            element.classList.remove("active");
+            element.classList.remove(
+                "active"
+            );
 
         });
 }
@@ -157,14 +419,20 @@ function showAuthChoice() {
 
     clearStatus();
 
+    closeAccountMenu();
+
     const screen =
-        document.getElementById("authChoice");
+        document.getElementById(
+            "authChoice"
+        );
 
     if (!screen) {
         return;
     }
 
-    screen.classList.add("active");
+    screen.classList.add(
+        "active"
+    );
 }
 
 
@@ -174,20 +442,32 @@ function showLogin() {
 
     clearStatus();
 
+    closeAccountMenu();
+
     const screen =
-        document.getElementById("login");
+        document.getElementById(
+            "login"
+        );
 
     if (!screen) {
         return;
     }
 
-    screen.classList.add("active");
+    screen.classList.add(
+        "active"
+    );
+
 
     const emailInput =
-        document.getElementById("loginEmail");
+        document.getElementById(
+            "loginEmail"
+        );
+
 
     if (emailInput) {
+
         emailInput.focus();
+
     }
 }
 
@@ -198,14 +478,20 @@ function showSignup() {
 
     clearStatus();
 
+    closeAccountMenu();
+
     const screen =
-        document.getElementById("signup");
+        document.getElementById(
+            "signup"
+        );
 
     if (!screen) {
         return;
     }
 
-    screen.classList.add("active");
+    screen.classList.add(
+        "active"
+    );
 
     resetSignupState();
 }
@@ -221,9 +507,12 @@ function setSignupStep(step) {
         .querySelectorAll(".signup-step")
         .forEach(function(element) {
 
-            element.classList.remove("active");
+            element.classList.remove(
+                "active"
+            );
 
-            element.style.display = "none";
+            element.style.display =
+                "none";
 
         });
 
@@ -236,9 +525,12 @@ function setSignupStep(step) {
 
     if (target) {
 
-        target.classList.add("active");
+        target.classList.add(
+            "active"
+        );
 
-        target.style.display = "block";
+        target.style.display =
+            "block";
 
     }
 
@@ -249,7 +541,11 @@ function setSignupStep(step) {
 
 function setFlowStep(step) {
 
-    for (let i = 1; i <= 3; i++) {
+    for (
+        let i = 1;
+        i <= 3;
+        i++
+    ) {
 
         const circle =
             document.getElementById(
@@ -261,6 +557,7 @@ function setFlowStep(step) {
                 "flowLabel" + i
             );
 
+
         if (circle) {
 
             circle.classList.remove(
@@ -270,6 +567,7 @@ function setFlowStep(step) {
 
         }
 
+
         if (label) {
 
             label.classList.remove(
@@ -277,14 +575,19 @@ function setFlowStep(step) {
             );
 
         }
+
     }
 
 
     const line1 =
-        document.getElementById("flowLine1");
+        document.getElementById(
+            "flowLine1"
+        );
 
     const line2 =
-        document.getElementById("flowLine2");
+        document.getElementById(
+            "flowLine2"
+        );
 
 
     if (line1) {
@@ -317,6 +620,7 @@ function setFlowStep(step) {
                 "flowLabel1"
             );
 
+
         if (circle1) {
 
             circle1.classList.add(
@@ -327,6 +631,7 @@ function setFlowStep(step) {
 
         }
 
+
         if (label1) {
 
             label1.classList.add(
@@ -334,6 +639,7 @@ function setFlowStep(step) {
             );
 
         }
+
     }
 
 
@@ -349,6 +655,7 @@ function setFlowStep(step) {
                 "flowLabel2"
             );
 
+
         if (circle2) {
 
             circle2.classList.add(
@@ -359,6 +666,7 @@ function setFlowStep(step) {
 
         }
 
+
         if (label2) {
 
             label2.classList.add(
@@ -367,6 +675,7 @@ function setFlowStep(step) {
 
         }
 
+
         if (line1) {
 
             line1.classList.add(
@@ -374,6 +683,7 @@ function setFlowStep(step) {
             );
 
         }
+
     }
 
 
@@ -389,6 +699,7 @@ function setFlowStep(step) {
                 "flowLabel3"
             );
 
+
         if (circle3) {
 
             circle3.classList.add(
@@ -396,6 +707,7 @@ function setFlowStep(step) {
             );
 
         }
+
 
         if (label3) {
 
@@ -405,6 +717,7 @@ function setFlowStep(step) {
 
         }
 
+
         if (line2) {
 
             line2.classList.add(
@@ -412,6 +725,7 @@ function setFlowStep(step) {
             );
 
         }
+
     }
 }
 
@@ -423,16 +737,24 @@ function setFlowStep(step) {
 function getFormData() {
 
     const emailElement =
-        document.getElementById("email");
+        document.getElementById(
+            "email"
+        );
 
     const firstNameElement =
-        document.getElementById("firstName");
+        document.getElementById(
+            "firstName"
+        );
 
     const lastNameElement =
-        document.getElementById("lastName");
+        document.getElementById(
+            "lastName"
+        );
 
     const passwordElement =
-        document.getElementById("password");
+        document.getElementById(
+            "password"
+        );
 
 
     return {
@@ -742,11 +1064,15 @@ async function startOnboarding() {
 
 
         const otp =
-            document.getElementById("otp");
+            document.getElementById(
+                "otp"
+            );
 
 
         if (otp) {
+
             otp.focus();
+
         }
 
     } catch (error) {
@@ -757,7 +1083,9 @@ async function startOnboarding() {
         );
 
 
-        showDeveloperError(error);
+        showDeveloperError(
+            error
+        );
 
     } finally {
 
@@ -769,6 +1097,7 @@ async function startOnboarding() {
                 "Create Account";
 
         }
+
     }
 }
 
@@ -791,7 +1120,9 @@ async function verifyOnboarding() {
 
 
     const otpElement =
-        document.getElementById("otp");
+        document.getElementById(
+            "otp"
+        );
 
 
     const otp =
@@ -936,7 +1267,9 @@ async function verifyOnboarding() {
         );
 
 
-        showDeveloperError(error);
+        showDeveloperError(
+            error
+        );
 
     } finally {
 
@@ -948,6 +1281,7 @@ async function verifyOnboarding() {
                 "Verify Email";
 
         }
+
     }
 }
 
@@ -1111,34 +1445,7 @@ async function login() {
         );
 
 
-        const dashboardEmail =
-            document.getElementById(
-                "dashboardEmail"
-            );
-
-
-        if (dashboardEmail) {
-
-            dashboardEmail.textContent =
-                responseData.email ||
-                email;
-
-        }
-
-
-        const dashboardMerchantId =
-            document.getElementById(
-                "dashboardMerchantId"
-            );
-
-
-        if (dashboardMerchantId) {
-
-            dashboardMerchantId.textContent =
-                merchantId ||
-                "—";
-
-        }
+        updateAccountMenu();
 
 
         hideAllScreens();
@@ -1169,7 +1476,9 @@ async function login() {
         );
 
 
-        showDeveloperError(error);
+        showDeveloperError(
+            error
+        );
 
     } finally {
 
@@ -1181,6 +1490,7 @@ async function login() {
                 "Log In";
 
         }
+
     }
 }
 
@@ -1190,6 +1500,9 @@ async function login() {
 // ---------------------------------------------------------
 
 function logout() {
+
+    closeAccountMenu();
+
 
     authToken = null;
 
@@ -1282,33 +1595,7 @@ function restoreSession() {
         storedMerchantId;
 
 
-    const dashboardEmail =
-        document.getElementById(
-            "dashboardEmail"
-        );
-
-
-    const dashboardMerchantId =
-        document.getElementById(
-            "dashboardMerchantId"
-        );
-
-
-    if (dashboardEmail) {
-
-        dashboardEmail.textContent =
-            storedEmail ||
-            "—";
-
-    }
-
-
-    if (dashboardMerchantId) {
-
-        dashboardMerchantId.textContent =
-            storedMerchantId;
-
-    }
+    updateAccountMenu();
 
 
     hideAllScreens();
@@ -1342,39 +1629,58 @@ function resetSignupState() {
 
 
     const email =
-        document.getElementById("email");
+        document.getElementById(
+            "email"
+        );
+
 
     const firstName =
-        document.getElementById("firstName");
+        document.getElementById(
+            "firstName"
+        );
+
 
     const lastName =
-        document.getElementById("lastName");
+        document.getElementById(
+            "lastName"
+        );
+
 
     const password =
-        document.getElementById("password");
+        document.getElementById(
+            "password"
+        );
+
 
     const confirmPassword =
         document.getElementById(
             "confirmPassword"
         );
 
+
     const otp =
-        document.getElementById("otp");
+        document.getElementById(
+            "otp"
+        );
+
 
     const signupEmailDisplay =
         document.getElementById(
             "signupEmailDisplay"
         );
 
+
     const onboardingStatusDisplay =
         document.getElementById(
             "onboardingStatusDisplay"
         );
 
+
     const resultStatus =
         document.getElementById(
             "resultStatus"
         );
+
 
     const resultMerchantId =
         document.getElementById(
@@ -1466,16 +1772,11 @@ function resetSignupState() {
 
 function initializePage() {
 
-    /*
-     * Always begin with the Developer modal closed.
-     *
-     * The Developer BUTTON remains visible at all times.
-     * Only the modal itself is forced closed here.
-     */
     const developerModal =
         document.getElementById(
             "developerModal"
         );
+
 
     if (developerModal) {
 
@@ -1490,7 +1791,9 @@ function initializePage() {
 
 
     const otp =
-        document.getElementById("otp");
+        document.getElementById(
+            "otp"
+        );
 
 
     if (otp) {
@@ -1562,7 +1865,34 @@ function initializePage() {
     }
 
 
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            const container =
+                document.querySelector(
+                    ".account-menu-container"
+                );
+
+
+            if (
+                container &&
+                !container.contains(
+                    event.target
+                )
+            ) {
+
+                closeAccountMenu();
+
+            }
+
+        }
+    );
+
+
     restoreSession();
+
+    updateAccountMenu();
 }
 
 
