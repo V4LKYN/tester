@@ -12,361 +12,352 @@
     href="dashboardstyle.css"
 >
 
-</head><body><div class="dashboard-page">
+<link
+    rel="stylesheet"
+    href="styles.css"
+>
 
-    <!-- Header -->
+</head><body><div class="dashboard-page"><!-- Header -->
 
-    <header class="dashboard-header">
+<header class="dashboard-header">
 
-        <div class="brand">
+    <div class="brand">
 
-            <div class="brand-name">
-                Merchant Portal
+        <div class="brand-name">
+            Merchant Portal
+        </div>
+
+        <div class="environment">
+            DEVELOPMENT
+        </div>
+
+    </div>
+
+
+    <!-- Account Menu -->
+
+    <div class="account-container">
+
+        <button
+            id="accountButton"
+            class="account-button"
+            type="button"
+            onclick="toggleAccountMenu()"
+        >
+
+            <span
+                class="account-initial"
+                aria-hidden="true"
+            >
+                👤
+            </span>
+
+            <span
+                id="accountEmail"
+                class="account-email"
+            >
+                merchant@example.com
+            </span>
+
+            <span class="account-chevron">
+                ▾
+            </span>
+
+        </button>
+
+
+        <div
+            id="accountMenu"
+            class="account-menu"
+        >
+
+            <div class="account-menu-header">
+
+                <div class="account-menu-label">
+                    Signed in as
+                </div>
+
+                <div
+                    id="menuEmail"
+                    class="account-menu-email"
+                >
+                    merchant@example.com
+                </div>
+
             </div>
 
-            <div class="environment-badge">
-                DEVELOPMENT
-            </div>
+
+            <button
+                class="account-menu-item"
+                type="button"
+                onclick="logout()"
+            >
+                Log Out
+            </button>
 
         </div>
 
-        <!-- Account Menu -->
+    </div>
 
-        <div class="account-container">
+</header>
 
-            <button
-                id="accountButton"
-                class="account-button"
-                type="button"
-                onclick="toggleAccountMenu()"
-            >
 
-                <span
-                    id="accountInitial"
-                    class="account-initial"
-                >
-                    M
+<!-- Main Content -->
+
+<main class="dashboard-main">
+
+    <div class="dashboard-heading">
+
+        <div>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Manage your merchant account.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Navigation -->
+
+    <nav class="dashboard-navigation">
+
+        <button
+            class="navigation-item active"
+            type="button"
+        >
+            Overview
+        </button>
+
+
+        <button
+            class="navigation-item"
+            type="button"
+            onclick="showComingSoon('Endpoints')"
+        >
+            Endpoints
+        </button>
+
+
+        <button
+            class="navigation-item"
+            type="button"
+            onclick="showComingSoon('API')"
+        >
+            API
+        </button>
+
+    </nav>
+
+
+    <!-- Dashboard Content -->
+
+    <section class="dashboard-content">
+
+
+        <!-- Welcome -->
+
+        <div class="welcome-section">
+
+            <h2 id="welcomeName">
+                Welcome
+            </h2>
+
+            <p>
+                Your merchant account is active.
+            </p>
+
+        </div>
+
+
+        <!-- Account Card -->
+
+        <div class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Account
+                    </h2>
+
+                    <p>
+                        Your merchant account information.
+                    </p>
+
+                </div>
+
+                <span class="status-badge">
+                    Active
                 </span>
 
-                <span
-                    id="accountEmail"
-                    class="account-email"
-                >
-                    merchant@example.com
-                </span>
+            </div>
 
-                <span class="account-chevron">
-                    ▾
-                </span>
 
-            </button>
+            <div class="account-details">
 
-            <div
-                id="accountMenu"
-                class="account-menu"
-            >
+                <div class="detail">
 
-                <div class="account-menu-header">
-
-                    <div class="account-menu-label">
-                        Signed in as
+                    <div class="detail-label">
+                        Name
                     </div>
 
                     <div
-                        id="menuEmail"
-                        class="account-menu-email"
+                        id="accountName"
+                        class="detail-value"
+                    >
+                        Merchant
+                    </div>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Email
+                    </div>
+
+                    <div
+                        id="detailEmail"
+                        class="detail-value"
                     >
                         merchant@example.com
                     </div>
 
                 </div>
 
-                <button
-                    class="account-menu-item"
-                    type="button"
-                    onclick="logout()"
-                >
-                    Log Out
-                </button>
 
-            </div>
+                <div class="detail">
 
-        </div>
+                    <div class="detail-label">
+                        Merchant ID
+                    </div>
 
-    </header>
+                    <div class="merchant-id-row">
 
+                        <div
+                            id="merchantId"
+                            class="detail-value merchant-id"
+                        >
+                            m_example
+                        </div>
 
-    <!-- Main Content -->
-
-    <main class="dashboard-main">
-
-        <div class="dashboard-heading">
-
-            <div>
-
-                <h1>
-                    Dashboard
-                </h1>
-
-                <p>
-                    Manage your merchant account.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- Navigation -->
-
-        <nav class="dashboard-navigation">
-
-            <button
-                class="navigation-item active"
-                type="button"
-            >
-                Overview
-            </button>
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('Account')"
-            >
-                Account
-            </button>
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('Business')"
-            >
-                Business
-            </button>
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('API')"
-            >
-                API
-            </button>
-
-        </nav>
-
-
-        <!-- Dashboard Content -->
-
-        <section class="dashboard-content">
-
-            <!-- Welcome -->
-
-            <div class="welcome-section">
-
-                <h2 id="welcomeName">
-                    Welcome
-                </h2>
-
-                <p>
-                    Your merchant account is active.
-                </p>
-
-            </div>
-
-
-            <!-- Account Card -->
-
-            <div class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h2>
-                            Account
-                        </h2>
-
-                        <p>
-                            Your merchant account information.
-                        </p>
+                        <button
+                            class="copy-button"
+                            type="button"
+                            onclick="copyMerchantId()"
+                        >
+                            Copy
+                        </button>
 
                     </div>
 
-                    <span class="status-badge">
+                </div>
+
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Status
+                    </div>
+
+                    <div class="detail-value">
                         Active
-                    </span>
-
-                </div>
-
-
-                <div class="account-details">
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Name
-                        </div>
-
-                        <div
-                            id="accountName"
-                            class="detail-value"
-                        >
-                            Merchant
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Email
-                        </div>
-
-                        <div
-                            id="detailEmail"
-                            class="detail-value"
-                        >
-                            merchant@example.com
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Merchant ID
-                        </div>
-
-                        <div class="merchant-id-row">
-
-                            <div
-                                id="merchantId"
-                                class="detail-value merchant-id"
-                            >
-                                m_example
-                            </div>
-
-                            <button
-                                class="copy-button"
-                                type="button"
-                                onclick="copyMerchantId()"
-                            >
-                                Copy
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Status
-                        </div>
-
-                        <div class="detail-value">
-                            Active
-                        </div>
-
                     </div>
 
                 </div>
 
             </div>
 
+        </div>
 
-            <!-- Future Areas -->
 
-            <div class="dashboard-card future-card">
+        <!-- Future Areas -->
 
-                <div class="card-header">
+        <div class="dashboard-card future-card">
 
-                    <div>
+            <div class="card-header">
 
-                        <h2>
-                            Account Configuration
-                        </h2>
+                <div>
 
-                        <p>
-                            Business and account configuration will appear here.
-                        </p>
+                    <h2>
+                        Account Configuration
+                    </h2>
 
-                    </div>
+                    <p>
+                        Business and account configuration will appear here.
+                    </p>
 
-                </div>
-
-                <div class="coming-soon">
-                    Coming soon
                 </div>
 
             </div>
 
-        </section>
+            <div class="coming-soon">
+                Coming soon
+            </div>
 
-    </main>
+        </div>
 
+    </section>
 
-    <!-- Developer Button -->
-
-    <button
-        id="developerButton"
-        class="developer-button"
-        type="button"
-        onclick="openDeveloperResponse()"
-    >
-        Developer
-    </button>
-
-</div>
+</main>
 
 
-<!-- Developer Modal -->
+<!-- Developer Button -->
 
-<div
+<button
+    id="developerButton"
+    class="developer-button"
+    type="button"
+    onclick="openDeveloperResponse()"
+>
+    Developer
+</button>
+
+</div><!-- Developer Modal --><div
     id="developerModal"
     class="developer-modal"
     onclick="closeDeveloperResponse(event)"
+><div
+    class="developer-modal-content"
+    onclick="event.stopPropagation()"
 >
 
-    <div
-        class="developer-modal-content"
-        onclick="event.stopPropagation()"
-    >
+    <div class="developer-modal-header">
 
-        <div class="developer-modal-header">
+        <h2>
+            Developer Response
+        </h2>
 
-            <h2>
-                Developer Response
-            </h2>
-
-            <button
-                class="developer-close"
-                type="button"
-                onclick="closeDeveloperResponse()"
-                aria-label="Close"
-            >
-                ×
-            </button>
-
-        </div>
-
-        <div
-            id="developerMeta"
-            class="developer-meta"
+        <button
+            class="developer-close"
+            type="button"
+            onclick="closeDeveloperResponse()"
+            aria-label="Close"
         >
-            No request information.
-        </div>
-
-        <pre id="developerResponseText">No response yet.</pre>
+            ×
+        </button>
 
     </div>
 
+
+    <div
+        id="developerMeta"
+        class="developer-meta"
+    >
+        No request information.
+    </div>
+
+
+    <pre id="developerResponseText">No response yet.</pre>
+
 </div>
 
-
-<script src="dashboard.js"></script>
-
-</body></html>
+</div><script src="dashboard.js"></script></body></html>
