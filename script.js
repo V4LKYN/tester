@@ -921,6 +921,7 @@ if (!response.ok) {
     );
 
     return;
+
 }
 
 merchantId =
@@ -1093,6 +1094,7 @@ if (!response.ok) {
     );
 
     return;
+
 }
 
 authToken =
@@ -1109,7 +1111,9 @@ if (!authToken) {
     );
 
     return;
+
 }
+
 
 /*
  * Store the authenticated session.
@@ -1130,6 +1134,13 @@ sessionStorage.setItem(
     responseData.email ||
     email
 );
+
+sessionStorage.setItem(
+    "merchantType",
+    responseData.type ||
+    ""
+);
+
 
 /*
  * Authentication is complete.
