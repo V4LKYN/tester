@@ -12,37 +12,37 @@ let authToken = null;
 function showStatus(message, type) {
 
 const element =
-    document.getElementById(
-        "signupStatus"
-    );
+document.getElementById(
+"signupStatus"
+);
 
 if (!element) {
-    return;
+return;
 }
 
 element.textContent =
-    message;
+message;
 
 element.className =
-    "status " + type;
+"status " + type;
 
 }
 
 function clearStatus() {
 
 const element =
-    document.getElementById(
-        "signupStatus"
-    );
+document.getElementById(
+"signupStatus"
+);
 
 if (!element) {
-    return;
+return;
 }
 
 element.textContent = "";
 
 element.className =
-    "status";
+"status";
 
 }
 
@@ -56,77 +56,77 @@ data
 ) {
 
 const meta =
-    document.getElementById(
-        "developerMeta"
-    );
+document.getElementById(
+"developerMeta"
+);
 
 const output =
-    document.getElementById(
-        "developerResponseText"
-    );
+document.getElementById(
+"developerResponseText"
+);
 
 if (!meta || !output) {
-    return;
+return;
 }
 
 meta.textContent =
-    "HTTP " +
-    response.status +
-    " " +
-    response.statusText;
+"HTTP " +
+response.status +
+" " +
+response.statusText;
 
 output.textContent =
-    JSON.stringify(
-        data,
-        null,
-        4
-    );
+JSON.stringify(
+data,
+null,
+4
+);
 
 }
 
 function showDeveloperError(error) {
 
 const meta =
-    document.getElementById(
-        "developerMeta"
-    );
+document.getElementById(
+"developerMeta"
+);
 
 const output =
-    document.getElementById(
-        "developerResponseText"
-    );
+document.getElementById(
+"developerResponseText"
+);
 
 if (!meta || !output) {
-    return;
+return;
 }
 
 meta.textContent =
-    "Connection Error";
+"Connection Error";
 
 output.textContent =
-    JSON.stringify(
-        {
-            error: error.message
-        },
-        null,
-        4
-    );
+JSON.stringify(
+{
+error: error.message
+},
+null,
+4
+);
 
 }
 
 function openDeveloperResponse() {
 
 const modal =
-    document.getElementById(
-        "developerModal"
-    );
+document.getElementById(
+"developerModal"
+);
 
 if (!modal) {
-    return;
+return;
 }
 
 modal.classList.add(
-    "visible"
+"visible"
 );
 
 }
@@ -134,23 +134,23 @@ modal.classList.add(
 function closeDeveloperResponse(event) {
 
 if (
-    event &&
-    event.target !== event.currentTarget
+event &&
+event.target !== event.currentTarget
 ) {
-    return;
+return;
 }
 
 const modal =
-    document.getElementById(
-        "developerModal"
-    );
+document.getElementById(
+"developerModal"
+);
 
 if (!modal) {
-    return;
+return;
 }
 
 modal.classList.remove(
-    "visible"
+"visible"
 );
 
 }
@@ -162,18 +162,18 @@ modal.classList.remove(
 function hideAllScreens() {
 
 document
-    .querySelectorAll(
-        ".step"
-    )
-    .forEach(
-        function(element) {
+.querySelectorAll(
+".step"
+)
+.forEach(
+function(element) {
 
-            element.classList.remove(
-                "active"
-            );
+        element.classList.remove(
+            "active"
+        );
 
-        }
-    );
+    }
+);
 
 }
 
@@ -184,16 +184,16 @@ hideAllScreens();
 clearStatus();
 
 const screen =
-    document.getElementById(
-        "authChoice"
-    );
+document.getElementById(
+"authChoice"
+);
 
 if (!screen) {
-    return;
+return;
 }
 
 screen.classList.add(
-    "active"
+"active"
 );
 
 }
@@ -205,28 +205,26 @@ hideAllScreens();
 clearStatus();
 
 const screen =
-    document.getElementById(
-        "login"
-    );
+document.getElementById(
+"login"
+);
 
 if (!screen) {
-    return;
+return;
 }
 
 screen.classList.add(
-    "active"
+"active"
 );
 
-
 const emailInput =
-    document.getElementById(
-        "loginEmail"
-    );
-
+document.getElementById(
+"loginEmail"
+);
 
 if (emailInput) {
 
-    emailInput.focus();
+emailInput.focus();
 
 }
 
@@ -239,16 +237,16 @@ hideAllScreens();
 clearStatus();
 
 const screen =
-    document.getElementById(
-        "signup"
-    );
+document.getElementById(
+"signup"
+);
 
 if (!screen) {
-    return;
+return;
 }
 
 screen.classList.add(
-    "active"
+"active"
 );
 
 resetSignupState();
@@ -262,40 +260,37 @@ resetSignupState();
 function setSignupStep(step) {
 
 document
-    .querySelectorAll(
-        ".signup-step"
-    )
-    .forEach(
-        function(element) {
+.querySelectorAll(
+".signup-step"
+)
+.forEach(
+function(element) {
 
-            element.classList.remove(
-                "active"
-            );
+        element.classList.remove(
+            "active"
+        );
 
-            element.style.display =
-                "none";
+        element.style.display =
+            "none";
 
-        }
-    );
-
+    }
+);
 
 const target =
-    document.getElementById(
-        "signupStep" + step
-    );
-
+document.getElementById(
+"signupStep" + step
+);
 
 if (target) {
 
-    target.classList.add(
-        "active"
-    );
+target.classList.add(
+    "active"
+);
 
-    target.style.display =
-        "block";
+target.style.display =
+    "block";
 
 }
-
 
 setFlowStep(step);
 
@@ -304,189 +299,173 @@ setFlowStep(step);
 function setFlowStep(step) {
 
 for (
-    let i = 1;
-    i <= 3;
-    i++
+let i = 1;
+i <= 3;
+i++
 ) {
 
-    const circle =
-        document.getElementById(
-            "flowCircle" + i
-        );
+const circle =
+    document.getElementById(
+        "flowCircle" + i
+    );
 
-    const label =
-        document.getElementById(
-            "flowLabel" + i
-        );
+const label =
+    document.getElementById(
+        "flowLabel" + i
+    );
 
+if (circle) {
 
-    if (circle) {
-
-        circle.classList.remove(
-            "active",
-            "complete"
-        );
-
-    }
-
-
-    if (label) {
-
-        label.classList.remove(
-            "active"
-        );
-
-    }
+    circle.classList.remove(
+        "active",
+        "complete"
+    );
 
 }
 
+if (label) {
+
+    label.classList.remove(
+        "active"
+    );
+
+}
+
+}
 
 const line1 =
-    document.getElementById(
-        "flowLine1"
-    );
+document.getElementById(
+"flowLine1"
+);
 
 const line2 =
-    document.getElementById(
-        "flowLine2"
-    );
-
+document.getElementById(
+"flowLine2"
+);
 
 if (line1) {
 
-    line1.classList.remove(
-        "complete"
-    );
+line1.classList.remove(
+    "complete"
+);
 
 }
-
 
 if (line2) {
 
-    line2.classList.remove(
+line2.classList.remove(
+    "complete"
+);
+
+}
+
+if (step >= 1) {
+
+const circle1 =
+    document.getElementById(
+        "flowCircle1"
+    );
+
+const label1 =
+    document.getElementById(
+        "flowLabel1"
+    );
+
+if (circle1) {
+
+    circle1.classList.add(
+        step === 1
+            ? "active"
+            : "complete"
+    );
+
+}
+
+if (label1) {
+
+    label1.classList.add(
+        "active"
+    );
+
+}
+
+}
+
+if (step >= 2) {
+
+const circle2 =
+    document.getElementById(
+        "flowCircle2"
+    );
+
+const label2 =
+    document.getElementById(
+        "flowLabel2"
+    );
+
+if (circle2) {
+
+    circle2.classList.add(
+        step === 2
+            ? "active"
+            : "complete"
+    );
+
+}
+
+if (label2) {
+
+    label2.classList.add(
+        "active"
+    );
+
+}
+
+if (line1) {
+
+    line1.classList.add(
         "complete"
     );
 
 }
 
-
-if (step >= 1) {
-
-    const circle1 =
-        document.getElementById(
-            "flowCircle1"
-        );
-
-    const label1 =
-        document.getElementById(
-            "flowLabel1"
-        );
-
-
-    if (circle1) {
-
-        circle1.classList.add(
-            step === 1
-                ? "active"
-                : "complete"
-        );
-
-    }
-
-
-    if (label1) {
-
-        label1.classList.add(
-            "active"
-        );
-
-    }
-
 }
-
-
-if (step >= 2) {
-
-    const circle2 =
-        document.getElementById(
-            "flowCircle2"
-        );
-
-    const label2 =
-        document.getElementById(
-            "flowLabel2"
-        );
-
-
-    if (circle2) {
-
-        circle2.classList.add(
-            step === 2
-                ? "active"
-                : "complete"
-        );
-
-    }
-
-
-    if (label2) {
-
-        label2.classList.add(
-            "active"
-        );
-
-    }
-
-
-    if (line1) {
-
-        line1.classList.add(
-            "complete"
-        );
-
-    }
-
-}
-
 
 if (step >= 3) {
 
-    const circle3 =
-        document.getElementById(
-            "flowCircle3"
-        );
+const circle3 =
+    document.getElementById(
+        "flowCircle3"
+    );
 
-    const label3 =
-        document.getElementById(
-            "flowLabel3"
-        );
+const label3 =
+    document.getElementById(
+        "flowLabel3"
+    );
 
+if (circle3) {
 
-    if (circle3) {
+    circle3.classList.add(
+        "complete"
+    );
 
-        circle3.classList.add(
-            "complete"
-        );
+}
 
-    }
+if (label3) {
 
+    label3.classList.add(
+        "active"
+    );
 
-    if (label3) {
+}
 
-        label3.classList.add(
-            "active"
-        );
+if (line2) {
 
-    }
+    line2.classList.add(
+        "complete"
+    );
 
-
-    if (line2) {
-
-        line2.classList.add(
-            "complete"
-        );
-
-    }
+}
 
 }
 
@@ -499,47 +478,46 @@ if (step >= 3) {
 function getFormData() {
 
 const emailElement =
-    document.getElementById(
-        "email"
-    );
+document.getElementById(
+"email"
+);
 
 const firstNameElement =
-    document.getElementById(
-        "firstName"
-    );
+document.getElementById(
+"firstName"
+);
 
 const lastNameElement =
-    document.getElementById(
-        "lastName"
-    );
+document.getElementById(
+"lastName"
+);
 
 const passwordElement =
-    document.getElementById(
-        "password"
-    );
-
+document.getElementById(
+"password"
+);
 
 return {
 
-    email:
-        emailElement
-            ? emailElement.value.trim()
-            : "",
+email:
+    emailElement
+        ? emailElement.value.trim()
+        : "",
 
-    first_name:
-        firstNameElement
-            ? firstNameElement.value.trim()
-            : "",
+first_name:
+    firstNameElement
+        ? firstNameElement.value.trim()
+        : "",
 
-    last_name:
-        lastNameElement
-            ? lastNameElement.value.trim()
-            : "",
+last_name:
+    lastNameElement
+        ? lastNameElement.value.trim()
+        : "",
 
-    password:
-        passwordElement
-            ? passwordElement.value
-            : ""
+password:
+    passwordElement
+        ? passwordElement.value
+        : ""
 
 };
 
@@ -553,57 +531,51 @@ function validatePassword(password) {
 
 if (password.length < 8) {
 
-    return (
-        "Password must be at least 8 characters."
-    );
+return (
+    "Password must be at least 8 characters."
+);
 
 }
-
 
 if (password.length > 128) {
 
-    return (
-        "Password cannot exceed 128 characters."
-    );
+return (
+    "Password cannot exceed 128 characters."
+);
 
 }
-
 
 if (!/[A-Z]/.test(password)) {
 
-    return (
-        "Password must contain at least one uppercase letter."
-    );
+return (
+    "Password must contain at least one uppercase letter."
+);
 
 }
-
 
 if (!/[a-z]/.test(password)) {
 
-    return (
-        "Password must contain at least one lowercase letter."
-    );
+return (
+    "Password must contain at least one lowercase letter."
+);
 
 }
-
 
 if (!/[0-9]/.test(password)) {
 
-    return (
-        "Password must contain at least one number."
-    );
+return (
+    "Password must contain at least one number."
+);
 
 }
-
 
 if (!/[^A-Za-z0-9]/.test(password)) {
 
-    return (
-        "Password must contain at least one special character."
-    );
+return (
+    "Password must contain at least one special character."
+);
 
 }
-
 
 return null;
 
@@ -616,251 +588,230 @@ return null;
 async function startOnboarding() {
 
 const data =
-    getFormData();
-
+getFormData();
 
 const confirmPasswordElement =
-    document.getElementById(
-        "confirmPassword"
-    );
-
+document.getElementById(
+"confirmPassword"
+);
 
 const confirmPassword =
-    confirmPasswordElement
-        ? confirmPasswordElement.value
-        : "";
-
+confirmPasswordElement
+? confirmPasswordElement.value
+: "";
 
 if (!data.email) {
 
-    showStatus(
-        "Email is required.",
-        "error"
-    );
+showStatus(
+    "Email is required.",
+    "error"
+);
 
-    return;
+return;
+
 }
-
 
 if (!data.first_name) {
 
-    showStatus(
-        "First name is required.",
-        "error"
-    );
+showStatus(
+    "First name is required.",
+    "error"
+);
 
-    return;
+return;
+
 }
-
 
 if (!data.last_name) {
 
-    showStatus(
-        "Last name is required.",
-        "error"
-    );
+showStatus(
+    "Last name is required.",
+    "error"
+);
 
-    return;
+return;
+
 }
-
 
 if (!data.password) {
 
-    showStatus(
-        "Password is required.",
-        "error"
-    );
+showStatus(
+    "Password is required.",
+    "error"
+);
 
-    return;
+return;
+
 }
 
-
 const passwordError =
-    validatePassword(
-        data.password
-    );
-
+validatePassword(
+data.password
+);
 
 if (passwordError) {
 
-    showStatus(
-        passwordError,
-        "error"
-    );
+showStatus(
+    passwordError,
+    "error"
+);
 
-    return;
+return;
+
 }
-
 
 if (
-    data.password !==
-    confirmPassword
+data.password !==
+confirmPassword
 ) {
 
-    showStatus(
-        "Passwords do not match.",
-        "error"
-    );
+showStatus(
+    "Passwords do not match.",
+    "error"
+);
 
-    return;
+return;
+
 }
 
-
 const button =
-    document.getElementById(
-        "startButton"
-    );
-
+document.getElementById(
+"startButton"
+);
 
 if (button) {
 
-    button.disabled = true;
+button.disabled = true;
 
-    button.textContent =
-        "Creating Account...";
+button.textContent =
+    "Creating Account...";
 
 }
 
-
 showStatus(
-    "Creating account...",
-    "info"
+"Creating account...",
+"info"
 );
-
 
 try {
 
-    const response =
-        await fetch(
-            API_BASE_URL +
-            "/api/v1/onboarding",
-            {
+const response =
+    await fetch(
+        API_BASE_URL +
+        "/api/v1/onboarding",
+        {
 
-                method: "POST",
+            method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
 
-                body:
-                    JSON.stringify(
-                        data
-                    )
+            body:
+                JSON.stringify(
+                    data
+                )
 
-            }
-        );
-
-
-    const responseData =
-        await response.json();
-
-
-    showDeveloperResponse(
-        response,
-        responseData
+        }
     );
 
+const responseData =
+    await response.json();
 
-    if (!response.ok) {
+showDeveloperResponse(
+    response,
+    responseData
+);
 
-        showStatus(
-            responseData.detail ||
-            "The server rejected the account creation request.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    onboardingId =
-        responseData.onboarding_id;
-
-
-    if (!onboardingId) {
-
-        showStatus(
-            "The server did not return an onboarding ID.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const emailDisplay =
-        document.getElementById(
-            "signupEmailDisplay"
-        );
-
-
-    if (emailDisplay) {
-
-        emailDisplay.textContent =
-            data.email;
-
-    }
-
-
-    const statusDisplay =
-        document.getElementById(
-            "onboardingStatusDisplay"
-        );
-
-
-    if (statusDisplay) {
-
-        statusDisplay.textContent =
-            responseData.status ||
-            "OTP_REQUIRED";
-
-    }
-
-
-    setSignupStep(2);
-
+if (!response.ok) {
 
     showStatus(
-        "Enter the verification code sent to your email.",
-        "success"
-    );
-
-
-    const otp =
-        document.getElementById(
-            "otp"
-        );
-
-
-    if (otp) {
-
-        otp.focus();
-
-    }
-
-} catch (error) {
-
-    showStatus(
-        "Could not connect to the Main Server.",
+        responseData.detail ||
+        "The server rejected the account creation request.",
         "error"
     );
 
+    return;
+}
 
-    showDeveloperError(
-        error
+onboardingId =
+    responseData.onboarding_id;
+
+if (!onboardingId) {
+
+    showStatus(
+        "The server did not return an onboarding ID.",
+        "error"
     );
+
+    return;
+}
+
+const emailDisplay =
+    document.getElementById(
+        "signupEmailDisplay"
+    );
+
+if (emailDisplay) {
+
+    emailDisplay.textContent =
+        data.email;
+
+}
+
+const statusDisplay =
+    document.getElementById(
+        "onboardingStatusDisplay"
+    );
+
+if (statusDisplay) {
+
+    statusDisplay.textContent =
+        responseData.status ||
+        "OTP_REQUIRED";
+
+}
+
+setSignupStep(2);
+
+showStatus(
+    "Enter the verification code sent to your email.",
+    "success"
+);
+
+const otp =
+    document.getElementById(
+        "otp"
+    );
+
+if (otp) {
+
+    otp.focus();
+
+}
+
+} catch (error) {
+
+showStatus(
+    "Could not connect to the Main Server.",
+    "error"
+);
+
+showDeveloperError(
+    error
+);
 
 } finally {
 
-    if (button) {
+if (button) {
 
-        button.disabled = false;
+    button.disabled = false;
 
-        button.textContent =
-            "Create Account";
+    button.textContent =
+        "Create Account";
 
-    }
+}
 
 }
 
@@ -874,177 +825,161 @@ async function verifyOnboarding() {
 
 if (!onboardingId) {
 
-    showStatus(
-        "No onboarding session is active.",
-        "error"
-    );
+showStatus(
+    "No onboarding session is active.",
+    "error"
+);
 
-    return;
+return;
+
 }
 
-
 const otpElement =
-    document.getElementById(
-        "otp"
-    );
-
+document.getElementById(
+"otp"
+);
 
 const otp =
-    otpElement
-        ? otpElement.value.trim()
-        : "";
-
+otpElement
+? otpElement.value.trim()
+: "";
 
 if (!/^\d{6}$/.test(otp)) {
 
+showStatus(
+    "Verification code must contain exactly 6 digits.",
+    "error"
+);
+
+return;
+
+}
+
+const button =
+document.getElementById(
+"verifyButton"
+);
+
+if (button) {
+
+button.disabled = true;
+
+button.textContent =
+    "Verifying...";
+
+}
+
+showStatus(
+"Verifying your email...",
+"info"
+);
+
+try {
+
+const response =
+    await fetch(
+
+        API_BASE_URL +
+        "/api/v1/onboarding/" +
+        encodeURIComponent(
+            onboardingId
+        ) +
+        "/verify",
+
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body:
+                JSON.stringify({
+                    otp: otp
+                })
+
+        }
+
+    );
+
+const responseData =
+    await response.json();
+
+showDeveloperResponse(
+    response,
+    responseData
+);
+
+if (!response.ok) {
+
     showStatus(
-        "Verification code must contain exactly 6 digits.",
+        responseData.detail ||
+        "Email verification failed.",
         "error"
     );
 
     return;
 }
 
+merchantId =
+    responseData.merchant_id;
 
-const button =
+const resultStatus =
     document.getElementById(
-        "verifyButton"
+        "resultStatus"
     );
 
+if (resultStatus) {
 
-if (button) {
-
-    button.disabled = true;
-
-    button.textContent =
-        "Verifying...";
+    resultStatus.textContent =
+        responseData.status ||
+        "COMPLETED";
 
 }
 
+const resultMerchantId =
+    document.getElementById(
+        "resultMerchantId"
+    );
+
+if (resultMerchantId) {
+
+    resultMerchantId.textContent =
+        merchantId ||
+        "Not returned";
+
+}
+
+setSignupStep(3);
 
 showStatus(
-    "Verifying your email...",
-    "info"
+    "Your merchant account was created successfully.",
+    "success"
 );
-
-
-try {
-
-    const response =
-        await fetch(
-
-            API_BASE_URL +
-            "/api/v1/onboarding/" +
-            encodeURIComponent(
-                onboardingId
-            ) +
-            "/verify",
-
-            {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body:
-                    JSON.stringify({
-                        otp: otp
-                    })
-
-            }
-
-        );
-
-
-    const responseData =
-        await response.json();
-
-
-    showDeveloperResponse(
-        response,
-        responseData
-    );
-
-
-    if (!response.ok) {
-
-        showStatus(
-            responseData.detail ||
-            "Email verification failed.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    merchantId =
-        responseData.merchant_id;
-
-
-    const resultStatus =
-        document.getElementById(
-            "resultStatus"
-        );
-
-
-    if (resultStatus) {
-
-        resultStatus.textContent =
-            responseData.status ||
-            "COMPLETED";
-
-    }
-
-
-    const resultMerchantId =
-        document.getElementById(
-            "resultMerchantId"
-        );
-
-
-    if (resultMerchantId) {
-
-        resultMerchantId.textContent =
-            merchantId ||
-            "Not returned";
-
-    }
-
-
-    setSignupStep(3);
-
-
-    showStatus(
-        "Your merchant account was created successfully.",
-        "success"
-    );
 
 } catch (error) {
 
-    showStatus(
-        "Could not connect to the Main Server.",
-        "error"
-    );
+showStatus(
+    "Could not connect to the Main Server.",
+    "error"
+);
 
-
-    showDeveloperError(
-        error
-    );
+showDeveloperError(
+    error
+);
 
 } finally {
 
-    if (button) {
+if (button) {
 
-        button.disabled = false;
+    button.disabled = false;
 
-        button.textContent =
-            "Verify Email";
+    button.textContent =
+        "Verify Email";
 
-    }
+}
 
 }
 
@@ -1057,192 +992,185 @@ try {
 async function login() {
 
 const emailElement =
-    document.getElementById(
-        "loginEmail"
-    );
-
+document.getElementById(
+"loginEmail"
+);
 
 const passwordElement =
-    document.getElementById(
-        "loginPassword"
-    );
-
+document.getElementById(
+"loginPassword"
+);
 
 const email =
-    emailElement
-        ? emailElement.value.trim()
-        : "";
-
+emailElement
+? emailElement.value.trim()
+: "";
 
 const password =
-    passwordElement
-        ? passwordElement.value
-        : "";
-
+passwordElement
+? passwordElement.value
+: "";
 
 if (!email) {
 
-    showStatus(
-        "Email is required.",
-        "error"
-    );
+showStatus(
+    "Email is required.",
+    "error"
+);
 
-    return;
+return;
+
 }
-
 
 if (!password) {
 
+showStatus(
+    "Password is required.",
+    "error"
+);
+
+return;
+
+}
+
+const button =
+document.getElementById(
+"loginButton"
+);
+
+if (button) {
+
+button.disabled = true;
+
+button.textContent =
+    "Signing In...";
+
+}
+
+showStatus(
+"Signing in...",
+"info"
+);
+
+try {
+
+const response =
+    await fetch(
+        API_BASE_URL +
+        "/api/v1/auth/login",
+        {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body:
+                JSON.stringify({
+                    email: email,
+                    password: password
+                })
+
+        }
+    );
+
+const responseData =
+    await response.json();
+
+showDeveloperResponse(
+    response,
+    responseData
+);
+
+if (!response.ok) {
+
     showStatus(
-        "Password is required.",
+        responseData.detail ||
+        "Invalid email or password.",
         "error"
     );
 
     return;
 }
 
+authToken =
+    responseData.access_token;
 
-const button =
-    document.getElementById(
-        "loginButton"
-    );
+merchantId =
+    responseData.merchant_id;
 
-
-if (button) {
-
-    button.disabled = true;
-
-    button.textContent =
-        "Signing In...";
-
-}
-
-
-showStatus(
-    "Signing in...",
-    "info"
-);
-
-
-try {
-
-    const response =
-        await fetch(
-            API_BASE_URL +
-            "/api/v1/auth/login",
-            {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json"
-                },
-
-                body:
-                    JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-
-            }
-        );
-
-
-    const responseData =
-        await response.json();
-
-
-    showDeveloperResponse(
-        response,
-        responseData
-    );
-
-
-    if (!response.ok) {
-
-        showStatus(
-            responseData.detail ||
-            "Invalid email or password.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    authToken =
-        responseData.access_token;
-
-
-    merchantId =
-        responseData.merchant_id;
-
-
-    if (!authToken) {
-
-        showStatus(
-            "The server did not return an authentication token.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    sessionStorage.setItem(
-        "authToken",
-        authToken
-    );
-
-
-    sessionStorage.setItem(
-        "merchantId",
-        merchantId || ""
-    );
-
-
-    sessionStorage.setItem(
-        "merchantEmail",
-        responseData.email ||
-        email
-    );
-
-
-    /*
-     * Authentication is complete.
-     *
-     * The dashboard is a separate page, so
-     * redirect there instead of changing the
-     * authentication page into a dashboard.
-     */
-
-    window.location.replace(
-    "dashboard.html"
-    );
-
-} catch (error) {
+if (!authToken) {
 
     showStatus(
-        "Could not connect to the Main Server.",
+        "The server did not return an authentication token.",
         "error"
     );
 
+    return;
+}
 
-    showDeveloperError(
-        error
-    );
+/*
+ * Store the authenticated session.
+ */
+
+sessionStorage.setItem(
+    "authToken",
+    authToken
+);
+
+sessionStorage.setItem(
+    "merchantId",
+    merchantId || ""
+);
+
+sessionStorage.setItem(
+    "merchantEmail",
+    responseData.email ||
+    email
+);
+
+/*
+ * Authentication is complete.
+ *
+ * Build the dashboard URL relative
+ * to the current page.
+ */
+
+const dashboardUrl =
+    new URL(
+        "dashboard.html",
+        window.location.href
+    ).href;
+
+window.location.assign(
+    dashboardUrl
+);
+
+return;
+
+} catch (error) {
+
+showStatus(
+    "Could not connect to the Main Server.",
+    "error"
+);
+
+showDeveloperError(
+    error
+);
 
 } finally {
 
-    if (button) {
+if (button) {
 
-        button.disabled = false;
+    button.disabled = false;
 
-        button.textContent =
-            "Log In";
+    button.textContent =
+        "Log In";
 
-    }
+}
 
 }
 
@@ -1258,140 +1186,119 @@ onboardingId = null;
 
 merchantId = null;
 
-
 const email =
-    document.getElementById(
-        "email"
-    );
-
+document.getElementById(
+"email"
+);
 
 const firstName =
-    document.getElementById(
-        "firstName"
-    );
-
+document.getElementById(
+"firstName"
+);
 
 const lastName =
-    document.getElementById(
-        "lastName"
-    );
-
+document.getElementById(
+"lastName"
+);
 
 const password =
-    document.getElementById(
-        "password"
-    );
-
+document.getElementById(
+"password"
+);
 
 const confirmPassword =
-    document.getElementById(
-        "confirmPassword"
-    );
-
+document.getElementById(
+"confirmPassword"
+);
 
 const otp =
-    document.getElementById(
-        "otp"
-    );
-
+document.getElementById(
+"otp"
+);
 
 const signupEmailDisplay =
-    document.getElementById(
-        "signupEmailDisplay"
-    );
-
+document.getElementById(
+"signupEmailDisplay"
+);
 
 const onboardingStatusDisplay =
-    document.getElementById(
-        "onboardingStatusDisplay"
-    );
-
+document.getElementById(
+"onboardingStatusDisplay"
+);
 
 const resultStatus =
-    document.getElementById(
-        "resultStatus"
-    );
-
+document.getElementById(
+"resultStatus"
+);
 
 const resultMerchantId =
-    document.getElementById(
-        "resultMerchantId"
-    );
-
+document.getElementById(
+"resultMerchantId"
+);
 
 if (email) {
 
-    email.value = "";
+email.value = "";
 
 }
-
 
 if (firstName) {
 
-    firstName.value = "John";
+firstName.value = "John";
 
 }
-
 
 if (lastName) {
 
-    lastName.value = "Smith";
+lastName.value = "Smith";
 
 }
-
 
 if (password) {
 
-    password.value = "";
+password.value = "";
 
 }
-
 
 if (confirmPassword) {
 
-    confirmPassword.value = "";
+confirmPassword.value = "";
 
 }
-
 
 if (otp) {
 
-    otp.value = "";
+otp.value = "";
 
 }
-
 
 if (signupEmailDisplay) {
 
-    signupEmailDisplay.textContent =
-        "—";
+signupEmailDisplay.textContent =
+    "—";
 
 }
-
 
 if (onboardingStatusDisplay) {
 
-    onboardingStatusDisplay.textContent =
-        "OTP_REQUIRED";
+onboardingStatusDisplay.textContent =
+    "OTP_REQUIRED";
 
 }
-
 
 if (resultStatus) {
 
-    resultStatus.textContent =
-        "—";
+resultStatus.textContent =
+    "—";
 
 }
-
 
 if (resultMerchantId) {
 
-    resultMerchantId.textContent =
-        "—";
+resultMerchantId.textContent =
+    "—";
 
 }
-
 
 setSignupStep(1);
 
@@ -1404,94 +1311,88 @@ setSignupStep(1);
 function initializePage() {
 
 const developerModal =
-    document.getElementById(
-        "developerModal"
-    );
-
+document.getElementById(
+"developerModal"
+);
 
 if (developerModal) {
 
-    developerModal.classList.remove(
-        "visible"
-    );
+developerModal.classList.remove(
+    "visible"
+);
 
-    developerModal.style.display =
-        "";
+developerModal.style.display =
+    "";
 
 }
 
-
 const otp =
-    document.getElementById(
-        "otp"
-    );
-
+document.getElementById(
+"otp"
+);
 
 if (otp) {
 
-    otp.addEventListener(
-        "input",
-        function() {
+otp.addEventListener(
+    "input",
+    function() {
 
-            this.value =
-                this.value
-                    .replace(
-                        /\D/g,
-                        ""
-                    )
-                    .slice(
-                        0,
-                        6
-                    );
+        this.value =
+            this.value
+                .replace(
+                    /\D/g,
+                    ""
+                )
+                .slice(
+                    0,
+                    6
+                );
 
-        }
-    );
+    }
+);
 
+otp.addEventListener(
+    "keydown",
+    function(event) {
 
-    otp.addEventListener(
-        "keydown",
-        function(event) {
+        if (
+            event.key === "Enter"
+        ) {
 
-            if (
-                event.key === "Enter"
-            ) {
+            event.preventDefault();
 
-                event.preventDefault();
-
-                verifyOnboarding();
-
-            }
+            verifyOnboarding();
 
         }
-    );
+
+    }
+);
 
 }
 
-
 const loginPassword =
-    document.getElementById(
-        "loginPassword"
-    );
-
+document.getElementById(
+"loginPassword"
+);
 
 if (loginPassword) {
 
-    loginPassword.addEventListener(
-        "keydown",
-        function(event) {
+loginPassword.addEventListener(
+    "keydown",
+    function(event) {
 
-            if (
-                event.key === "Enter"
-            ) {
+        if (
+            event.key === "Enter"
+        ) {
 
-                event.preventDefault();
+            event.preventDefault();
 
-                login();
-
-            }
+            login();
 
         }
-    );
+
+    }
+);
 
 }
 
@@ -1507,8 +1408,8 @@ document.readyState ===
 ) {
 
 document.addEventListener(
-    "DOMContentLoaded",
-    initializePage
+"DOMContentLoaded",
+initializePage
 );
 
 } else {
