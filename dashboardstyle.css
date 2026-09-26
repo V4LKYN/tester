@@ -759,3 +759,15 @@ Mobile
 }
 
 }
+
+.environment {
+    display: inline-block;
+    margin-top: 11px;
+    padding: 5px 9px;
+    border-radius: 5px;
+    background: #374151;
+    color: #d1d5db;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
