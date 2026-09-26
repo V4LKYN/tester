@@ -56,10 +56,8 @@ function initializeDashboard() {
 
 
     /*
-     * Use the values supplied by the
-     * authenticated login session.
-     *
-     * Do not invent an account type.
+     * Display the authenticated
+     * merchant information.
      */
 
     const displayEmail =
@@ -73,7 +71,7 @@ function initializeDashboard() {
 
 
     /*
-     * Account header
+     * Account header.
      */
 
     setText(
@@ -89,7 +87,7 @@ function initializeDashboard() {
 
 
     /*
-     * Merchant ID
+     * Merchant ID.
      */
 
     setText(
@@ -98,18 +96,12 @@ function initializeDashboard() {
     );
 
 
-    setText(
-        "accountMerchantId",
-        displayMerchantId
-    );
-
-
     /*
-     * Welcome section
+     * Welcome name.
      *
-     * First name is temporarily derived
-     * from the email until the dashboard
-     * has an authenticated account endpoint.
+     * Until we have an authenticated
+     * account profile endpoint, derive
+     * a display name from the email.
      */
 
     const firstName =
@@ -125,17 +117,18 @@ function initializeDashboard() {
 
 
     /*
-     * Account Type
+     * Account Type.
      *
-     * This is the actual account type
-     * returned by the server during login.
+     * This comes directly from the
+     * type returned by the login API.
+     *
+     * Login stores:
+     *
+     * sessionStorage.setItem(
+     *     "merchantType",
+     *     responseData.type || ""
+     * );
      */
-
-    setText(
-        "accountTypeHeading",
-        displayAccountType + " Account"
-    );
-
 
     setText(
         "configurationAccountType",
@@ -144,7 +137,10 @@ function initializeDashboard() {
 
 
     /*
-     * Account Status
+     * Account Status.
+     *
+     * The current login system only
+     * allows ACTIVE merchants to log in.
      */
 
     setText(
@@ -154,11 +150,10 @@ function initializeDashboard() {
 
 
     /*
-     * Endpoints / API Keys
+     * Endpoints / API Keys.
      *
      * These remain zero until their
-     * respective configuration systems
-     * are implemented.
+     * configuration systems are built.
      */
 
     setText(
@@ -189,9 +184,11 @@ function setText(
             elementId
         );
 
+
     if (!element) {
         return;
     }
+
 
     element.textContent =
         value;
@@ -402,11 +399,6 @@ async function copyMerchantId() {
         showCopyState();
 
     } catch (error) {
-
-        /*
-         * Clipboard APIs may not be available
-         * in every testing environment.
-         */
 
         console.log(
             "Unable to copy Merchant ID.",
