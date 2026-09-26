@@ -24,7 +24,9 @@
 <div class="dashboard-page">
 
 
-    <!-- Header -->
+    <!-- =================================================
+         HEADER
+         ================================================= -->
 
     <header class="dashboard-header">
 
@@ -83,7 +85,7 @@
                     id="accountEmail"
                     class="account-email"
                 >
-                    merchant@example.com
+                    —
                 </span>
 
 
@@ -109,7 +111,7 @@
                         id="menuEmail"
                         class="account-menu-email"
                     >
-                        merchant@example.com
+                        —
                     </div>
 
                 </div>
@@ -130,12 +132,16 @@
     </header>
 
 
-    <!-- Main Content -->
+    <!-- =================================================
+         MAIN
+         ================================================= -->
 
     <main class="dashboard-main">
 
 
-        <!-- Dashboard Heading -->
+        <!-- =================================================
+             PAGE HEADING
+             ================================================= -->
 
         <div class="dashboard-heading">
 
@@ -146,7 +152,7 @@
                 </h1>
 
                 <p>
-                    Manage your merchant account.
+                    Manage your merchant account and configuration.
                 </p>
 
             </div>
@@ -154,7 +160,9 @@
         </div>
 
 
-        <!-- Navigation -->
+        <!-- =================================================
+             NAVIGATION
+             ================================================= -->
 
         <nav class="dashboard-navigation">
 
@@ -186,71 +194,99 @@
         </nav>
 
 
-        <!-- Dashboard Content -->
+        <!-- =================================================
+             DASHBOARD CONTENT
+             ================================================= -->
 
         <section class="dashboard-content">
 
 
-            <!-- Welcome -->
+            <!-- =================================================
+                 WELCOME
+                 ================================================= -->
 
-            <div class="welcome-section">
+            <section class="welcome-section">
 
-                <h2 id="welcomeName">
-                    Welcome
-                </h2>
+                <div>
 
-                <p>
-                    Your merchant account is active.
-                </p>
+                    <h2 id="welcomeName">
+                        Welcome
+                    </h2>
 
-            </div>
+                    <p>
+                        Your merchant account is active.
+                    </p>
+
+                </div>
+
+            </section>
 
 
-            <!-- Merchant Account Summary -->
+            <!-- =================================================
+                 ACCOUNT SUMMARY
+                 ================================================= -->
 
-            <div class="dashboard-card">
+            <section class="dashboard-card account-summary-card">
 
                 <div class="card-header">
 
                     <div>
 
+                        <div class="card-eyebrow">
+                            Merchant Account
+                        </div>
+
                         <h2 id="accountTypeHeading">
-                            Account
+                            —
                         </h2>
 
                         <p id="accountMerchantId">
-                            m_example
+                            —
                         </p>
 
                     </div>
 
 
-                    <span
-                        id="accountStatusBadge"
-                        class="status-badge"
-                    >
-                        Active
-                    </span>
+                    <div class="account-summary-status">
+
+                        <span class="status-label">
+                            Status
+                        </span>
+
+                        <span
+                            id="accountStatusBadge"
+                            class="status-badge"
+                        >
+                            Active
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <!-- Merchant Metrics -->
+            <!-- =================================================
+                 SYSTEM OVERVIEW
+                 ================================================= -->
 
-            <div class="dashboard-card">
+            <section class="dashboard-card">
 
                 <div class="card-header">
 
                     <div>
+
+                        <div class="card-eyebrow">
+                            System
+                        </div>
 
                         <h2>
                             Overview
                         </h2>
 
                         <p>
-                            Your merchant system configuration and activity.
+                            Current merchant system configuration.
                         </p>
 
                     </div>
@@ -317,11 +353,11 @@
                             id="accountStatusMetric"
                             class="metric-value metric-text"
                         >
-                            Active
+                            —
                         </div>
 
                         <div class="metric-description">
-                            Merchant account
+                            Current status
                         </div>
 
                     </div>
@@ -350,23 +386,29 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <!-- Merchant Configuration -->
+            <!-- =================================================
+                 CONFIGURATION
+                 ================================================= -->
 
-            <div class="dashboard-card">
+            <section class="dashboard-card">
 
                 <div class="card-header">
 
                     <div>
+
+                        <div class="card-eyebrow">
+                            Account
+                        </div>
 
                         <h2>
                             Configuration
                         </h2>
 
                         <p>
-                            Your merchant services and system configuration.
+                            Current merchant configuration.
                         </p>
 
                     </div>
@@ -376,6 +418,8 @@
 
                 <div class="account-details">
 
+
+                    <!-- Merchant ID -->
 
                     <div class="detail">
 
@@ -389,7 +433,7 @@
                                 id="merchantId"
                                 class="detail-value merchant-id"
                             >
-                                m_example
+                                —
                             </div>
 
                             <button
@@ -404,6 +448,8 @@
 
                     </div>
 
+
+                    <!-- Endpoints -->
 
                     <div class="detail">
 
@@ -421,6 +467,8 @@
                     </div>
 
 
+                    <!-- API Keys -->
+
                     <div class="detail">
 
                         <div class="detail-label">
@@ -436,6 +484,8 @@
 
                     </div>
 
+
+                    <!-- Account Type -->
 
                     <div class="detail">
 
@@ -454,7 +504,7 @@
 
                 </div>
 
-            </div>
+            </section>
 
 
         </section>
@@ -462,7 +512,9 @@
     </main>
 
 
-    <!-- Developer Button -->
+    <!-- =================================================
+         DEVELOPER BUTTON
+         ================================================= -->
 
     <button
         id="developerButton"
@@ -476,7 +528,9 @@
 </div>
 
 
-<!-- Developer Modal -->
+<!-- =================================================
+     DEVELOPER RESPONSE MODAL
+     ================================================= -->
 
 <div
     id="developerModal"
@@ -494,6 +548,7 @@
             <h2>
                 Developer Response
             </h2>
+
 
             <button
                 class="developer-close"
