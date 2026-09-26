@@ -119,15 +119,12 @@ function initializeDashboard() {
     /*
      * Account Type.
      *
-     * This comes directly from the
-     * type returned by the login API.
+     * This is the actual account type
+     * returned by the login API.
      *
-     * Login stores:
+     * Login stores the value as:
      *
-     * sessionStorage.setItem(
-     *     "merchantType",
-     *     responseData.type || ""
-     * );
+     * merchantType
      */
 
     setText(
@@ -150,21 +147,15 @@ function initializeDashboard() {
 
 
     /*
-     * Endpoints / API Keys.
+     * Endpoints.
      *
-     * These remain zero until their
-     * configuration systems are built.
+     * Endpoint configuration has not
+     * been implemented yet.
      */
 
     setText(
         "configurationEndpointCount",
         "0 configured"
-    );
-
-
-    setText(
-        "configurationApiKeyCount",
-        "0 active"
     );
 
 }

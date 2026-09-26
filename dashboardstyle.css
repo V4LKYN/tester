@@ -347,7 +347,7 @@ body {
 
 
 /* =========================================================
-   CARDS
+   DASHBOARD CARD
    ========================================================= */
 
 .dashboard-card {
@@ -431,14 +431,14 @@ body {
 
 
 /* =========================================================
-   CONFIGURATION
+   ACCOUNT CONFIGURATION
    ========================================================= */
 
 .account-details {
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(3, minmax(0, 1fr));
 }
 
 .detail {
@@ -446,15 +446,11 @@ body {
 
     padding: 18px 24px;
 
-    border-bottom: 1px solid #eceef1;
-}
-
-.detail:nth-child(odd) {
     border-right: 1px solid #eceef1;
 }
 
-.detail:nth-last-child(-n + 2) {
-    border-bottom: 0;
+.detail:last-child {
+    border-right: 0;
 }
 
 .detail-label {
@@ -517,23 +513,6 @@ body {
 .copy-button:hover {
     background: #f5f6f8;
     border-color: #d4d8dd;
-}
-
-
-/* =========================================================
-   FUTURE CONTENT
-   ========================================================= */
-
-.future-card {
-    margin-top: 0;
-}
-
-.coming-soon {
-    padding: 26px 24px;
-
-    font-size: 12px;
-
-    color: #858b92;
 }
 
 
@@ -770,21 +749,15 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .detail:nth-child(odd) {
-        border-right: 0;
-    }
+    .detail {
+        padding: 16px 20px;
 
-    .detail:nth-last-child(-n + 2) {
+        border-right: 0;
         border-bottom: 1px solid #eceef1;
     }
 
     .detail:last-child {
         border-bottom: 0;
-    }
-
-
-    .detail {
-        padding: 16px 20px;
     }
 
 }
@@ -832,28 +805,4 @@ body {
         bottom: 12px;
     }
 
-}
-
-
-/* =========================================================
-   DEVELOPMENT ENVIRONMENT LABEL
-   ========================================================= */
-
-.environment {
-    display: inline-block;
-
-    margin-top: 11px;
-
-    padding: 5px 9px;
-
-    border-radius: 5px;
-
-    background: #374151;
-
-    color: #d1d5db;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    letter-spacing: 0.5px;
 }
