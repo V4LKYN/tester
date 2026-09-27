@@ -761,9 +761,9 @@ if (emailDisplay) {
 }
 
 const statusDisplay =
-    document.getElementById(
-        "onboardingStatusDisplay"
-    );
+document.getElementById(
+    "onboardingStatusDisplay"
+);
 
 if (statusDisplay) {
 
@@ -781,9 +781,9 @@ showStatus(
 );
 
 const otp =
-    document.getElementById(
-        "otp"
-    );
+document.getElementById(
+    "otp"
+);
 
 if (otp) {
 
@@ -1105,12 +1105,12 @@ merchantId =
 
 if (!authToken) {
 
-    showStatus(
-        "The server did not return an authentication token.",
-        "error"
-    );
+showStatus(
+    "The server did not return an authentication token.",
+    "error"
+);
 
-    return;
+return;
 
 }
 
@@ -1217,6 +1217,7 @@ if (button) {
 
 }
 
+}
 
 // ---------------------------------------------------------
 // RESET SIGNUP
