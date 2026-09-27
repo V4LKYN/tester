@@ -186,6 +186,25 @@ body {
     font-weight: 500;
 }
 
+.account-menu-merchant-id {
+    margin-top: 5px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    font-size: 10px;
+    color: #8a9097;
+
+    font-family:
+        ui-monospace,
+        SFMono-Regular,
+        Menlo,
+        Monaco,
+        Consolas,
+        monospace;
+}
+
 .account-menu-item {
     width: 100%;
 

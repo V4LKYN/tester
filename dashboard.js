@@ -87,6 +87,16 @@ function initializeDashboard() {
 
 
     /*
+     * Merchant ID in account menu.
+     */
+
+    setText(
+        "menuMerchantId",
+        displayMerchantId
+    );
+
+
+    /*
      * Merchant ID.
      */
 
@@ -528,3 +538,12 @@ document.addEventListener(
 
     }
 );
+
+This preserves everything you already had and adds only:
+
+setText(
+    "menuMerchantId",
+    displayMerchantId
+);
+
+So the dropdown will pull the Merchant ID from the existing authenticated session rather than requiring another API call.
