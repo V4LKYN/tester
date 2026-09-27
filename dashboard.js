@@ -2,8 +2,8 @@ let accountMenuOpen = false;
 
 
 /* ==============================
-Initialization
-============================== */
+   Initialization
+   ============================== */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -21,22 +21,50 @@ document.addEventListener(
 
 
 /* ==============================
-Dashboard Initialization
-============================== */
+   Dashboard Initialization
+   ============================== */
 
 function initializeDashboard() {
 
     const authToken =
-        sessionStorage.getItem("authToken");
+        sessionStorage.getItem(
+            "authToken"
+        );
 
     const merchantId =
-        sessionStorage.getItem("merchantId");
+        sessionStorage.getItem(
+            "merchantId"
+        );
 
     const email =
-        sessionStorage.getItem("merchantEmail");
+        sessionStorage.getItem(
+            "merchantEmail"
+        );
+
+    const firstName =
+        sessionStorage.getItem(
+            "merchantFirstName"
+        );
 
     const accountType =
-        sessionStorage.getItem("merchantType");
+        sessionStorage.getItem(
+            "merchantType"
+        );
+
+    const accountStatus =
+        sessionStorage.getItem(
+            "merchantStatus"
+        );
+
+    const createdAt =
+        sessionStorage.getItem(
+            "merchantCreatedAt"
+        );
+
+    const updatedAt =
+        sessionStorage.getItem(
+            "merchantUpdatedAt"
+        );
 
 
     /*
@@ -66,8 +94,14 @@ function initializeDashboard() {
     const displayMerchantId =
         merchantId || "—";
 
+    const displayFirstName =
+        firstName || "Merchant";
+
     const displayAccountType =
         accountType || "—";
+
+    const displayAccountStatus =
+        accountStatus || "ACTIVE";
 
 
     /*
@@ -107,34 +141,21 @@ function initializeDashboard() {
 
 
     /*
-     * Welcome name.
+     * Welcome message.
      *
-     * Until we have an authenticated
-     * account profile endpoint, derive
-     * a display name from the email.
+     * Uses the actual Merchant
+     * first name returned by login.
      */
-
-    const firstName =
-        getFirstNameFromEmail(
-            displayEmail
-        );
-
 
     setText(
         "welcomeName",
-        "Welcome, " + firstName
+        "Welcome, " +
+        displayFirstName
     );
 
 
     /*
      * Account Type.
-     *
-     * This is the actual account type
-     * returned by the login API.
-     *
-     * Login stores the value as:
-     *
-     * merchantType
      */
 
     setText(
@@ -145,14 +166,13 @@ function initializeDashboard() {
 
     /*
      * Account Status.
-     *
-     * The current login system only
-     * allows ACTIVE merchants to log in.
      */
 
     setText(
         "accountStatusBadge",
-        "Active"
+        formatAccountStatus(
+            displayAccountStatus
+        )
     );
 
 
@@ -168,12 +188,36 @@ function initializeDashboard() {
         "0 configured"
     );
 
+
+    /*
+     * Last Updated.
+     */
+
+    setText(
+        "configurationUpdatedAt",
+        formatDateTime(
+            updatedAt
+        )
+    );
+
+
+    /*
+     * Created.
+     */
+
+    setText(
+        "configurationCreatedAt",
+        formatDateTime(
+            createdAt
+        )
+    );
+
 }
 
 
 /* ==============================
-Helpers
-============================== */
+   Helpers
+   ============================== */
 
 function setText(
     elementId,
@@ -197,62 +241,74 @@ function setText(
 }
 
 
-function getFirstNameFromEmail(
-    email
+function formatDateTime(
+    value
 ) {
 
+    if (!value) {
+
+        return "—";
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
     if (
-        !email ||
-        email === "—"
+        Number.isNaN(
+            date.getTime()
+        )
     ) {
 
-        return "Merchant";
+        return value;
 
     }
 
 
-    const localPart =
-        email.split("@")[0];
+    return date.toLocaleString(
+        undefined,
+        {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit"
+        }
+    );
+
+}
 
 
-    if (!localPart) {
-        return "Merchant";
+function formatAccountStatus(
+    status
+) {
+
+    if (!status) {
+
+        return "—";
+
     }
 
 
-    const cleaned =
-        localPart
-            .replace(/[._-]+/g, " ")
-            .trim();
+    return status
+        .toLowerCase()
+        .replace(
+            /\b\w/g,
+            function(character) {
 
+                return character.toUpperCase();
 
-    if (!cleaned) {
-        return "Merchant";
-    }
-
-
-    return cleaned
-        .split(" ")
-        .map(function(word) {
-
-            if (!word) {
-                return "";
             }
-
-            return (
-                word.charAt(0).toUpperCase() +
-                word.slice(1)
-            );
-
-        })
-        .join(" ");
+        );
 
 }
 
 
 /* ==============================
-Account Menu
-============================== */
+   Account Menu
+   ============================== */
 
 function toggleAccountMenu() {
 
@@ -332,8 +388,8 @@ function handleDocumentClick(
 
 
 /* ==============================
-Logout
-============================== */
+   Logout
+   ============================== */
 
 function logout() {
 
@@ -350,7 +406,27 @@ function logout() {
     );
 
     sessionStorage.removeItem(
+        "merchantFirstName"
+    );
+
+    sessionStorage.removeItem(
+        "merchantLastName"
+    );
+
+    sessionStorage.removeItem(
         "merchantType"
+    );
+
+    sessionStorage.removeItem(
+        "merchantStatus"
+    );
+
+    sessionStorage.removeItem(
+        "merchantCreatedAt"
+    );
+
+    sessionStorage.removeItem(
+        "merchantUpdatedAt"
     );
 
 
@@ -361,8 +437,8 @@ function logout() {
 
 
 /* ==============================
-Copy Merchant ID
-============================== */
+   Copy Merchant ID
+   ============================== */
 
 async function copyMerchantId() {
 
@@ -446,8 +522,8 @@ function showCopyState() {
 
 
 /* ==============================
-Coming Soon
-============================== */
+   Coming Soon
+   ============================== */
 
 function showComingSoon(
     section
@@ -462,8 +538,8 @@ function showComingSoon(
 
 
 /* ==============================
-Developer Response
-============================== */
+   Developer Response
+   ============================== */
 
 function openDeveloperResponse() {
 
@@ -520,15 +596,19 @@ function closeDeveloperResponse(
 
 
 /* ==============================
-Escape Key
-============================== */
+   Escape Key
+   ============================== */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
-        if (event.key !== "Escape") {
+        if (
+            event.key !== "Escape"
+        ) {
+
             return;
+
         }
 
 
@@ -538,12 +618,3 @@ document.addEventListener(
 
     }
 );
-
-This preserves everything you already had and adds only:
-
-setText(
-    "menuMerchantId",
-    displayMerchantId
-);
-
-So the dropdown will pull the Merchant ID from the existing authenticated session rather than requiring another API call.

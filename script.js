@@ -1117,6 +1117,8 @@ if (!authToken) {
 
 /*
  * Store the authenticated session.
+ *
+ * Password is never stored.
  */
 
 sessionStorage.setItem(
@@ -1136,8 +1138,38 @@ sessionStorage.setItem(
 );
 
 sessionStorage.setItem(
+    "merchantFirstName",
+    responseData.first_name ||
+    ""
+);
+
+sessionStorage.setItem(
+    "merchantLastName",
+    responseData.last_name ||
+    ""
+);
+
+sessionStorage.setItem(
     "merchantType",
     responseData.type ||
+    ""
+);
+
+sessionStorage.setItem(
+    "merchantStatus",
+    responseData.status ||
+    ""
+);
+
+sessionStorage.setItem(
+    "merchantCreatedAt",
+    responseData.created_at ||
+    ""
+);
+
+sessionStorage.setItem(
+    "merchantUpdatedAt",
+    responseData.updated_at ||
     ""
 );
 
@@ -1185,7 +1217,6 @@ if (button) {
 
 }
 
-}
 
 // ---------------------------------------------------------
 // RESET SIGNUP
