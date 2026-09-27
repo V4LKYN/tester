@@ -1,115 +1,293 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 
-<head>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <meta charset="UTF-8">
+<title>Merchant Portal</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<link
+    rel="stylesheet"
+    href="dashboardstyle.css"
+>
 
-    <title>Merchant Portal</title>
+</head><body><div class="dashboard-page"><!-- =================================================
+     HEADER
+     ================================================= -->
 
-    <link
-        rel="stylesheet"
-        href="dashboardstyle.css"
-    >
+<header class="dashboard-header">
 
-</head>
+    <div class="brand">
 
-<body>
-
-<div class="dashboard-page">
-
-
-    <!-- =================================================
-         HEADER
-         ================================================= -->
-
-    <header class="dashboard-header">
-
-        <div class="brand">
-
-            <div class="brand-name">
-                Merchant Portal Development
-            </div>
-
+        <div class="brand-name">
+            Merchant Portal Development
         </div>
 
+    </div>
 
-        <!-- Account Menu -->
 
-        <div class="account-container">
+    <!-- Account Menu -->
 
-            <button
-                id="accountButton"
-                class="account-button"
-                type="button"
-                onclick="toggleAccountMenu()"
+    <div class="account-container">
+
+        <button
+            id="accountButton"
+            class="account-button"
+            type="button"
+            onclick="toggleAccountMenu()"
+        >
+
+            <span
+                class="account-initial"
+                aria-hidden="true"
             >
 
-                <span
-                    class="account-initial"
-                    aria-hidden="true"
+                <svg
+                    viewBox="0 0 24 24"
+                    width="18"
+                    height="18"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                 >
 
-                    <svg
-                        viewBox="0 0 24 24"
-                        width="18"
-                        height="18"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
+                    <circle
+                        cx="12"
+                        cy="8"
+                        r="3.5"
+                    ></circle>
 
-                        <circle
-                            cx="12"
-                            cy="8"
-                            r="3.5"
-                        ></circle>
+                    <path
+                        d="M5.5 20c.8-3.4 3.2-5.5 6.5-5.5s5.7 2.1 6.5 5.5"
+                    ></path>
 
-                        <path
-                            d="M5.5 20c.8-3.4 3.2-5.5 6.5-5.5s5.7 2.1 6.5 5.5"
-                        ></path>
+                </svg>
 
-                    </svg>
-
-                </span>
+            </span>
 
 
-                <span
-                    id="accountEmail"
-                    class="account-email"
+            <span
+                id="accountEmail"
+                class="account-email"
+            >
+                —
+            </span>
+
+
+            <span class="account-chevron">
+                ▾
+            </span>
+
+        </button>
+
+
+        <div
+            id="accountMenu"
+            class="account-menu"
+        >
+
+            <div class="account-menu-header">
+
+                <div class="account-menu-label">
+                    Signed in as
+                </div>
+
+                <div
+                    id="menuEmail"
+                    class="account-menu-email"
                 >
                     —
-                </span>
+                </div>
+
+                <div
+                    id="menuMerchantId"
+                    class="account-menu-merchant-id"
+                >
+                    —
+                </div>
+
+            </div>
 
 
-                <span class="account-chevron">
-                    ▾
-                </span>
-
+            <button
+                class="account-menu-item"
+                type="button"
+                onclick="showComingSoon('Account Settings')"
+            >
+                Account Settings
             </button>
 
 
-            <div
-                id="accountMenu"
-                class="account-menu"
+            <button
+                class="account-menu-item"
+                type="button"
+                onclick="logout()"
             >
+                Log Out
+            </button>
 
-                <div class="account-menu-header">
+        </div>
 
-                    <div class="account-menu-label">
-                        Signed in as
+    </div>
+
+</header>
+
+
+<!-- =================================================
+     MAIN
+     ================================================= -->
+
+<main class="dashboard-main">
+
+
+    <!-- =================================================
+         PAGE HEADING
+         ================================================= -->
+
+    <div class="dashboard-heading">
+
+        <div>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <p>
+                Manage your merchant account and configuration.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         NAVIGATION
+         ================================================= -->
+
+    <nav class="dashboard-navigation">
+
+        <button
+            class="navigation-item active"
+            type="button"
+        >
+            Overview
+        </button>
+
+
+        <button
+            class="navigation-item"
+            type="button"
+            onclick="showComingSoon('Entities')"
+        >
+            Entities
+        </button>
+
+
+        <button
+            class="navigation-item"
+            type="button"
+            onclick="showComingSoon('Endpoints')"
+        >
+            Endpoints
+        </button>
+
+
+        <button
+            class="navigation-item"
+            type="button"
+            onclick="showComingSoon('API')"
+        >
+            API
+        </button>
+
+    </nav>
+
+
+    <!-- =================================================
+         DASHBOARD CONTENT
+         ================================================= -->
+
+    <section class="dashboard-content">
+
+
+        <!-- =================================================
+             WELCOME
+             ================================================= -->
+
+        <section class="welcome-section">
+
+            <div>
+
+                <h2 id="welcomeName">
+                    Welcome
+                </h2>
+
+                <p>
+                    Your merchant account is active.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACCOUNT OVERVIEW
+             ================================================= -->
+
+        <section class="dashboard-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        Account Overview
+                    </h2>
+
+                    <p>
+                        Current merchant configuration.
+                    </p>
+
+                </div>
+
+
+                <div class="account-summary-status">
+
+                    <span class="status-label">
+                        Status
+                    </span>
+
+                    <span
+                        id="accountStatusBadge"
+                        class="status-badge"
+                    >
+                        Active
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="account-details">
+
+
+                <!-- Account Type -->
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Account Type
                     </div>
 
                     <div
-                        id="menuEmail"
-                        class="account-menu-email"
+                        id="configurationAccountType"
+                        class="detail-value"
                     >
                         —
                     </div>
@@ -117,296 +295,117 @@
                 </div>
 
 
-                <button
-                    class="account-menu-item"
-                    type="button"
-                    onclick="logout()"
-                >
-                    Log Out
-                </button>
+                <!-- Merchant ID -->
 
-            </div>
+                <div class="detail">
 
-        </div>
-
-    </header>
-
-
-    <!-- =================================================
-         MAIN
-         ================================================= -->
-
-    <main class="dashboard-main">
-
-
-        <!-- =================================================
-             PAGE HEADING
-             ================================================= -->
-
-        <div class="dashboard-heading">
-
-            <div>
-
-                <h1>
-                    Dashboard
-                </h1>
-
-                <p>
-                    Manage your merchant account and configuration.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             NAVIGATION
-             ================================================= -->
-
-        <nav class="dashboard-navigation">
-
-            <button
-                class="navigation-item active"
-                type="button"
-            >
-                Overview
-            </button>
-
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('Endpoints')"
-            >
-                Endpoints
-            </button>
-
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('API')"
-            >
-                API
-            </button>
-
-        </nav>
-
-
-        <!-- =================================================
-             DASHBOARD CONTENT
-             ================================================= -->
-
-        <section class="dashboard-content">
-
-
-            <!-- =================================================
-                 WELCOME
-                 ================================================= -->
-
-            <section class="welcome-section">
-
-                <div>
-
-                    <h2 id="welcomeName">
-                        Welcome
-                    </h2>
-
-                    <p>
-                        Your merchant account is active.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 ACCOUNT CONFIGURATION
-                 ================================================= -->
-
-            <section class="dashboard-card">
-
-                <div class="card-header">
-
-                    <div>
-
-                        <h2>
-                            Account Overview
-                        </h2>
-
-                        <p>
-                            Current merchant configuration.
-                        </p>
-
+                    <div class="detail-label">
+                        Merchant ID
                     </div>
 
-
-                    <div class="account-summary-status">
-
-                        <span class="status-label">
-                            Status
-                        </span>
-
-                        <span
-                            id="accountStatusBadge"
-                            class="status-badge"
-                        >
-                            Active
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="account-details">
-
-
-                    <!-- Account Type -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Account Type
-                        </div>
+                    <div class="merchant-id-row">
 
                         <div
-                    id="configurationAccountType"
+                            id="merchantId"
                             class="detail-value"
+                            style="font-weight:500"
                         >
                             —
                         </div>
 
-                    </div>
-                    
-                    
-                    <!-- Merchant ID -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Merchant ID
-                        </div>
-
-                        <div class="merchant-id-row">
-
-                            <div
-                                id="merchantId"
-                                class="detail-value"
-                                style="font-weight:500"
-                            >
-                                —
-                            </div>
-
-                            <button
-                                class="copy-button"
-                                type="button"
-                                onclick="copyMerchantId()"
-                            >
-                                Copy
-                            </button>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Endpoints -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Endpoints
-                        </div>
-
-                        <div
-                            id="configurationEndpointCount"
-                            class="detail-value"
+                        <button
+                            class="copy-button"
+                            type="button"
+                            onclick="copyMerchantId()"
                         >
-                            0 configured
-                        </div>
+                            Copy
+                        </button>
 
                     </div>
 
                 </div>
 
-            </section>
 
+                <!-- Endpoints -->
+
+                <div class="detail">
+
+                    <div class="detail-label">
+                        Endpoints
+                    </div>
+
+                    <div
+                        id="configurationEndpointCount"
+                        class="detail-value"
+                    >
+                        0 configured
+                    </div>
+
+                </div>
+
+            </div>
 
         </section>
 
-    </main>
 
+    </section>
 
-    <!-- =================================================
-         DEVELOPER BUTTON
-         ================================================= -->
-
-    <button
-        id="developerButton"
-        class="developer-button"
-        type="button"
-        onclick="openDeveloperResponse()"
-    >
-        Developer
-    </button>
-
-</div>
+</main>
 
 
 <!-- =================================================
-     DEVELOPER RESPONSE MODAL
+     DEVELOPER BUTTON
      ================================================= -->
 
-<div
+<button
+    id="developerButton"
+    class="developer-button"
+    type="button"
+    onclick="openDeveloperResponse()"
+>
+    Developer
+</button>
+
+</div><!-- =================================================
+     DEVELOPER RESPONSE MODAL
+     ================================================= --><div
     id="developerModal"
     class="developer-modal"
     onclick="closeDeveloperResponse(event)"
+><div
+    class="developer-modal-content"
+    onclick="event.stopPropagation()"
 >
 
-    <div
-        class="developer-modal-content"
-        onclick="event.stopPropagation()"
-    >
+    <div class="developer-modal-header">
 
-        <div class="developer-modal-header">
-
-            <h2>
-                Developer Response
-            </h2>
+        <h2>
+            Developer Response
+        </h2>
 
 
-            <button
-                class="developer-close"
-                type="button"
-                onclick="closeDeveloperResponse()"
-                aria-label="Close"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div
-            id="developerMeta"
-            class="developer-meta"
+        <button
+            class="developer-close"
+            type="button"
+            onclick="closeDeveloperResponse()"
+            aria-label="Close"
         >
-            No request information.
-        </div>
-
-
-        <pre id="developerResponseText">No response yet.</pre>
+            ×
+        </button>
 
     </div>
 
+
+    <div
+        id="developerMeta"
+        class="developer-meta"
+    >
+        No request information.
+    </div>
+
+
+    <pre id="developerResponseText">No response yet.</pre>
+
 </div>
 
-
-<script src="dashboard.js"></script>
-
-</body>
-
-</html>
+</div><script src="dashboard.js"></script></body></html>
