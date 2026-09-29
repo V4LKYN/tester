@@ -1,462 +1,518 @@
 /* =================================================
-SETTINGS PAGE
-================================================= */
+   SETTINGS PAGE
+   ================================================= */
+
 
 /* =================================================
-SETTINGS CARD
-================================================= */
+   SETTINGS CARD
+   ================================================= */
 
 .settings-card {
-width: 100%;
+    width: 100%;
 }
+
 
 .settings-card-header {
-margin-bottom: 4px;
+    margin-bottom: 18px;
 }
+
 
 .settings-card-header h2 {
-margin: 0;
+    margin: 0;
 }
 
+
 /* =================================================
-SETTINGS LIST
-================================================= */
+   SETTINGS LIST
+   ================================================= */
 
 .settings-list {
-display: flex;
-flex-direction: column;
-width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
+
 
 .settings-item {
-display: flex;
-width: 100%;
-align-items: center;
-justify-content: space-between;
-gap: 20px;
-padding: 18px 0;
-border: 0;
-border-bottom: 1px solid rgba(128, 128, 128, 0.18);
-background: transparent;
-color: inherit;
-text-align: left;
-cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 18px 20px;
+    border: 0;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
 }
 
-.settings-item:last-child {
-border-bottom: 0;
+
+.settings-item:first-child {
+    border-top: 0;
 }
+
 
 .settings-item-content {
-min-width: 0;
-flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
 }
+
 
 .settings-item-title {
-font-size: 15px;
-font-weight: 600;
-line-height: 1.4;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
 }
+
 
 .settings-item-description {
-margin-top: 4px;
-font-size: 13px;
-line-height: 1.5;
-opacity: 0.68;
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.7;
 }
+
 
 .settings-item-arrow {
-flex: 0 0 auto;
-font-size: 24px;
-line-height: 1;
-opacity: 0.55;
+    flex: 0 0 auto;
+    margin-left: 18px;
+    font-size: 25px;
+    line-height: 1;
+    opacity: 0.55;
 }
 
-.settings-item:hover .settings-item-arrow {
-opacity: 0.9;
-}
 
 /* =================================================
-SETTINGS FORMS
-================================================= */
+   SETTINGS FORMS
+   ================================================= */
 
 .settings-form-card {
-width: 100%;
+    width: 100%;
 }
+
 
 .settings-form-header {
-margin-bottom: 24px;
+    margin-bottom: 24px;
 }
+
 
 .settings-form-header h2 {
-margin: 0;
+    margin: 0;
 }
+
 
 .settings-form-header p {
-margin: 6px 0 0;
-font-size: 13px;
-line-height: 1.5;
-opacity: 0.68;
+    margin: 7px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.7;
 }
+
 
 .settings-form {
-display: flex;
-flex-direction: column;
-width: 100%;
-gap: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
+
 
 .settings-field {
-display: flex;
-flex-direction: column;
-width: 100%;
-gap: 7px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
 }
+
 
 .settings-field label {
-font-size: 13px;
-font-weight: 600;
+    font-size: 13px;
+    font-weight: 600;
 }
+
 
 .settings-field input {
-box-sizing: border-box;
-width: 100%;
-min-height: 44px;
-padding: 10px 12px;
-border: 1px solid rgba(128, 128, 128, 0.28);
-border-radius: 8px;
-background: transparent;
-color: inherit;
-font: inherit;
-outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1px solid var(--border-color, #d9dde3);
+    border-radius: 7px;
+    background: var(--input-background, #ffffff);
+    color: inherit;
+    font: inherit;
+    outline: none;
 }
+
 
 .settings-field input:focus {
-border-color: currentColor;
+    border-color: currentColor;
 }
 
-/* =================================================
-FORM ACTIONS
-================================================= */
 
 .settings-form-actions {
-display: flex;
-width: 100%;
-justify-content: stretch;
-align-items: stretch;
-gap: 10px;
-margin-top: 4px;
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 6px;
 }
+
 
 .settings-secondary-button,
 .settings-primary-button {
-flex: 1 1 0;
-min-width: 0;
-width: 0;
-min-height: 44px;
-padding: 10px 14px;
-border-radius: 8px;
-font: inherit;
-font-weight: 600;
-white-space: nowrap;
-text-align: center;
-cursor: pointer;
+    flex: 1 1 0;
+    min-width: 0;
+    width: 0;
+    white-space: nowrap;
+    text-align: center;
+    padding: 11px 14px;
+    border-radius: 7px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
 }
+
 
 .settings-secondary-button {
-border: 1px solid rgba(128, 128, 128, 0.28);
-background: transparent;
-color: inherit;
+    border: 1px solid var(--border-color, #d9dde3);
+    background: transparent;
+    color: inherit;
 }
+
 
 .settings-primary-button {
-border: 1px solid transparent;
-background: currentColor;
-color: Canvas;
+    border: 1px solid transparent;
+    background: currentColor;
+    color: white;
 }
 
+
 /* =================================================
-SETTINGS BACK BUTTON
-================================================= */
+   SETTINGS BACK BUTTON
+   ================================================= */
 
 .settings-back {
-display: inline-flex;
-align-items: center;
-gap: 6px;
-margin-bottom: 18px;
-padding: 4px 0;
-border: 0;
-background: transparent;
-color: inherit;
-font: inherit;
-font-size: 14px;
-cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 16px;
+    padding: 4px 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
 }
+
 
 .settings-back-arrow {
-flex: 0 0 auto;
+    flex: 0 0 auto;
 }
+
 
 /* =================================================
-SIGNING KEY SETTING ROW
-================================================= */
-
-.settings-setting-button {
-appearance: none;
--webkit-appearance: none;
-}
+   KEY SETTINGS ROW
+   ================================================= */
 
 .settings-setting-row {
-display: flex;
-width: 100%;
-align-items: center;
-justify-content: space-between;
-gap: 20px;
-box-sizing: border-box;
-padding: 18px 0;
-border: 0;
-border-bottom: 1px solid rgba(128, 128, 128, 0.18);
-background: transparent;
-color: inherit;
-text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 20px;
+    border: 0;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+    background: transparent;
+    text-align: left;
+    font: inherit;
 }
+
 
 .settings-setting-button {
-cursor: pointer;
+    cursor: pointer;
 }
 
-.settings-setting-button:hover .settings-setting-value {
-opacity: 0.85;
+
+.settings-setting-button:hover {
+    background: rgba(127, 127, 127, 0.04);
 }
+
 
 .settings-setting-value {
-display: flex;
-flex: 0 0 auto;
-align-items: center;
-gap: 10px;
-min-height: 40px;
-padding: 0 8px 0 14px;
-border: 1px solid rgba(128, 128, 128, 0.28);
-border-radius: 8px;
-background: transparent;
-color: inherit;
-box-sizing: border-box;
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 12px;
+    margin-left: 20px;
+    padding-left: 10px;
 }
+
 
 .settings-setting-value-text {
-white-space: nowrap;
-font-size: 13px;
-line-height: 1;
+    font-size: 13px;
+    line-height: 1.4;
+    white-space: nowrap;
+    opacity: 0.72;
 }
+
 
 .settings-setting-chevron {
-flex: 0 0 auto;
-opacity: 0.65;
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin-right: 3px;
+    opacity: 0.6;
 }
 
+
 /* =================================================
-SIGNING KEY BACKUP POPUP
-================================================= */
+   SIGNING KEY BACKUP POPUP
+   ================================================= */
 
 .settings-popup-overlay {
-position: fixed;
-inset: 0;
-z-index: 1000;
-display: none;
-align-items: center;
-justify-content: center;
-box-sizing: border-box;
-padding: 20px;
-background: rgba(0, 0, 0, 0.48);
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.42);
 }
+
 
 .settings-popup-overlay.visible {
-display: flex;
+    display: flex;
 }
+
 
 .settings-popup {
-width: min(520px, 100%);
-max-height: calc(100vh - 40px);
-overflow-y: auto;
-box-sizing: border-box;
-padding: 22px;
-border: 1px solid rgba(128, 128, 128, 0.24);
-border-radius: 14px;
-background: Canvas;
-color: CanvasText;
-box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
+    width: min(560px, 100%);
+    max-height: min(720px, calc(100vh - 40px));
+    overflow-y: auto;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color, #e1e4e8);
+    border-radius: 12px;
+    background: var(--card-background, #ffffff);
+    color: inherit;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
 }
+
 
 .settings-popup-header {
-display: flex;
-align-items: flex-start;
-justify-content: space-between;
-gap: 16px;
-margin-bottom: 18px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 22px 18px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
 }
+
 
 .settings-popup-header h2 {
-margin: 0;
-font-size: 18px;
-line-height: 1.35;
+    margin: 0;
+    font-size: 18px;
 }
+
 
 .settings-popup-header p {
-margin: 6px 0 0;
-font-size: 13px;
-line-height: 1.5;
-opacity: 0.68;
+    margin: 7px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: 0.7;
 }
+
 
 .settings-popup-close {
-flex: 0 0 auto;
-width: 34px;
-height: 34px;
-padding: 0;
-border: 0;
-border-radius: 7px;
-background: transparent;
-color: inherit;
-font-size: 25px;
-line-height: 34px;
-cursor: pointer;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    font-size: 25px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.6;
 }
+
 
 .settings-popup-close:hover {
-background: rgba(128, 128, 128, 0.12);
+    background: rgba(127, 127, 127, 0.08);
+    opacity: 1;
 }
 
-.settings-popup-options {
-display: flex;
-flex-direction: column;
-gap: 9px;
-}
-
-.settings-popup-option {
-display: flex;
-width: 100%;
-align-items: flex-start;
-gap: 13px;
-box-sizing: border-box;
-padding: 14px;
-border: 1px solid rgba(128, 128, 128, 0.22);
-border-radius: 10px;
-background: transparent;
-color: inherit;
-text-align: left;
-cursor: pointer;
-}
-
-.settings-popup-option:hover {
-background: rgba(128, 128, 128, 0.07);
-}
-
-.settings-popup-option.selected {
-border-color: currentColor;
-}
-
-.settings-popup-option-radio {
-display: flex;
-flex: 0 0 auto;
-width: 18px;
-height: 18px;
-align-items: center;
-justify-content: center;
-margin-top: 2px;
-box-sizing: border-box;
-border: 1.5px solid currentColor;
-border-radius: 50%;
-opacity: 0.6;
-}
-
-.settings-popup-option.selected .settings-popup-option-radio {
-opacity: 1;
-}
-
-.settings-popup-option-radio span {
-width: 8px;
-height: 8px;
-border-radius: 50%;
-background: currentColor;
-opacity: 0;
-}
-
-.settings-popup-option.selected .settings-popup-option-radio span {
-opacity: 1;
-}
-
-.settings-popup-option-content {
-display: flex;
-min-width: 0;
-flex-direction: column;
-gap: 5px;
-}
-
-.settings-popup-option-title {
-font-size: 14px;
-font-weight: 600;
-line-height: 1.4;
-}
-
-.settings-popup-option-description {
-font-size: 12.5px;
-line-height: 1.55;
-opacity: 0.68;
-}
 
 /* =================================================
-MOBILE
-================================================= */
+   POPUP OPTIONS
+   ================================================= */
+
+.settings-popup-options {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.settings-popup-option {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+    gap: 14px;
+    padding: 18px 22px;
+    border: 0;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+}
+
+
+.settings-popup-option:last-child {
+    border-bottom: 0;
+}
+
+
+.settings-popup-option:hover {
+    background: rgba(127, 127, 127, 0.045);
+}
+
+
+/* =================================================
+   RADIO DOT
+   ================================================= */
+
+.settings-popup-option-radio {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 19px;
+    height: 19px;
+    margin-top: 1px;
+    box-sizing: border-box;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    opacity: 0.55;
+}
+
+
+.settings-popup-option-radio span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0;
+}
+
+
+.settings-popup-option.selected
+.settings-popup-option-radio {
+    opacity: 1;
+}
+
+
+.settings-popup-option.selected
+.settings-popup-option-radio span {
+    opacity: 1;
+}
+
+
+/* =================================================
+   POPUP OPTION CONTENT
+   ================================================= */
+
+.settings-popup-option-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 5px;
+}
+
+
+.settings-popup-option-title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+.settings-popup-option-description {
+    font-size: 13px;
+    line-height: 1.55;
+    opacity: 0.7;
+}
+
+
+/* =================================================
+   MOBILE
+   ================================================= */
 
 @media (max-width: 600px) {
 
-.settings-item {
-    gap: 12px;
-    padding: 16px 0;
-}
+    .settings-item {
+        padding: 17px 16px;
+    }
 
 
-.settings-setting-row {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-}
+    .settings-setting-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 17px 16px;
+    }
 
 
-.settings-setting-value {
-    width: 100%;
-    justify-content: space-between;
-    padding-left: 12px;
-    padding-right: 10px;
-}
+    .settings-setting-value {
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: space-between;
+        margin-left: 0;
+        padding-left: 0;
+    }
 
 
-.settings-setting-value-text {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    .settings-setting-value-text {
+        white-space: normal;
+    }
 
 
-.settings-popup-overlay {
-    align-items: flex-end;
-    padding: 10px;
-}
+    .settings-setting-chevron {
+        margin-right: 4px;
+    }
 
 
-.settings-popup {
-    max-height: calc(100vh - 20px);
-    padding: 18px;
-    border-radius: 14px;
-}
+    .settings-popup-overlay {
+        align-items: flex-end;
+        padding: 10px;
+    }
 
 
-.settings-popup-option {
-    padding: 13px;
-}
+    .settings-popup {
+        max-height: calc(100vh - 20px);
+        border-radius: 12px;
+    }
 
 
-.settings-form-actions {
-    gap: 10px;
-}
+    .settings-popup-header {
+        padding: 19px 18px 16px;
+    }
+
+
+    .settings-popup-option {
+        padding: 17px 18px;
+    }
+
+
+    .settings-popup-option-description {
+        line-height: 1.5;
+    }
 
 }
