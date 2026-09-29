@@ -448,14 +448,19 @@ if (!card) {
 }
 
 
-const backupPasswordInput =
+const currentBackupPasswordInput =
     document.getElementById(
-        "backupPasswordInput"
+        "currentBackupPasswordInput"
     );
 
-const confirmBackupPasswordInput =
+const newBackupPasswordInput =
     document.getElementById(
-        "confirmBackupPasswordInput"
+        "newBackupPasswordInput"
+    );
+
+const confirmNewBackupPasswordInput =
+    document.getElementById(
+        "confirmNewBackupPasswordInput"
     );
 
 const accountPasswordInput =
@@ -464,17 +469,25 @@ const accountPasswordInput =
     );
 
 
-if (backupPasswordInput) {
+if (currentBackupPasswordInput) {
 
-    backupPasswordInput.value =
+    currentBackupPasswordInput.value =
         "";
 
 }
 
 
-if (confirmBackupPasswordInput) {
+if (newBackupPasswordInput) {
 
-    confirmBackupPasswordInput.value =
+    newBackupPasswordInput.value =
+        "";
+
+}
+
+
+if (confirmNewBackupPasswordInput) {
+
+    confirmNewBackupPasswordInput.value =
         "";
 
 }
@@ -1250,14 +1263,19 @@ event
 event.preventDefault();
 
 
-const backupPassword =
+const currentBackupPassword =
     document.getElementById(
-        "backupPasswordInput"
+        "currentBackupPasswordInput"
     ).value;
 
-const confirmBackupPassword =
+const newBackupPassword =
     document.getElementById(
-        "confirmBackupPasswordInput"
+        "newBackupPasswordInput"
+    ).value;
+
+const confirmNewBackupPassword =
+    document.getElementById(
+        "confirmNewBackupPasswordInput"
     ).value;
 
 const accountPassword =
@@ -1266,10 +1284,16 @@ const accountPassword =
     ).value;
 
 
-if (!backupPassword) {
+/*
+ * Current Backup Password is intentionally
+ * allowed to be blank when no Backup Password
+ * has been configured.
+ */
+
+if (!newBackupPassword) {
 
     alert(
-        "Backup password is required."
+        "New Backup Password is required."
     );
 
     return;
@@ -1277,10 +1301,10 @@ if (!backupPassword) {
 }
 
 
-if (!confirmBackupPassword) {
+if (!confirmNewBackupPassword) {
 
     alert(
-        "Please confirm your backup password."
+        "Please confirm your new Backup Password."
     );
 
     return;
@@ -1289,12 +1313,12 @@ if (!confirmBackupPassword) {
 
 
 if (
-    backupPassword !==
-    confirmBackupPassword
+    newBackupPassword !==
+    confirmNewBackupPassword
 ) {
 
     alert(
-        "The backup passwords do not match."
+        "The new Backup Passwords do not match."
     );
 
     return;
@@ -1305,7 +1329,7 @@ if (
 if (!accountPassword) {
 
     alert(
-        "Account password is required."
+        "Account Password is required."
     );
 
     return;
@@ -1314,11 +1338,26 @@ if (!accountPassword) {
 
 
 /*
- * Actual account-password verification,
- * backup-password creation/update, password
- * hashing, encryption, and backend storage
- * will be connected here later.
+ * Actual verification will be handled
+ * by the server later.
+ *
+ * The server will eventually:
+ *
+ * 1. Verify the Account Password.
+ * 2. Determine whether a Backup Password
+ *    is currently configured.
+ * 3. If configured, verify the Current
+ *    Backup Password.
+ * 4. Derive the encryption key from the
+ *    new Backup Password.
+ * 5. Re-wrap the Entity Signing Key backup.
+ * 6. Store the updated encrypted backup.
+ *
+ * The Current Backup Password is not stored
+ * or verified in the browser.
  */
+
+void currentBackupPassword;
 
 alert(
     "Backup password setup will be connected to the server next."

@@ -657,135 +657,107 @@
              BACKUP PASSWORD CARD
              ================================================= -->
 
-        <section
-            id="backupPasswordCard"
-            class="dashboard-card settings-form-card"
-            style="display: none;"
-        >
+       <section
+    id="backupPasswordCard"
+    class="dashboard-card settings-form-card"
+    style="display: none;"
+>
+    <div class="settings-form-header">
+        <div>
+            <h2>
+                Backup Password
+            </h2>
+            <p>
+                Create or change the password used to protect your signing key backups.
+            </p>
+        </div>
+    </div>
 
-            <div class="settings-form-header">
-
-                <div>
-
-                    <h2>
-                        Backup Password
-                    </h2>
-
-                    <p>
-                        Create or change the password used to protect your signing key backups.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <form
-                id="backupPasswordForm"
-                class="settings-form"
-                onsubmit="saveBackupPassword(event)"
+    <form
+        id="backupPasswordForm"
+        class="settings-form"
+        onsubmit="saveBackupPassword(event)"
+    >
+        <div class="settings-field">
+            <label
+                for="currentBackupPasswordInput"
             >
+                Current Backup Password
+            </label>
+            <input
+                id="currentBackupPasswordInput"
+                name="current_backup_password"
+                type="password"
+                autocomplete="current-password"
+            >
+            <div class="settings-field-help">
+                Leave blank if you haven't configured a Backup Password.
+            </div>
+        </div>
 
+        <div class="settings-field">
+            <label
+                for="newBackupPasswordInput"
+            >
+                New Backup Password
+            </label>
+            <input
+                id="newBackupPasswordInput"
+                name="new_backup_password"
+                type="password"
+                autocomplete="new-password"
+                required
+            >
+        </div>
 
-                <!-- =================================================
-                     BACKUP PASSWORD
-                     ================================================= -->
+        <div class="settings-field">
+            <label
+                for="confirmNewBackupPasswordInput"
+            >
+                Confirm New Backup Password
+            </label>
+            <input
+                id="confirmNewBackupPasswordInput"
+                name="confirm_new_backup_password"
+                type="password"
+                autocomplete="new-password"
+                required
+            >
+        </div>
 
-                <div class="settings-field">
+        <div class="settings-field">
+            <label
+                for="backupAccountPasswordInput"
+            >
+                Account Password
+            </label>
+            <input
+                id="backupAccountPasswordInput"
+                name="account_password"
+                type="password"
+                autocomplete="current-password"
+                required
+            >
+        </div>
 
-                    <label
-                        for="backupPasswordInput"
-                    >
-                        Backup Password
-                    </label>
+        <div class="settings-form-actions">
+            <button
+                class="settings-secondary-button"
+                type="button"
+                onclick="openSigningKeySettings()"
+            >
+                Cancel
+            </button>
 
-                    <input
-                        id="backupPasswordInput"
-                        name="backup_password"
-                        type="password"
-                        autocomplete="new-password"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- =================================================
-                     CONFIRM BACKUP PASSWORD
-                     ================================================= -->
-
-                <div class="settings-field">
-
-                    <label
-                        for="confirmBackupPasswordInput"
-                    >
-                        Confirm Backup Password
-                    </label>
-
-                    <input
-                        id="confirmBackupPasswordInput"
-                        name="confirm_backup_password"
-                        type="password"
-                        autocomplete="new-password"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- =================================================
-                     ACCOUNT PASSWORD
-                     ================================================= -->
-
-                <div class="settings-field">
-
-                    <label
-                        for="backupAccountPasswordInput"
-                    >
-                        Account Password
-                    </label>
-
-                    <input
-                        id="backupAccountPasswordInput"
-                        name="account_password"
-                        type="password"
-                        autocomplete="current-password"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- =================================================
-                     FORM ACTIONS
-                     ================================================= -->
-
-                <div class="settings-form-actions">
-
-                    <button
-                        class="settings-secondary-button"
-                        type="button"
-                        onclick="openSigningKeySettings()"
-                    >
-                        Cancel
-                    </button>
-
-
-                    <button
-                        class="settings-primary-button"
-                        type="submit"
-                    >
-                        Set Backup Password
-                    </button>
-
-                </div>
-
-
-            </form>
-
-        </section>
-
-    </section>
+            <button
+                class="settings-primary-button"
+                type="submit"
+            >
+                Set Backup Password
+            </button>
+        </div>
+    </form>
+</section>
 
 </main>
 
