@@ -17,218 +17,10 @@
         href="dashboardstyle.css"
     >
 
-    <style>
-
-        /* =================================================
-           SETTINGS PAGE
-           ================================================= */
-
-        .settings-back {
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 6px;
-
-            margin-bottom: 24px;
-
-            padding: 0;
-
-            border: none;
-
-            background: transparent;
-
-            color: #6b7280;
-
-            font-size: 14px;
-
-            font-weight: 500;
-
-            line-height: 20px;
-
-            cursor: pointer;
-
-            transition:
-                color 0.15s ease;
-
-        }
-
-
-        .settings-back:hover {
-
-            color: #1f2937;
-
-        }
-
-
-        .settings-back-arrow {
-
-            flex-shrink: 0;
-
-            display: block;
-
-        }
-
-
-        .settings-card {
-
-            overflow: hidden;
-
-        }
-
-
-        .settings-card-header {
-
-            padding: 24px 28px;
-
-            border-bottom: 1px solid #eceef1;
-
-        }
-
-
-        .settings-card-header h2 {
-
-            margin: 0;
-
-        }
-
-
-        .settings-list {
-
-            display: flex;
-
-            flex-direction: column;
-
-        }
-
-
-        .settings-item {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            width: 100%;
-
-            padding: 22px 28px;
-
-            border: none;
-
-            border-bottom: 1px solid #eceef1;
-
-            background: transparent;
-
-            text-align: left;
-
-            cursor: pointer;
-
-            transition:
-                background-color 0.15s ease;
-
-        }
-
-
-        .settings-item:last-child {
-
-            border-bottom: none;
-
-        }
-
-
-        .settings-item:hover {
-
-            background-color: #f8f9fb;
-
-        }
-
-
-        .settings-item-content {
-
-            min-width: 0;
-
-            padding-right: 24px;
-
-        }
-
-
-        .settings-item-title {
-
-            margin-bottom: 5px;
-
-            color: #1f2937;
-
-            font-size: 15px;
-
-            font-weight: 600;
-
-        }
-
-
-        .settings-item-description {
-
-            color: #6b7280;
-
-            font-size: 14px;
-
-            line-height: 1.5;
-
-        }
-
-
-        .settings-item-arrow {
-
-            flex-shrink: 0;
-
-            color: #9aa1ab;
-
-            font-size: 21px;
-
-            line-height: 1;
-
-            transition:
-                color 0.15s ease,
-                transform 0.15s ease;
-
-        }
-
-
-        .settings-item:hover .settings-item-arrow {
-
-            color: #4b5563;
-
-            transform: translateX(2px);
-
-        }
-
-
-        @media (max-width: 600px) {
-
-            .settings-card-header {
-
-                padding: 20px;
-
-            }
-
-
-            .settings-item {
-
-                padding: 20px;
-
-            }
-
-
-            .settings-item-description {
-
-                max-width: 95%;
-
-            }
-
-        }
-
-    </style>
+    <link
+        rel="stylesheet"
+        href="settings.css"
+    >
 
 </head>
 
@@ -368,15 +160,12 @@
 
     <main class="dashboard-main">
 
-
-        <!-- =================================================
-             SETTINGS CONTENT
-             ================================================= -->
-
         <section class="dashboard-content">
 
 
-            <!-- Back to Dashboard -->
+            <!-- =================================================
+                 BACK TO DASHBOARD
+                 ================================================= -->
 
             <button
                 class="settings-back"
@@ -412,13 +201,13 @@
 
 
             <!-- =================================================
-                 ACCOUNT SETTINGS CARD
+                 SETTINGS OPTIONS
                  ================================================= -->
 
-            <section class="dashboard-card settings-card">
-
-
-                <!-- Card Header -->
+            <section
+                id="settingsOptionsCard"
+                class="dashboard-card settings-card"
+            >
 
                 <div class="settings-card-header">
 
@@ -429,8 +218,6 @@
                 </div>
 
 
-                <!-- Settings Options -->
-
                 <div class="settings-list">
 
 
@@ -439,7 +226,7 @@
                     <button
                         class="settings-item"
                         type="button"
-                        onclick="showComingSoon('Change Account Details')"
+                        onclick="openAccountDetails()"
                     >
 
                         <div class="settings-item-content">
@@ -470,7 +257,7 @@
                     <button
                         class="settings-item"
                         type="button"
-                        onclick="showComingSoon('Change Account Password')"
+                        onclick="openAccountPassword()"
                     >
 
                         <div class="settings-item-content">
@@ -496,6 +283,254 @@
                     </button>
 
                 </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACCOUNT DETAILS
+                 ================================================= -->
+
+            <section
+                id="accountDetailsCard"
+                class="dashboard-card settings-form-card"
+                style="display: none;"
+            >
+
+                <div class="settings-form-header">
+
+                    <div>
+
+                        <h2>
+                            Account Details
+                        </h2>
+
+                        <p>
+                            Update the personal information associated with your merchant account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="accountDetailsForm"
+                    class="settings-form"
+                    onsubmit="saveAccountDetails(event)"
+                >
+
+
+                    <!-- First Name -->
+
+                    <div class="settings-field">
+
+                        <label
+                            for="firstNameInput"
+                        >
+                            First Name
+                        </label>
+
+                        <input
+                            id="firstNameInput"
+                            name="first_name"
+                            type="text"
+                            autocomplete="given-name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Last Name -->
+
+                    <div class="settings-field">
+
+                        <label
+                            for="lastNameInput"
+                        >
+                            Last Name
+                        </label>
+
+                        <input
+                            id="lastNameInput"
+                            name="last_name"
+                            type="text"
+                            autocomplete="family-name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="settings-field">
+
+                        <label
+                            for="emailInput"
+                        >
+                            Email Address
+                        </label>
+
+                        <input
+                            id="emailInput"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Actions -->
+
+                    <div class="settings-form-actions">
+
+                        <button
+                            class="settings-secondary-button"
+                            type="button"
+                            onclick="closeSettingsForm()"
+                        >
+                            Cancel
+                        </button>
+
+
+                        <button
+                            class="settings-primary-button"
+                            type="submit"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </section>
+
+
+            <!-- =================================================
+                 ACCOUNT PASSWORD
+                 ================================================= -->
+
+            <section
+                id="accountPasswordCard"
+                class="dashboard-card settings-form-card"
+                style="display: none;"
+            >
+
+                <div class="settings-form-header">
+
+                    <div>
+
+                        <h2>
+                            Change Account Password
+                        </h2>
+
+                        <p>
+                            Update the password used to access your merchant account.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form
+                    id="accountPasswordForm"
+                    class="settings-form"
+                    onsubmit="saveAccountPassword(event)"
+                >
+
+
+                    <!-- Current Password -->
+
+                    <div class="settings-field">
+
+                        <label
+                            for="currentPasswordInput"
+                        >
+                            Current Password
+                        </label>
+
+                        <input
+                            id="currentPasswordInput"
+                            name="current_password"
+                            type="password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- New Password -->
+
+                    <div class="settings-field">
+
+                        <label
+                            for="newPasswordInput"
+                        >
+                            New Password
+                        </label>
+
+                        <input
+                            id="newPasswordInput"
+                            name="new_password"
+                            type="password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="settings-field">
+
+                        <label
+                            for="confirmPasswordInput"
+                        >
+                            Confirm New Password
+                        </label>
+
+                        <input
+                            id="confirmPasswordInput"
+                            name="confirm_password"
+                            type="password"
+                            autocomplete="new-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Actions -->
+
+                    <div class="settings-form-actions">
+
+                        <button
+                            class="settings-secondary-button"
+                            type="button"
+                            onclick="closeSettingsForm()"
+                        >
+                            Cancel
+                        </button>
+
+
+                        <button
+                            class="settings-primary-button"
+                            type="submit"
+                        >
+                            Change Password
+                        </button>
+
+                    </div>
+
+                </form>
 
             </section>
 
@@ -570,6 +605,7 @@
 
 
 <script src="dashboard.js"></script>
+<script src="settings.js"></script>
 
 </body>
 
