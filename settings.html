@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Merchant Portal</title>
+    <title>Account Settings</title>
 
     <link
         rel="stylesheet"
@@ -127,9 +127,9 @@
                 <button
                     class="account-menu-item"
                     type="button"
-                    onclick="goToSettings()")"
+                    onclick="goToDashboard()"
                 >
-                    Account Settings
+                    Dashboard
                 </button>
 
 
@@ -164,11 +164,11 @@
             <div>
 
                 <h1>
-                    Dashboard
+                    Account Settings
                 </h1>
 
                 <p>
-                    Manage your merchant account and configuration.
+                    Manage your merchant account settings.
                 </p>
 
             </div>
@@ -177,78 +177,14 @@
 
 
         <!-- =================================================
-             NAVIGATION
-             ================================================= -->
-
-        <nav class="dashboard-navigation">
-
-            <button
-                class="navigation-item active"
-                type="button"
-            >
-                Overview
-            </button>
-
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('Entities')"
-            >
-                Entities
-            </button>
-
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('Endpoints')"
-            >
-                Endpoints
-            </button>
-
-
-            <button
-                class="navigation-item"
-                type="button"
-                onclick="showComingSoon('API')"
-            >
-                API
-            </button>
-
-        </nav>
-
-
-        <!-- =================================================
-             DASHBOARD CONTENT
+             SETTINGS CONTENT
              ================================================= -->
 
         <section class="dashboard-content">
 
 
             <!-- =================================================
-                 WELCOME
-                 ================================================= -->
-
-            <section class="welcome-section">
-
-                <div>
-
-                    <h2 id="welcomeName">
-                        Welcome
-                    </h2>
-
-                    <p>
-                        Your merchant account is active.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 ACCOUNT OVERVIEW
+                 SETTINGS CARD
                  ================================================= -->
 
             <section class="dashboard-card">
@@ -258,138 +194,82 @@
                     <div>
 
                         <h2>
-                            Account Overview
+                            Account
                         </h2>
 
                         <p>
-                            Current merchant configuration.
+                            Manage your account information and security.
                         </p>
-
-                    </div>
-
-
-                    <div class="account-summary-status">
-
-                        <span class="status-label">
-                            Status
-                        </span>
-
-                        <span
-                            id="accountStatusBadge"
-                            class="status-badge"
-                        >
-                            Active
-                        </span>
 
                     </div>
 
                 </div>
 
 
-                <div class="account-details">
+                <div class="settings-list">
 
 
-                    <!-- Account Type -->
+                    <!-- Change Account Details -->
 
-                    <div class="detail">
+                    <button
+                        class="settings-item"
+                        type="button"
+                        onclick="showComingSoon('Change Account Details')"
+                    >
 
-                        <div class="detail-label">
-                            Account Type
-                        </div>
+                        <div class="settings-item-content">
 
-                        <div
-                            id="configurationAccountType"
-                            class="detail-value"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <!-- Merchant ID -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Merchant ID
-                        </div>
-
-                        <div class="merchant-id-row">
-
-                            <div
-                                id="merchantId"
-                                class="detail-value"
-                                style="font-weight:500"
-                            >
-                                —
+                            <div class="settings-item-title">
+                                Change Account Details
                             </div>
 
-                            <button
-                                class="copy-button"
-                                type="button"
-                                onclick="copyMerchantId()"
-                            >
-                                Copy
-                            </button>
+                            <div class="settings-item-description">
+                                Update your name, email address, and other account information.
+                            </div>
 
                         </div>
 
-                    </div>
-
-
-                    <!-- Entities -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Entities
-                        </div>
 
                         <div
-                            id="configurationEntityCount"
-                            class="detail-value"
+                            class="settings-item-arrow"
+                            aria-hidden="true"
                         >
-                            0 configured
+                            ›
                         </div>
 
-                    </div>
+                    </button>
 
 
-                    <!-- Last Updated -->
+                    <!-- Change Account Password -->
 
-                    <div class="detail detail-full-width">
+                    <button
+                        class="settings-item"
+                        type="button"
+                        onclick="showComingSoon('Change Account Password')"
+                    >
 
-                        <div class="detail-label">
-                            Last Updated
+                        <div class="settings-item-content">
+
+                            <div class="settings-item-title">
+                                Change Account Password
+                            </div>
+
+                            <div class="settings-item-description">
+                                Update your account password and security credentials.
+                            </div>
+
                         </div>
+
 
                         <div
-                            id="configurationUpdatedAt"
-                            class="detail-value"
+                            class="settings-item-arrow"
+                            aria-hidden="true"
                         >
-                            —
+                            ›
                         </div>
 
-                    </div>
+                    </button>
 
-
-                    <!-- Created -->
-
-                    <div class="detail detail-full-width">
-
-                        <div class="detail-label">
-                            Created
-                        </div>
-
-                        <div
-                            id="configurationCreatedAt"
-                            class="detail-value"
-                        >
-                            —
-                        </div>
-
-                    </div>
 
                 </div>
 

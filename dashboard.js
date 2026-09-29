@@ -177,14 +177,14 @@ function initializeDashboard() {
 
 
     /*
-     * Endpoints.
+     * Entities.
      *
-     * Endpoint configuration has not
+     * Entity configuration has not
      * been implemented yet.
      */
 
     setText(
-        "configurationEndpointCount",
+        "configurationEntityCount",
         "0 configured"
     );
 
@@ -302,6 +302,26 @@ function formatAccountStatus(
 
             }
         );
+
+}
+
+
+/* ==============================
+   Page Navigation
+   ============================== */
+
+function goToSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+function goToDashboard() {
+
+    window.location.href =
+        "dashboard.html";
 
 }
 
