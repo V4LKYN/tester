@@ -203,9 +203,10 @@
 
 
             <button
+                id="endpointsNavigation"
                 class="navigation-item"
                 type="button"
-                onclick="showComingSoon('Endpoints')"
+                onclick="setDashboardTab('endpoints')"
             >
                 Endpoints
             </button>
@@ -472,6 +473,66 @@
             </div>
 
 
+            <!-- =================================================
+                 ENDPOINTS
+                 ================================================= -->
+
+            <div
+                id="endpointsContent"
+                class="dashboard-tab-content"
+                style="display: none;"
+            >
+
+                <section class="dashboard-card entities-card">
+
+
+                    <!-- Endpoint Header -->
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Endpoints
+                            </h2>
+
+                            <p>
+                                Manage the endpoints associated with your entities
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Empty State -->
+
+                    <div class="entities-empty-state">
+
+                        <h3>
+                            You have not created any entities
+                        </h3>
+
+                        <p>
+                            Create an entity to begin configuring your merchant account.
+                        </p>
+
+                        <button
+                            class="copy-button"
+                            type="button"
+                            onclick="showComingSoon('Create Entity')"
+                        >
+                            Create Entity
+                        </button>
+
+                    </div>
+
+
+                </section>
+
+            </div>
+
+
         </section>
 
     </main>
@@ -560,6 +621,11 @@ function setDashboardTab(tab) {
             "entitiesContent"
         );
 
+    const endpointsContent =
+        document.getElementById(
+            "endpointsContent"
+        );
+
     const overviewNavigation =
         document.getElementById(
             "overviewNavigation"
@@ -570,12 +636,19 @@ function setDashboardTab(tab) {
             "entitiesNavigation"
         );
 
+    const endpointsNavigation =
+        document.getElementById(
+            "endpointsNavigation"
+        );
+
 
     if (
         !overviewContent ||
         !entitiesContent ||
+        !endpointsContent ||
         !overviewNavigation ||
-        !entitiesNavigation
+        !entitiesNavigation ||
+        !endpointsNavigation
     ) {
 
         return;
@@ -591,11 +664,46 @@ function setDashboardTab(tab) {
         entitiesContent.style.display =
             "block";
 
+        endpointsContent.style.display =
+            "none";
+
         overviewNavigation.classList.remove(
             "active"
         );
 
         entitiesNavigation.classList.add(
+            "active"
+        );
+
+        endpointsNavigation.classList.remove(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    if (tab === "endpoints") {
+
+        overviewContent.style.display =
+            "none";
+
+        entitiesContent.style.display =
+            "none";
+
+        endpointsContent.style.display =
+            "block";
+
+        overviewNavigation.classList.remove(
+            "active"
+        );
+
+        entitiesNavigation.classList.remove(
+            "active"
+        );
+
+        endpointsNavigation.classList.add(
             "active"
         );
 
@@ -610,11 +718,18 @@ function setDashboardTab(tab) {
     entitiesContent.style.display =
         "none";
 
+    endpointsContent.style.display =
+        "none";
+
     overviewNavigation.classList.add(
         "active"
     );
 
     entitiesNavigation.classList.remove(
+        "active"
+    );
+
+    endpointsNavigation.classList.remove(
         "active"
     );
 
