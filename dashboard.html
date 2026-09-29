@@ -427,8 +427,6 @@
                 <section class="dashboard-card entities-card">
 
 
-                    <!-- Entity Header -->
-
                     <div class="card-header">
 
                         <div>
@@ -445,8 +443,6 @@
 
                     </div>
 
-
-                    <!-- Empty State -->
 
                     <div class="entities-empty-state">
 
@@ -487,8 +483,6 @@
                 <section class="dashboard-card entities-card">
 
 
-                    <!-- Endpoint Header -->
-
                     <div class="card-header">
 
                         <div>
@@ -505,8 +499,6 @@
 
                     </div>
 
-
-                    <!-- Empty State -->
 
                     <div class="entities-empty-state">
 
@@ -547,8 +539,6 @@
                 <section class="dashboard-card entities-card">
 
 
-                    <!-- Source Header -->
-
                     <div class="card-header">
 
                         <div>
@@ -565,8 +555,6 @@
 
                     </div>
 
-
-                    <!-- Empty State -->
 
                     <div class="entities-empty-state">
 
@@ -662,209 +650,6 @@
     </div>
 
 </div>
-
-
-<!-- =================================================
-     DASHBOARD TAB CONTROLLER
-     ================================================= -->
-
-<script>
-
-function setDashboardTab(tab) {
-
-    const overviewContent =
-        document.getElementById(
-            "overviewContent"
-        );
-
-    const entitiesContent =
-        document.getElementById(
-            "entitiesContent"
-        );
-
-    const endpointsContent =
-        document.getElementById(
-            "endpointsContent"
-        );
-
-    const sourcesContent =
-        document.getElementById(
-            "sourcesContent"
-        );
-
-    const overviewNavigation =
-        document.getElementById(
-            "overviewNavigation"
-        );
-
-    const entitiesNavigation =
-        document.getElementById(
-            "entitiesNavigation"
-        );
-
-    const endpointsNavigation =
-        document.getElementById(
-            "endpointsNavigation"
-        );
-
-    const sourcesNavigation =
-        document.getElementById(
-            "sourcesNavigation"
-        );
-
-
-    if (
-        !overviewContent ||
-        !entitiesContent ||
-        !endpointsContent ||
-        !sourcesContent ||
-        !overviewNavigation ||
-        !entitiesNavigation ||
-        !endpointsNavigation ||
-        !sourcesNavigation
-    ) {
-
-        return;
-
-    }
-
-
-    if (tab === "entities") {
-
-        overviewContent.style.display =
-            "none";
-
-        entitiesContent.style.display =
-            "block";
-
-        endpointsContent.style.display =
-            "none";
-
-        sourcesContent.style.display =
-            "none";
-
-        overviewNavigation.classList.remove(
-            "active"
-        );
-
-        entitiesNavigation.classList.add(
-            "active"
-        );
-
-        endpointsNavigation.classList.remove(
-            "active"
-        );
-
-        sourcesNavigation.classList.remove(
-            "active"
-        );
-
-        return;
-
-    }
-
-
-    if (tab === "endpoints") {
-
-        overviewContent.style.display =
-            "none";
-
-        entitiesContent.style.display =
-            "none";
-
-        endpointsContent.style.display =
-            "block";
-
-        sourcesContent.style.display =
-            "none";
-
-        overviewNavigation.classList.remove(
-            "active"
-        );
-
-        entitiesNavigation.classList.remove(
-            "active"
-        );
-
-        endpointsNavigation.classList.add(
-            "active"
-        );
-
-        sourcesNavigation.classList.remove(
-            "active"
-        );
-
-        return;
-
-    }
-
-
-    if (tab === "sources") {
-
-        overviewContent.style.display =
-            "none";
-
-        entitiesContent.style.display =
-            "none";
-
-        endpointsContent.style.display =
-            "none";
-
-        sourcesContent.style.display =
-            "block";
-
-        overviewNavigation.classList.remove(
-            "active"
-        );
-
-        entitiesNavigation.classList.remove(
-            "active"
-        );
-
-        endpointsNavigation.classList.remove(
-            "active"
-        );
-
-        sourcesNavigation.classList.add(
-            "active"
-        );
-
-        return;
-
-    }
-
-
-    overviewContent.style.display =
-        "block";
-
-    entitiesContent.style.display =
-        "none";
-
-    endpointsContent.style.display =
-        "none";
-
-    sourcesContent.style.display =
-        "none";
-
-    overviewNavigation.classList.add(
-        "active"
-    );
-
-    entitiesNavigation.classList.remove(
-        "active"
-    );
-
-    endpointsNavigation.classList.remove(
-        "active"
-    );
-
-    sourcesNavigation.classList.remove(
-        "active"
-    );
-
-}
-
-</script>
 
 
 <script src="dashboard.js"></script>
