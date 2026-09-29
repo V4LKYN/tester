@@ -12,8 +12,6 @@
 
     <title>Account Settings</title>
 
-   
-
     <link
         rel="stylesheet"
         href="settings.css"
@@ -605,25 +603,27 @@
 
                         <div class="settings-select-wrapper">
 
-                            <select
+                            <button
                                 id="signingKeyBackupSetting"
-                                class="settings-select"
-                                onchange="handleSigningKeyBackupSetting(this.value)"
+                                class="settings-select-button"
+                                type="button"
+                                onclick="openSigningKeyBackupPopup()"
+                                aria-haspopup="dialog"
+                                aria-expanded="false"
                             >
 
-                                <option value="automatic">
-                                    Back Up Automatically
-                                </option>
-
-                                <option value="self_managed">
-                                    I’ll Manage My Keys
-                                </option>
-
-                                <option value="ask_each_time">
+                                <span id="signingKeyBackupSettingLabel">
                                     Ask Me Each Time
-                                </option>
+                                </span>
 
-                            </select>
+                                <span
+                                    class="settings-select-chevron"
+                                    aria-hidden="true"
+                                >
+                                    ▾
+                                </span>
+
+                            </button>
 
                         </div>
 
@@ -697,6 +697,109 @@
 
 
         <pre id="developerResponseText">No response yet.</pre>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     SIGNING KEY BACKUP POPUP
+     ================================================= -->
+
+<div
+    id="signingKeyBackupPopup"
+    class="signing-key-popup"
+    onclick="closeSigningKeyBackupPopup(event)"
+>
+
+    <div
+        class="signing-key-popup-content"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="signing-key-popup-header">
+
+            <h2>
+                Entity Signing Key Backup
+            </h2>
+
+
+            <button
+                class="signing-key-popup-close"
+                type="button"
+                onclick="closeSigningKeyBackupPopup()"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <p class="signing-key-popup-description">
+            Choose how your entity signing keys are backed up and recovered.
+        </p>
+
+
+        <div class="signing-key-popup-options">
+
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-setting="automatic"
+                onclick="handleSigningKeyBackupSetting('automatic')"
+            >
+
+                <span>
+                    Back Up Automatically
+                </span>
+
+                <span class="signing-key-popup-check">
+                    ✓
+                </span>
+
+            </button>
+
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-setting="self_managed"
+                onclick="handleSigningKeyBackupSetting('self_managed')"
+            >
+
+                <span>
+                    I’ll Manage My Keys
+                </span>
+
+                <span class="signing-key-popup-check">
+                    ✓
+                </span>
+
+            </button>
+
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-setting="ask_each_time"
+                onclick="handleSigningKeyBackupSetting('ask_each_time')"
+            >
+
+                <span>
+                    Ask Me Each Time
+                </span>
+
+                <span class="signing-key-popup-check">
+                    ✓
+                </span>
+
+            </button>
+
+
+        </div>
 
     </div>
 

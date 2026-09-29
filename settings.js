@@ -9,16 +9,6 @@ document.addEventListener(
 
         initializeSettings();
 
-        document.addEventListener(
-            "click",
-            handleDocumentClick
-        );
-
-        document.addEventListener(
-            "keydown",
-            handleSettingsKeydown
-        );
-
     }
 );
 
@@ -46,9 +36,7 @@ function initializeSettings() {
 
     populateAccountDetails();
 
-    initializeAccountMenu();
-
-    initializeSigningKeySettings();
+    initializeSigningKeyBackupSetting();
 
 }
 
@@ -114,195 +102,6 @@ function populateAccountDetails() {
 
     }
 
-
-    const accountEmail =
-        document.getElementById(
-            "accountEmail"
-        );
-
-    const menuEmail =
-        document.getElementById(
-            "menuEmail"
-        );
-
-    const menuMerchantId =
-        document.getElementById(
-            "menuMerchantId"
-        );
-
-
-    if (accountEmail) {
-
-        accountEmail.textContent =
-            email || "—";
-
-    }
-
-
-    if (menuEmail) {
-
-        menuEmail.textContent =
-            email || "—";
-
-    }
-
-
-    if (menuMerchantId) {
-
-        menuMerchantId.textContent =
-            sessionStorage.getItem(
-                "merchantId"
-            ) || "—";
-
-    }
-
-}
-
-
-/* =================================================
-   ACCOUNT MENU
-   ================================================= */
-
-function initializeAccountMenu() {
-
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
-
-    if (!menu) {
-        return;
-    }
-
-    menu.classList.remove("visible");
-
-}
-
-
-function toggleAccountMenu() {
-
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
-
-    if (!menu) {
-        return;
-    }
-
-
-    menu.classList.toggle(
-        "visible"
-    );
-
-}
-
-
-function closeAccountMenu() {
-
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
-
-    if (!menu) {
-        return;
-    }
-
-
-    menu.classList.remove(
-        "visible"
-    );
-
-}
-
-
-function handleDocumentClick(event) {
-
-    const container =
-        document.querySelector(
-            ".account-container"
-        );
-
-
-    if (
-        container &&
-        !container.contains(event.target)
-    ) {
-
-        closeAccountMenu();
-
-    }
-
-}
-
-
-/* =================================================
-   ACCOUNT NAVIGATION
-   ================================================= */
-
-function goToSettings() {
-
-    closeAccountMenu();
-
-    window.location.href =
-        "settings.html";
-
-}
-
-
-function goToDashboard() {
-
-    closeAccountMenu();
-
-    window.location.href =
-        "dashboard.html";
-
-}
-
-
-function logout() {
-
-    sessionStorage.removeItem(
-        "authToken"
-    );
-
-    sessionStorage.removeItem(
-        "merchantId"
-    );
-
-    sessionStorage.removeItem(
-        "merchantEmail"
-    );
-
-    sessionStorage.removeItem(
-        "merchantFirstName"
-    );
-
-    sessionStorage.removeItem(
-        "merchantLastName"
-    );
-
-    sessionStorage.removeItem(
-        "merchantType"
-    );
-
-    sessionStorage.removeItem(
-        "merchantStatus"
-    );
-
-    sessionStorage.removeItem(
-        "merchantCreatedAt"
-    );
-
-    sessionStorage.removeItem(
-        "merchantUpdatedAt"
-    );
-
-
-    window.location.href =
-        "index.html";
-
 }
 
 
@@ -318,8 +117,9 @@ function openAccountDetails() {
 
     hideSigningKeySettings();
 
-    populateAccountDetails();
+    closeSigningKeyBackupPopup();
 
+    populateAccountDetails();
 
     const card =
         document.getElementById(
@@ -330,10 +130,8 @@ function openAccountDetails() {
         return;
     }
 
-
     card.style.display =
         "block";
-
 
     setSettingsBackButton(
         "Account Settings"
@@ -354,6 +152,7 @@ function openAccountPassword() {
 
     hideSigningKeySettings();
 
+    closeSigningKeyBackupPopup();
 
     const card =
         document.getElementById(
@@ -364,10 +163,8 @@ function openAccountPassword() {
         return;
     }
 
-
     card.style.display =
         "block";
-
 
     setSettingsBackButton(
         "Account Settings"
@@ -377,7 +174,7 @@ function openAccountPassword() {
 
 
 /* =================================================
-   OPEN KEY SETTINGS
+   OPEN SIGNING KEY SETTINGS
    ================================================= */
 
 function openSigningKeySettings() {
@@ -388,9 +185,7 @@ function openSigningKeySettings() {
 
     hideAccountPassword();
 
-
-    initializeSigningKeySettings();
-
+    closeSigningKeyBackupPopup();
 
     const card =
         document.getElementById(
@@ -401,14 +196,14 @@ function openSigningKeySettings() {
         return;
     }
 
-
     card.style.display =
         "block";
-
 
     setSettingsBackButton(
         "Account Settings"
     );
+
+    updateSigningKeyBackupSettingUI();
 
 }
 
@@ -419,16 +214,15 @@ function openSigningKeySettings() {
 
 function closeSettingsForm() {
 
-    closeSigningKeyBackupPopup();
-
     hideAccountDetails();
 
     hideAccountPassword();
 
     hideSigningKeySettings();
 
-    showSettingsOptions();
+    closeSigningKeyBackupPopup();
 
+    showSettingsOptions();
 
     setSettingsBackButton(
         "Dashboard"
@@ -591,14 +385,10 @@ function hideSigningKeySettings() {
 
 
 /* =================================================
-   SIGNING KEY BACKUP SETTINGS
+   SIGNING KEY BACKUP SETTING
    ================================================= */
 
-const DEFAULT_SIGNING_KEY_BACKUP_SETTING =
-    "ask_each_time";
-
-
-function initializeSigningKeySettings() {
+function initializeSigningKeyBackupSetting() {
 
     let setting =
         sessionStorage.getItem(
@@ -606,14 +396,10 @@ function initializeSigningKeySettings() {
         );
 
 
-    if (
-        setting !== "automatic" &&
-        setting !== "self_managed" &&
-        setting !== "ask_each_time"
-    ) {
+    if (!setting) {
 
         setting =
-            DEFAULT_SIGNING_KEY_BACKUP_SETTING;
+            "ask_each_time";
 
         sessionStorage.setItem(
             "signingKeyBackupSetting",
@@ -623,50 +409,108 @@ function initializeSigningKeySettings() {
     }
 
 
-    updateSigningKeyBackupDisplay(
-        setting
-    );
-
-
-    updateSigningKeyBackupOptions(
-        setting
-    );
+    updateSigningKeyBackupSettingUI();
 
 }
 
 
-function updateSigningKeyBackupDisplay(
-    setting
-) {
+/* =================================================
+   UPDATE SIGNING KEY BACKUP UI
+   ================================================= */
 
-    const valueElement =
+function updateSigningKeyBackupSettingUI() {
+
+    const setting =
+        sessionStorage.getItem(
+            "signingKeyBackupSetting"
+        ) || "ask_each_time";
+
+
+    const label =
         document.getElementById(
-            "signingKeyBackupValue"
+            "signingKeyBackupSettingLabel"
         );
 
 
-    if (!valueElement) {
-        return;
+    if (label) {
+
+        if (setting === "automatic") {
+
+            label.textContent =
+                "Back Up Automatically";
+
+        }
+        else if (setting === "self_managed") {
+
+            label.textContent =
+                "I’ll Manage My Keys";
+
+        }
+        else {
+
+            label.textContent =
+                "Ask Me Each Time";
+
+        }
+
     }
 
 
-    const labels = {
-
-        automatic:
-            "Back Up Automatically",
-
-        self_managed:
-            "I’ll Manage My Keys",
-
-        ask_each_time:
-            "Ask Me Each Time"
-
-    };
+    const options =
+        document.querySelectorAll(
+            ".signing-key-popup-option"
+        );
 
 
-    valueElement.textContent =
-        labels[setting] ||
-        labels.ask_each_time;
+    options.forEach(
+        function(option) {
+
+            const optionSetting =
+                option.getAttribute(
+                    "data-setting"
+                );
+
+            const check =
+                option.querySelector(
+                    ".signing-key-popup-check"
+                );
+
+
+            if (
+                optionSetting === setting
+            ) {
+
+                option.classList.add(
+                    "selected"
+                );
+
+
+                if (check) {
+
+                    check.style.visibility =
+                        "visible";
+
+                }
+
+            }
+            else {
+
+                option.classList.remove(
+                    "selected"
+                );
+
+
+                if (check) {
+
+                    check.style.visibility =
+                        "hidden";
+
+                }
+
+            }
+
+        }
+    );
 
 }
 
@@ -677,26 +521,39 @@ function updateSigningKeyBackupDisplay(
 
 function openSigningKeyBackupPopup() {
 
-    initializeSigningKeySettings();
-
-
     const popup =
         document.getElementById(
             "signingKeyBackupPopup"
         );
+
 
     if (!popup) {
         return;
     }
 
 
+    updateSigningKeyBackupSettingUI();
+
+
     popup.classList.add(
-        "visible"
+        "open"
     );
 
 
-    document.body.style.overflow =
-        "hidden";
+    const selector =
+        document.getElementById(
+            "signingKeyBackupSetting"
+        );
+
+
+    if (selector) {
+
+        selector.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+    }
 
 }
 
@@ -705,7 +562,21 @@ function openSigningKeyBackupPopup() {
    CLOSE SIGNING KEY BACKUP POPUP
    ================================================= */
 
-function closeSigningKeyBackupPopup() {
+function closeSigningKeyBackupPopup(
+    event
+) {
+
+    if (
+        event &&
+        event.target &&
+        event.target.id !==
+            "signingKeyBackupPopup"
+    ) {
+
+        return;
+
+    }
+
 
     const popup =
         document.getElementById(
@@ -713,36 +584,27 @@ function closeSigningKeyBackupPopup() {
         );
 
 
-    if (!popup) {
-        return;
+    if (popup) {
+
+        popup.classList.remove(
+            "open"
+        );
+
     }
 
 
-    popup.classList.remove(
-        "visible"
-    );
+    const selector =
+        document.getElementById(
+            "signingKeyBackupSetting"
+        );
 
 
-    document.body.style.overflow =
-        "";
+    if (selector) {
 
-}
-
-
-/* =================================================
-   POPUP BACKGROUND CLICK
-   ================================================= */
-
-function handleSigningKeyBackupPopupClick(
-    event
-) {
-
-    if (
-        event.target ===
-        event.currentTarget
-    ) {
-
-        closeSigningKeyBackupPopup();
+        selector.setAttribute(
+            "aria-expanded",
+            "false"
+        );
 
     }
 
@@ -750,10 +612,10 @@ function handleSigningKeyBackupPopupClick(
 
 
 /* =================================================
-   SELECT SIGNING KEY BACKUP SETTING
+   HANDLE SIGNING KEY BACKUP SETTING
    ================================================= */
 
-function selectSigningKeyBackupSetting(
+function handleSigningKeyBackupSetting(
     setting
 ) {
 
@@ -774,128 +636,10 @@ function selectSigningKeyBackupSetting(
     );
 
 
-    updateSigningKeyBackupDisplay(
-        setting
-    );
-
-
-    updateSigningKeyBackupOptions(
-        setting
-    );
+    updateSigningKeyBackupSettingUI();
 
 
     closeSigningKeyBackupPopup();
-
-}
-
-
-/* =================================================
-   UPDATE POPUP RADIO STATES
-   ================================================= */
-
-function updateSigningKeyBackupOptions(
-    selectedSetting
-) {
-
-    const options = {
-
-        automatic:
-            document.getElementById(
-                "signingKeyOptionAutomatic"
-            ),
-
-        self_managed:
-            document.getElementById(
-                "signingKeyOptionSelfManaged"
-            ),
-
-        ask_each_time:
-            document.getElementById(
-                "signingKeyOptionAskEachTime"
-            )
-
-    };
-
-
-    Object.keys(options).forEach(
-        function(setting) {
-
-            const option =
-                options[setting];
-
-            if (!option) {
-                return;
-            }
-
-
-            if (
-                setting ===
-                selectedSetting
-            ) {
-
-                option.classList.add(
-                    "selected"
-                );
-
-                option.setAttribute(
-                    "aria-checked",
-                    "true"
-                );
-
-            } else {
-
-                option.classList.remove(
-                    "selected"
-                );
-
-                option.setAttribute(
-                    "aria-checked",
-                    "false"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =================================================
-   KEYBOARD HANDLING
-   ================================================= */
-
-function handleSettingsKeydown(
-    event
-) {
-
-    if (
-        event.key === "Escape"
-    ) {
-
-        const popup =
-            document.getElementById(
-                "signingKeyBackupPopup"
-            );
-
-
-        if (
-            popup &&
-            popup.classList.contains(
-                "visible"
-            )
-        ) {
-
-            closeSigningKeyBackupPopup();
-
-            return;
-
-        }
-
-
-        closeAccountMenu();
-
-    }
 
 }
 
@@ -960,6 +704,14 @@ function saveAccountDetails(
     }
 
 
+    /*
+     * Backend update will be connected here.
+     *
+     * For now, update the local session so
+     * the dashboard reflects the edited values
+     * during development.
+     */
+
     sessionStorage.setItem(
         "merchantFirstName",
         firstName
@@ -974,9 +726,6 @@ function saveAccountDetails(
         "merchantEmail",
         email
     );
-
-
-    populateAccountDetails();
 
 
     alert(
@@ -1038,10 +787,7 @@ function saveAccountPassword(
     }
 
 
-    if (
-        newPassword !==
-        confirmPassword
-    ) {
+    if (newPassword !== confirmPassword) {
 
         alert(
             "The new passwords do not match."
@@ -1052,6 +798,11 @@ function saveAccountPassword(
     }
 
 
+    /*
+     * Backend password update will be
+     * connected here.
+     */
+
     alert(
         "Password change will be connected to the server next."
     );
@@ -1060,55 +811,12 @@ function saveAccountPassword(
 
 
 /* =================================================
-   DEVELOPER RESPONSE
+   NAVIGATION
    ================================================= */
 
-function openDeveloperResponse() {
+function goToDashboard() {
 
-    const modal =
-        document.getElementById(
-            "developerModal"
-        );
-
-    if (!modal) {
-        return;
-    }
-
-
-    modal.classList.add(
-        "visible"
-    );
-
-}
-
-
-function closeDeveloperResponse(
-    event
-) {
-
-    if (
-        event &&
-        event.target !==
-        event.currentTarget
-    ) {
-
-        return;
-
-    }
-
-
-    const modal =
-        document.getElementById(
-            "developerModal"
-        );
-
-    if (!modal) {
-        return;
-    }
-
-
-    modal.classList.remove(
-        "visible"
-    );
+    window.location.href =
+        "dashboard.html";
 
 }

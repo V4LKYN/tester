@@ -593,53 +593,308 @@ body {
 
 .settings-select-wrapper {
 
+    position: relative;
+
     flex-shrink: 0;
+
+    padding-right: 6px;
 
 }
 
 
-.settings-select {
+.settings-select-button {
 
     min-width: 190px;
 
-    padding: 9px 32px 9px 11px;
+    min-height: 38px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding: 8px 12px 8px 14px;
 
     border: 1px solid #d6d9de;
 
     border-radius: 6px;
 
-    background-color: #ffffff;
+    background: #ffffff;
 
-    color: #374151;
+    color: #25282c;
 
     font-family: inherit;
 
-    font-size: 14px;
+    font-size: 13px;
 
-    font-weight: 500;
+    font-weight: 400;
 
     line-height: 20px;
 
     cursor: pointer;
 
-    outline: none;
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
 
 }
 
 
-.settings-select:hover {
+.settings-select-button:hover {
 
-    border-color: #b9bec7;
+    background: #f8f9fa;
+
+    border-color: #cfd4da;
 
 }
 
 
-.settings-select:focus {
+.settings-select-button:focus-visible {
 
-    border-color: #6b7280;
+    outline: 2px solid #cfd4da;
+
+    outline-offset: 2px;
+
+}
+
+
+.settings-select-chevron {
+
+    flex-shrink: 0;
+
+    padding-right: 2px;
+
+    color: #777d85;
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   SIGNING KEY BACKUP POPUP
+   ========================================================= */
+
+.signing-key-popup {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.28);
+
+    z-index: 300;
+
+}
+
+
+.signing-key-popup.open {
+
+    display: flex;
+
+}
+
+
+.signing-key-popup-content {
+
+    width: min(420px, 100%);
+
+    background: #ffffff;
+
+    border: 1px solid #e1e4e8;
+
+    border-radius: 10px;
 
     box-shadow:
-        0 0 0 3px rgba(107, 114, 128, 0.10);
+        0 18px 50px rgba(0, 0, 0, 0.16);
+
+    overflow: hidden;
+
+}
+
+
+/* =========================================================
+   SIGNING KEY POPUP HEADER
+   ========================================================= */
+
+.signing-key-popup-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 17px 18px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+}
+
+
+.signing-key-popup-header h2 {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #17191c;
+
+}
+
+
+.signing-key-popup-close {
+
+    width: 28px;
+
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #707780;
+
+    font-family: inherit;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+}
+
+
+.signing-key-popup-close:hover {
+
+    background: #f1f2f4;
+
+}
+
+
+/* =========================================================
+   SIGNING KEY POPUP DESCRIPTION
+   ========================================================= */
+
+.signing-key-popup-description {
+
+    margin: 0;
+
+    padding: 16px 18px 12px;
+
+    color: #737982;
+
+    font-size: 12px;
+
+    line-height: 18px;
+
+}
+
+
+/* =========================================================
+   SIGNING KEY POPUP OPTIONS
+   ========================================================= */
+
+.signing-key-popup-options {
+
+    padding: 6px 10px 12px;
+
+}
+
+
+.signing-key-popup-option {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 11px 10px;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background: transparent;
+
+    color: #25282c;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease;
+
+}
+
+
+.signing-key-popup-option:hover {
+
+    background: #f3f4f6;
+
+}
+
+
+.signing-key-popup-option.selected {
+
+    font-weight: 500;
+
+}
+
+
+.signing-key-popup-check {
+
+    color: #555c64;
+
+    font-size: 14px;
+
+    visibility: hidden;
+
+}
+
+
+.signing-key-popup-option.selected
+.signing-key-popup-check {
+
+    visibility: visible;
 
 }
 
@@ -1161,16 +1416,16 @@ body {
 
         width: 100%;
 
+        padding-right: 0;
+
     }
 
 
-    .settings-select {
+    .settings-select-button {
 
         width: 100%;
 
         min-width: 0;
-
-        box-sizing: border-box;
 
     }
 
@@ -1211,11 +1466,27 @@ body {
 
         min-width: 0;
 
-        width: 0;
+        width: auto;
 
         white-space: nowrap;
 
         text-align: center;
+
+    }
+
+
+    .signing-key-popup {
+
+        padding: 16px;
+
+    }
+
+
+    .signing-key-popup-content {
+
+        width: 100%;
+
+        max-width: 420px;
 
     }
 
@@ -1242,4 +1513,3 @@ body {
     }
 
 }
-
