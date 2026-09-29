@@ -439,35 +439,13 @@ function updateSigningKeyBackupSettingUI() {
         "ask_each_time";
 
 
-    const label =
-        document.getElementById(
-            "signingKeyBackupSettingLabel"
-        );
-
-
-    if (label) {
-
-        if (setting === "automatic") {
-
-            label.textContent =
-                "Back Up Automatically";
-
-        }
-        else if (setting === "self_managed") {
-
-            label.textContent =
-                "I’ll Manage My Keys";
-
-        }
-        else {
-
-            label.textContent =
-                "Ask Me Each Time";
-
-        }
-
-    }
-
+    /*
+     * Update the popup option selection.
+     *
+     * The main setting label is intentionally
+     * not changed here because this function
+     * also runs while a change is pending.
+     */
 
     const options =
         document.querySelectorAll(
@@ -485,7 +463,8 @@ function updateSigningKeyBackupSettingUI() {
 
 
             if (
-                optionSetting === setting
+                optionSetting ===
+                setting
             ) {
 
                 option.classList.add(
@@ -506,6 +485,50 @@ function updateSigningKeyBackupSettingUI() {
 
 
     updateSigningKeyBackupActions();
+
+}
+
+
+/* =================================================
+   UPDATE SAVED SIGNING KEY BACKUP LABEL
+   ================================================= */
+
+function updateSavedSigningKeyBackupSettingUI() {
+
+    const setting =
+        originalSigningKeyBackupSetting ||
+        "ask_each_time";
+
+
+    const label =
+        document.getElementById(
+            "signingKeyBackupSettingLabel"
+        );
+
+
+    if (!label) {
+        return;
+    }
+
+
+    if (setting === "automatic") {
+
+        label.textContent =
+            "Back Up Automatically";
+
+    }
+    else if (setting === "self_managed") {
+
+        label.textContent =
+            "I’ll Manage My Keys";
+
+    }
+    else {
+
+        label.textContent =
+            "Ask Me Each Time";
+
+    }
 
 }
 
@@ -541,6 +564,8 @@ function openSigningKeyBackupPopup() {
 
 
     updateSigningKeyBackupSettingUI();
+
+    updateSavedSigningKeyBackupSettingUI();
 
 
     popup.classList.add(
@@ -644,9 +669,6 @@ function handleSigningKeyBackupSetting(
 
     updateSigningKeyBackupSettingUI();
 
-
-    closeSigningKeyBackupPopup();
-
 }
 
 
@@ -698,6 +720,8 @@ function cancelSigningKeyBackupSetting() {
 
     updateSigningKeyBackupSettingUI();
 
+    closeSigningKeyBackupPopup();
+
 }
 
 
@@ -728,6 +752,10 @@ function saveSigningKeyBackupSetting() {
 
 
     updateSigningKeyBackupSettingUI();
+
+    updateSavedSigningKeyBackupSettingUI();
+
+    closeSigningKeyBackupPopup();
 
 }
 
