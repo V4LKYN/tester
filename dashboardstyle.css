@@ -525,6 +525,7 @@ body {
 .merchant-id-row .detail-value {
     flex: 1;
     min-width: 0;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -959,6 +960,8 @@ body {
 
     align-items: center;
 
+    gap: 6px;
+
     margin-bottom: 22px;
 
     padding: 0;
@@ -988,6 +991,16 @@ body {
     color: #1f2937;
 
 }
+
+
+.settings-back-arrow {
+
+    flex-shrink: 0;
+
+    display: block;
+
+}
+
 
 /* =================================================
    SETTINGS CARD
