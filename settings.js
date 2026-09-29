@@ -127,6 +127,10 @@ function openAccountDetails() {
     card.style.display =
         "block";
 
+    setSettingsBackButton(
+        "Account Settings"
+    );
+
 }
 
 
@@ -152,6 +156,10 @@ function openAccountPassword() {
     card.style.display =
         "block";
 
+    setSettingsBackButton(
+        "Account Settings"
+    );
+
 }
 
 
@@ -167,6 +175,64 @@ function closeSettingsForm() {
 
     showSettingsOptions();
 
+    setSettingsBackButton(
+        "Dashboard"
+    );
+
+}
+
+
+/* =================================================
+   SETTINGS BACK BUTTON
+   ================================================= */
+
+function handleSettingsBack() {
+
+    const optionsCard =
+        document.getElementById(
+            "settingsOptionsCard"
+        );
+
+
+    if (
+        optionsCard &&
+        optionsCard.style.display !== "none"
+    ) {
+
+        goToDashboard();
+
+        return;
+
+    }
+
+
+    closeSettingsForm();
+
+}
+
+
+/* =================================================
+   SETTINGS BACK BUTTON LABEL
+   ================================================= */
+
+function setSettingsBackButton(
+    label
+) {
+
+    const labelElement =
+        document.getElementById(
+            "settingsBackLabel"
+        );
+
+
+    if (!labelElement) {
+        return;
+    }
+
+
+    labelElement.textContent =
+        label;
+
 }
 
 
@@ -181,9 +247,11 @@ function hideSettingsOptions() {
             "settingsOptionsCard"
         );
 
+
     if (!card) {
         return;
     }
+
 
     card.style.display =
         "none";
@@ -198,9 +266,11 @@ function showSettingsOptions() {
             "settingsOptionsCard"
         );
 
+
     if (!card) {
         return;
     }
+
 
     card.style.display =
         "block";
@@ -215,9 +285,11 @@ function hideAccountDetails() {
             "accountDetailsCard"
         );
 
+
     if (!card) {
         return;
     }
+
 
     card.style.display =
         "none";
@@ -232,9 +304,11 @@ function hideAccountPassword() {
             "accountPasswordCard"
         );
 
+
     if (!card) {
         return;
     }
+
 
     card.style.display =
         "none";

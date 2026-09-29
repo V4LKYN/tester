@@ -438,7 +438,15 @@
 
     .settings-form-actions {
 
+        display: flex;
+
+        width: 100%;
+
         justify-content: stretch;
+
+        align-items: stretch;
+
+        gap: 10px;
 
     }
 
@@ -446,7 +454,15 @@
     .settings-secondary-button,
     .settings-primary-button {
 
-        flex: 1;
+        flex: 1 1 0;
+
+        min-width: 0;
+
+        width: 0;
+
+        white-space: nowrap;
+
+        text-align: center;
 
     }
 
