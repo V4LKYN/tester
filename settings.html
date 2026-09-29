@@ -17,7 +17,230 @@
         href="dashboardstyle.css"
     >
 
+    <style>
+
+        /* =================================================
+           SETTINGS PAGE
+           ================================================= */
+
+        .settings-back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            margin-bottom: 24px;
+
+            padding: 0;
+
+            border: none;
+
+            background: none;
+
+            color: #5f6672;
+
+            font-size: 14px;
+
+            font-weight: 500;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition:
+                color 0.15s ease;
+
+        }
+
+
+        .settings-back:hover {
+
+            color: #1f2937;
+
+        }
+
+
+        .settings-back-arrow {
+
+            font-size: 17px;
+
+            line-height: 1;
+
+        }
+
+
+        .settings-card {
+
+            overflow: hidden;
+
+        }
+
+
+        .settings-card-header {
+
+            padding: 24px 28px;
+
+            border-bottom: 1px solid #eceef1;
+
+        }
+
+
+        .settings-card-header h2 {
+
+            margin: 0 0 5px;
+
+        }
+
+
+        .settings-card-header p {
+
+            margin: 0;
+
+            color: #6b7280;
+
+        }
+
+
+        .settings-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        .settings-item {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            width: 100%;
+
+            padding: 22px 28px;
+
+            border: none;
+
+            border-bottom: 1px solid #eceef1;
+
+            background: transparent;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            transition:
+                background-color 0.15s ease;
+
+        }
+
+
+        .settings-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .settings-item:hover {
+
+            background-color: #f8f9fb;
+
+        }
+
+
+        .settings-item-content {
+
+            min-width: 0;
+
+            padding-right: 24px;
+
+        }
+
+
+        .settings-item-title {
+
+            margin-bottom: 5px;
+
+            color: #1f2937;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+        }
+
+
+        .settings-item-description {
+
+            color: #6b7280;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .settings-item-arrow {
+
+            flex-shrink: 0;
+
+            color: #9aa1ab;
+
+            font-size: 21px;
+
+            line-height: 1;
+
+            transition:
+                color 0.15s ease,
+                transform 0.15s ease;
+
+        }
+
+
+        .settings-item:hover .settings-item-arrow {
+
+            color: #4b5563;
+
+            transform: translateX(2px);
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .settings-card-header {
+
+                padding: 20px;
+
+            }
+
+
+            .settings-item {
+
+                padding: 20px;
+
+            }
+
+
+            .settings-item-description {
+
+                max-width: 95%;
+
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
@@ -127,9 +350,9 @@
                 <button
                     class="account-menu-item"
                     type="button"
-                    onclick="goToDashboard()"
+                    onclick="goToSettings()"
                 >
-                    Dashboard
+                    Account Settings
                 </button>
 
 
@@ -183,33 +406,54 @@
         <section class="dashboard-content">
 
 
-            <!-- =================================================
-                 SETTINGS CARD
-                 ================================================= -->
+            <!-- Back to Dashboard -->
 
-            <section class="dashboard-card">
+            <button
+                class="settings-back"
+                type="button"
+                onclick="goToDashboard()"
+            >
 
-                <div class="card-header">
+                <span
+                    class="settings-back-arrow"
+                    aria-hidden="true"
+                >
+                    ←
+                </span>
 
-                    <div>
+                <span>
+                    Dashboard
+                </span>
 
-                        <h2>
-                            Account
-                        </h2>
+            </button>
 
-                        <p>
-                            Manage your account information and security.
-                        </p>
 
-                    </div>
+            <!-- Account Settings Card -->
+
+            <section class="dashboard-card settings-card">
+
+
+                <!-- Card Header -->
+
+                <div class="settings-card-header">
+
+                    <h2>
+                        Account
+                    </h2>
+
+                    <p>
+                        Manage your account information and security.
+                    </p>
 
                 </div>
 
 
+                <!-- Settings Options -->
+
                 <div class="settings-list">
 
 
-                    <!-- Change Account Details -->
+                    <!-- Account Details -->
 
                     <button
                         class="settings-item"
@@ -230,17 +474,17 @@
                         </div>
 
 
-                        <div
+                        <span
                             class="settings-item-arrow"
                             aria-hidden="true"
                         >
                             ›
-                        </div>
+                        </span>
 
                     </button>
 
 
-                    <!-- Change Account Password -->
+                    <!-- Account Password -->
 
                     <button
                         class="settings-item"
@@ -261,20 +505,18 @@
                         </div>
 
 
-                        <div
+                        <span
                             class="settings-item-arrow"
                             aria-hidden="true"
                         >
                             ›
-                        </div>
+                        </span>
 
                     </button>
-
 
                 </div>
 
             </section>
-
 
         </section>
 
