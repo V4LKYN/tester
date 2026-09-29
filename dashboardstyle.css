@@ -349,6 +349,8 @@ body {
 
 .welcome-section {
     padding: 2px 0 3px;
+
+    margin-bottom: 22px;
 }
 
 .welcome-section h2 {
@@ -560,10 +562,63 @@ body {
     align-items: center;
     justify-content: center;
 
-    padding: 64px 28px;
+    min-height: 300px;
+
+    padding: 52px 28px 56px;
 
     text-align: center;
 }
+
+
+/* Entity icon */
+
+.entities-empty-state::before {
+    content: "";
+
+    width: 48px;
+    height: 48px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #dfe3e8;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8f9fa,
+            #f1f3f5
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+
+    position: relative;
+}
+
+
+/* Entity icon detail */
+
+.entities-empty-state::after {
+    content: "+";
+
+    position: absolute;
+
+    margin-top: -1px;
+
+    color: #737982;
+
+    font-size: 22px;
+    font-weight: 400;
+
+    line-height: 48px;
+
+    width: 48px;
+    height: 48px;
+
+    text-align: center;
+}
+
 
 .entities-empty-state h3 {
     margin: 0 0 8px;
@@ -572,6 +627,8 @@ body {
 
     font-size: 17px;
     font-weight: 600;
+
+    letter-spacing: -0.15px;
 }
 
 .entities-empty-state p {
@@ -585,8 +642,47 @@ body {
     line-height: 1.5;
 }
 
+
+/* Create Entity button */
+
 .entities-empty-state .copy-button {
-    min-width: 120px;
+    min-width: 128px;
+
+    padding: 9px 16px;
+
+    border: 1px solid #cfd4da;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    color: #25282c;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.03);
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease;
+}
+
+.entities-empty-state .copy-button:hover {
+    background: #f7f8f9;
+
+    border-color: #bfc5cc;
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.05);
+
+    transform: translateY(-1px);
+}
+
+.entities-empty-state .copy-button:active {
+    transform: translateY(0);
 }
 
 
@@ -836,7 +932,9 @@ body {
 
 
     .entities-empty-state {
-        padding: 48px 20px;
+        min-height: 280px;
+
+        padding: 44px 20px 48px;
     }
 
 }
@@ -884,6 +982,13 @@ body {
         bottom: 12px;
     }
 
+
+    .entities-empty-state {
+        min-height: 260px;
+
+        padding: 40px 18px 44px;
+    }
+
 }
 
 
@@ -929,9 +1034,19 @@ body {
 
 .settings-back-arrow {
 
-    display: block;
+    display: inline-flex;
 
-    flex-shrink: 0;
+    align-items: center;
+
+    justify-content: center;
+
+    width: 16px;
+
+    height: 16px;
+
+    font-size: 17px;
+
+    line-height: 1;
 
 }
 
