@@ -4,506 +4,500 @@
 
 
 /* =================================================
+   BACK TO DASHBOARD / ACCOUNT SETTINGS
+   ================================================= */
+
+.settings-back {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-bottom: 22px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 20px;
+
+    cursor: pointer;
+
+    transition:
+        color 0.15s ease;
+
+}
+
+
+.settings-back:hover {
+
+    color: #1f2937;
+
+}
+
+
+.settings-back-arrow {
+
+    flex-shrink: 0;
+
+    display: block;
+
+}
+
+
+/* =================================================
    SETTINGS CARD
    ================================================= */
 
 .settings-card {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
+
+    overflow: hidden;
+
 }
 
 
 .settings-card-header {
-    margin-bottom: 18px;
+
+    padding: 24px 28px;
+
+    border-bottom: 1px solid #eceef1;
+
 }
 
 
 .settings-card-header h2 {
+
     margin: 0;
+
+}
+
+
+.settings-list {
+
+    display: flex;
+
+    flex-direction: column;
+
 }
 
 
 /* =================================================
-   SETTINGS LIST
+   SETTINGS ITEMS
    ================================================= */
 
-.settings-list {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-
 .settings-item {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     width: 100%;
-    padding: 18px 20px;
-    border: 0;
-    border-top: 1px solid var(--border-color, #e5e7eb);
+
+    padding: 22px 28px;
+
+    border: none;
+
+    border-bottom: 1px solid #eceef1;
+
     background: transparent;
+
     text-align: left;
+
     cursor: pointer;
-    font: inherit;
+
+    transition:
+        background-color 0.15s ease;
+
 }
 
 
-.settings-item:first-child {
-    border-top: 0;
+.settings-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.settings-item:hover {
+
+    background-color: #f8f9fb;
+
 }
 
 
 .settings-item-content {
-    flex: 1 1 auto;
+
     min-width: 0;
+
+    padding-right: 24px;
+
 }
 
 
 .settings-item-title {
+
+    margin-bottom: 5px;
+
+    color: #1f2937;
+
     font-size: 15px;
+
     font-weight: 600;
-    line-height: 1.4;
+
 }
 
 
 .settings-item-description {
-    margin-top: 5px;
-    font-size: 13px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
     line-height: 1.5;
-    opacity: 0.7;
+
 }
 
 
 .settings-item-arrow {
-    flex: 0 0 auto;
-    margin-left: 18px;
-    font-size: 25px;
+
+    flex-shrink: 0;
+
+    color: #9aa1ab;
+
+    font-size: 21px;
+
     line-height: 1;
-    opacity: 0.55;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.settings-item:hover .settings-item-arrow {
+
+    color: #4b5563;
+
+    transform: translateX(2px);
+
 }
 
 
 /* =================================================
-   SETTINGS FORMS
+   SIGNING KEY SETTINGS ROW
+   ================================================= */
+
+.settings-setting-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 22px 28px;
+
+}
+
+
+/* =================================================
+   SIGNING KEY SELECT
+   ================================================= */
+
+.settings-select-wrapper {
+
+    flex-shrink: 0;
+
+}
+
+
+.settings-select {
+
+    min-width: 190px;
+
+    padding: 9px 32px 9px 11px;
+
+    border: 1px solid #d6d9de;
+
+    border-radius: 6px;
+
+    background-color: #ffffff;
+
+    color: #374151;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 20px;
+
+    cursor: pointer;
+
+    outline: none;
+
+}
+
+
+.settings-select:hover {
+
+    border-color: #b9bec7;
+
+}
+
+
+.settings-select:focus {
+
+    border-color: #6b7280;
+
+    box-shadow:
+        0 0 0 3px rgba(107, 114, 128, 0.10);
+
+}
+
+
+/* =================================================
+   SETTINGS FORM CARD
    ================================================= */
 
 .settings-form-card {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
+
+    overflow: hidden;
+
 }
 
 
 .settings-form-header {
-    margin-bottom: 24px;
+
+    padding: 24px 28px;
+
+    border-bottom: 1px solid #eceef1;
+
 }
 
 
 .settings-form-header h2 {
-    margin: 0;
+
+    margin: 0 0 6px 0;
+
 }
 
 
 .settings-form-header p {
-    margin: 7px 0 0;
-    font-size: 13px;
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
     line-height: 1.5;
-    opacity: 0.7;
+
 }
 
 
 .settings-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+
+    padding: 28px;
+
 }
 
 
 .settings-field {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
+
+    margin-bottom: 22px;
+
 }
 
 
 .settings-field label {
-    font-size: 13px;
-    font-weight: 600;
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #374151;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
 }
 
 
 .settings-field input {
+
+    display: block;
+
     width: 100%;
+
     box-sizing: border-box;
-    padding: 11px 12px;
-    border: 1px solid var(--border-color, #d9dde3);
-    border-radius: 7px;
-    background: var(--input-background, #ffffff);
-    color: inherit;
-    font: inherit;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d6d9de;
+
+    border-radius: 6px;
+
+    background: #ffffff;
+
+    color: #1f2937;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 20px;
+
     outline: none;
+
+    transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+
+}
+
+
+.settings-field input:hover {
+
+    border-color: #b9bec7;
+
 }
 
 
 .settings-field input:focus {
-    border-color: currentColor;
+
+    border-color: #6b7280;
+
+    box-shadow:
+        0 0 0 3px rgba(107, 114, 128, 0.10);
+
 }
 
 
 /* =================================================
-   SETTINGS FORM ACTIONS
+   FORM ACTIONS
    ================================================= */
 
 .settings-form-actions {
+
     display: flex;
-    width: 100%;
-    justify-content: stretch;
-    align-items: stretch;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
     gap: 10px;
-    margin-top: 6px;
+
+    width: 100%;
+
+    margin-top: 28px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #eceef1;
+
 }
 
 
 .settings-secondary-button,
 .settings-primary-button {
-    display: block;
-    flex: 1 1 0;
-    min-width: 0;
-    width: 0;
-    box-sizing: border-box;
-    white-space: nowrap;
-    text-align: center;
-    padding: 11px 14px;
-    border-radius: 7px;
-    font: inherit;
-    font-weight: 600;
+
+    display: inline-flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    min-height: 38px;
+
+    padding: 8px 16px;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 20px;
+
     cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+
 }
 
 
 .settings-secondary-button {
-    border: 1px solid var(--border-color, #d9dde3);
-    background: transparent;
-    color: inherit;
+
+    border: 1px solid #d6d9de;
+
+    background: #ffffff;
+
+    color: #4b5563;
+
+}
+
+
+.settings-secondary-button:hover {
+
+    background: #f8f9fb;
+
+    border-color: #b9bec7;
+
 }
 
 
 .settings-primary-button {
-    border: 1px solid currentColor;
-    background: currentColor;
-    color: var(--button-text-color, #ffffff);
+
+    border: 1px solid #1f2937;
+
+    background: #1f2937;
+
+    color: #ffffff;
+
 }
 
 
-/* =================================================
-   SETTINGS BACK BUTTON
-   ================================================= */
+.settings-primary-button:hover {
 
-.settings-back {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    margin-bottom: 16px;
-    padding: 4px 0;
-    border: 0;
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    font-size: 14px;
-    cursor: pointer;
-}
+    background: #111827;
 
+    border-color: #111827;
 
-.settings-back-arrow {
-    flex: 0 0 auto;
-}
-
-
-/* =================================================
-   KEY SETTINGS ROW
-   ================================================= */
-
-.settings-setting-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 18px 20px;
-    border: 0;
-    border-top: 1px solid var(--border-color, #e5e7eb);
-    background: transparent;
-    color: inherit;
-    text-align: left;
-    font: inherit;
-}
-
-
-.settings-setting-button {
-    cursor: pointer;
-}
-
-
-.settings-setting-button:hover {
-    background: rgba(127, 127, 127, 0.04);
-}
-
-
-.settings-setting-value {
-    display: flex;
-    flex: 0 0 auto;
-    align-items: center;
-    gap: 12px;
-    margin-left: 20px;
-    padding-left: 10px;
-    padding-right: 4px;
-}
-
-
-.settings-setting-value-text {
-    font-size: 13px;
-    line-height: 1.4;
-    white-space: nowrap;
-    opacity: 0.72;
-}
-
-
-.settings-setting-chevron {
-    flex: 0 0 auto;
-    width: 18px;
-    height: 18px;
-    margin-right: 3px;
-    opacity: 0.6;
-}
-
-
-/* =================================================
-   SIGNING KEY BACKUP POPUP
-   ================================================= */
-
-.settings-popup-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 100%;
-
-    padding: 20px;
-    box-sizing: border-box;
-
-    background: rgba(0, 0, 0, 0.42);
-}
-
-
-.settings-popup-overlay.visible {
-    display: flex;
-}
-
-
-.settings-popup {
-    width: min(560px, 100%);
-    max-height: min(720px, calc(100vh - 40px));
-    overflow-y: auto;
-    box-sizing: border-box;
-
-    border: 1px solid var(--border-color, #e1e4e8);
-    border-radius: 12px;
-
-    background: var(--card-background, #ffffff);
-    color: inherit;
-
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
-}
-
-
-/* =================================================
-   POPUP HEADER
-   ================================================= */
-
-.settings-popup-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 18px;
-
-    padding: 22px 22px 18px;
-
-    border-bottom: 1px solid var(--border-color, #e5e7eb);
-}
-
-
-.settings-popup-header h2 {
-    margin: 0;
-    font-size: 18px;
-}
-
-
-.settings-popup-header p {
-    margin: 7px 0 0;
-    font-size: 13px;
-    line-height: 1.5;
-    opacity: 0.7;
-}
-
-
-.settings-popup-close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    flex: 0 0 auto;
-
-    width: 32px;
-    height: 32px;
-
-    padding: 0;
-
-    border: 0;
-    border-radius: 6px;
-
-    background: transparent;
-    color: inherit;
-
-    font-size: 25px;
-    line-height: 1;
-
-    cursor: pointer;
-    opacity: 0.6;
-}
-
-
-.settings-popup-close:hover {
-    background: rgba(127, 127, 127, 0.08);
-    opacity: 1;
-}
-
-
-/* =================================================
-   POPUP OPTIONS
-   ================================================= */
-
-.settings-popup-options {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.settings-popup-option {
-    display: flex;
-    align-items: flex-start;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    gap: 14px;
-
-    padding: 18px 22px;
-
-    border: 0;
-    border-bottom: 1px solid var(--border-color, #e5e7eb);
-
-    background: transparent;
-    color: inherit;
-
-    text-align: left;
-    font: inherit;
-
-    cursor: pointer;
-}
-
-
-.settings-popup-option:last-child {
-    border-bottom: 0;
-}
-
-
-.settings-popup-option:hover {
-    background: rgba(127, 127, 127, 0.045);
-}
-
-
-/* =================================================
-   RADIO DOT
-   ================================================= */
-
-.settings-popup-option-radio {
-    display: flex;
-    flex: 0 0 auto;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 19px;
-    height: 19px;
-
-    margin-top: 1px;
-
-    box-sizing: border-box;
-
-    border: 1.5px solid currentColor;
-    border-radius: 50%;
-
-    opacity: 0.55;
-}
-
-
-.settings-popup-option-radio span {
-    width: 9px;
-    height: 9px;
-
-    border-radius: 50%;
-
-    background: currentColor;
-
-    opacity: 0;
-}
-
-
-.settings-popup-option.selected
-.settings-popup-option-radio {
-    opacity: 1;
-}
-
-
-.settings-popup-option.selected
-.settings-popup-option-radio span {
-    opacity: 1;
-}
-
-
-/* =================================================
-   POPUP OPTION CONTENT
-   ================================================= */
-
-.settings-popup-option-content {
-    display: flex;
-    flex-direction: column;
-
-    min-width: 0;
-
-    gap: 5px;
-}
-
-
-.settings-popup-option-title {
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4;
-}
-
-
-.settings-popup-option-description {
-    font-size: 13px;
-    line-height: 1.55;
-    opacity: 0.7;
 }
 
 
@@ -513,97 +507,102 @@
 
 @media (max-width: 600px) {
 
-    .settings-card,
-    .settings-form-card {
-        padding: 16px;
+    .settings-card-header {
+
+        padding: 20px;
+
     }
 
 
     .settings-item {
-        padding: 17px 16px;
+
+        padding: 20px;
+
+    }
+
+
+    .settings-item-description {
+
+        max-width: 95%;
+
     }
 
 
     .settings-setting-row {
+
+        align-items: flex-start;
+
         flex-direction: column;
-        align-items: stretch;
+
         gap: 14px;
-        padding: 17px 16px;
+
+        padding: 20px;
+
     }
 
 
-    .settings-setting-value {
+    .settings-select-wrapper {
+
         width: 100%;
+
+    }
+
+
+    .settings-select {
+
+        width: 100%;
+
+        min-width: 0;
+
         box-sizing: border-box;
-        justify-content: space-between;
-        margin-left: 0;
-        padding-left: 0;
-        padding-right: 4px;
+
     }
 
 
-    .settings-setting-value-text {
-        white-space: normal;
+    .settings-form-header {
+
+        padding: 20px;
+
     }
 
 
-    .settings-setting-chevron {
-        margin-right: 4px;
+    .settings-form {
+
+        padding: 20px;
+
     }
 
-
-    /*
-     * Keep the popup CENTERED on mobile.
-     * It previously changed to align-items:flex-end,
-     * which made it appear like a bottom sheet.
-     */
-
-    .settings-popup-overlay {
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-    }
-
-
-    .settings-popup {
-        width: 100%;
-        max-height: calc(100vh - 20px);
-        border-radius: 12px;
-    }
-
-
-    .settings-popup-header {
-        padding: 19px 18px 16px;
-    }
-
-
-    .settings-popup-option {
-        padding: 17px 18px;
-    }
-
-
-    .settings-popup-option-description {
-        line-height: 1.5;
-    }
-
-
-    /*
-     * Keep the form buttons visible and equal width.
-     */
 
     .settings-form-actions {
+
         display: flex;
+
         width: 100%;
+
+        justify-content: stretch;
+
+        align-items: stretch;
+
         gap: 10px;
+
     }
 
 
     .settings-secondary-button,
     .settings-primary-button {
-        display: block;
+
+        display: inline-flex !important;
+
         flex: 1 1 0;
-        width: 0;
+
         min-width: 0;
+
+        width: 0;
+
+        white-space: nowrap;
+
+        text-align: center;
+
     }
 
 }
