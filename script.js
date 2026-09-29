@@ -1,619 +1,1395 @@
-/* =================================================
-   SETTINGS PAGE
-   ================================================= */
+const API_BASE_URL =
+    "https://server-testing-production-7a62.up.railway.app";
+
+let onboardingId = null;
+let merchantId = null;
+let authToken = null;
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+// ---------------------------------------------------------
+// GENERAL STATUS
+// ---------------------------------------------------------
 
-        initializeSettings();
+function showStatus(message, type) {
 
-    }
-);
+    const element =
+        document.getElementById("signupStatus");
 
-
-/* =================================================
-   INITIALIZATION
-   ================================================= */
-
-function initializeSettings() {
-
-    const authToken =
-        sessionStorage.getItem(
-            "authToken"
-        );
-
-
-    if (!authToken) {
-
-        window.location.href =
-            "index.html";
-
+    if (!element) {
         return;
-
     }
 
-
-    populateAccountDetails();
-
-    initializeSigningKeySettings();
-
+    element.textContent = message;
+    element.className = "status " + type;
 }
 
 
-/* =================================================
-   ACCOUNT DETAILS
-   ================================================= */
+function clearStatus() {
 
-function populateAccountDetails() {
+    const element =
+        document.getElementById("signupStatus");
 
-    const firstName =
-        sessionStorage.getItem(
-            "merchantFirstName"
-        ) || "";
+    if (!element) {
+        return;
+    }
 
-    const lastName =
-        sessionStorage.getItem(
-            "merchantLastName"
-        ) || "";
-
-    const email =
-        sessionStorage.getItem(
-            "merchantEmail"
-        ) || "";
+    element.textContent = "";
+    element.className = "status";
+}
 
 
-    const firstNameInput =
-        document.getElementById(
-            "firstNameInput"
+// ---------------------------------------------------------
+// DEVELOPER RESPONSE MODAL
+// ---------------------------------------------------------
+
+function showDeveloperResponse(response, data) {
+
+    const meta =
+        document.getElementById("developerMeta");
+
+    const output =
+        document.getElementById("developerResponseText");
+
+    if (!meta || !output) {
+        return;
+    }
+
+    meta.textContent =
+        "HTTP " +
+        response.status +
+        " " +
+        response.statusText;
+
+    output.textContent =
+        JSON.stringify(data, null, 4);
+}
+
+
+function showDeveloperError(error) {
+
+    const meta =
+        document.getElementById("developerMeta");
+
+    const output =
+        document.getElementById("developerResponseText");
+
+    if (!meta || !output) {
+        return;
+    }
+
+    meta.textContent = "Connection Error";
+
+    output.textContent =
+        JSON.stringify(
+            {
+                error: error.message
+            },
+            null,
+            4
         );
+}
 
-    const lastNameInput =
-        document.getElementById(
-            "lastNameInput"
-        );
+
+function openDeveloperResponse() {
+
+    const modal =
+        document.getElementById("developerModal");
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add("visible");
+}
+
+
+function closeDeveloperResponse(event) {
+
+    if (
+        event &&
+        event.target !== event.currentTarget
+    ) {
+        return;
+    }
+
+    const modal =
+        document.getElementById("developerModal");
+
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.remove("visible");
+}
+
+
+// ---------------------------------------------------------
+// AUTHENTICATION NAVIGATION
+// ---------------------------------------------------------
+
+function hideAllScreens() {
+
+    document
+        .querySelectorAll(".step")
+        .forEach(function(element) {
+
+            element.classList.remove("active");
+
+        });
+}
+
+
+function showAuthChoice() {
+
+    hideAllScreens();
+
+    clearStatus();
+
+    const screen =
+        document.getElementById("authChoice");
+
+    if (!screen) {
+        return;
+    }
+
+    screen.classList.add("active");
+}
+
+
+function showLogin() {
+
+    hideAllScreens();
+
+    clearStatus();
+
+    const screen =
+        document.getElementById("login");
+
+    if (!screen) {
+        return;
+    }
+
+    screen.classList.add("active");
 
     const emailInput =
-        document.getElementById(
-            "emailInput"
-        );
-
-
-    if (firstNameInput) {
-
-        firstNameInput.value =
-            firstName;
-
-    }
-
-
-    if (lastNameInput) {
-
-        lastNameInput.value =
-            lastName;
-
-    }
-
+        document.getElementById("loginEmail");
 
     if (emailInput) {
-
-        emailInput.value =
-            email;
-
+        emailInput.focus();
     }
-
 }
 
 
-/* =================================================
-   OPEN ACCOUNT DETAILS
-   ================================================= */
+function showSignup() {
 
-function openAccountDetails() {
+    hideAllScreens();
 
-    hideSettingsOptions();
+    clearStatus();
 
-    hideAccountPassword();
+    const screen =
+        document.getElementById("signup");
 
-    hideSigningKeySettings();
+    if (!screen) {
+        return;
+    }
 
-    populateAccountDetails();
+    screen.classList.add("active");
+
+    resetSignupState();
+}
 
 
-    const card =
+// ---------------------------------------------------------
+// SIGNUP FLOW
+// ---------------------------------------------------------
+
+function setSignupStep(step) {
+
+    document
+        .querySelectorAll(".signup-step")
+        .forEach(function(element) {
+
+            element.classList.remove("active");
+            element.style.display = "none";
+
+        });
+
+    const target =
         document.getElementById(
-            "accountDetailsCard"
+            "signupStep" + step
+        );
+
+    if (target) {
+
+        target.classList.add("active");
+        target.style.display = "block";
+
+    }
+
+    setFlowStep(step);
+}
+
+
+function setFlowStep(step) {
+
+    for (let i = 1; i <= 3; i++) {
+
+        const circle =
+            document.getElementById(
+                "flowCircle" + i
+            );
+
+        const label =
+            document.getElementById(
+                "flowLabel" + i
+            );
+
+        if (circle) {
+
+            circle.classList.remove(
+                "active",
+                "complete"
+            );
+
+        }
+
+        if (label) {
+
+            label.classList.remove("active");
+
+        }
+    }
+
+
+    const line1 =
+        document.getElementById("flowLine1");
+
+    const line2 =
+        document.getElementById("flowLine2");
+
+
+    if (line1) {
+
+        line1.classList.remove("complete");
+
+    }
+
+
+    if (line2) {
+
+        line2.classList.remove("complete");
+
+    }
+
+
+    if (step >= 1) {
+
+        const circle1 =
+            document.getElementById("flowCircle1");
+
+        const label1 =
+            document.getElementById("flowLabel1");
+
+        if (circle1) {
+
+            circle1.classList.add(
+                step === 1
+                    ? "active"
+                    : "complete"
+            );
+
+        }
+
+        if (label1) {
+
+            label1.classList.add("active");
+
+        }
+    }
+
+
+    if (step >= 2) {
+
+        const circle2 =
+            document.getElementById("flowCircle2");
+
+        const label2 =
+            document.getElementById("flowLabel2");
+
+        if (circle2) {
+
+            circle2.classList.add(
+                step === 2
+                    ? "active"
+                    : "complete"
+            );
+
+        }
+
+        if (label2) {
+
+            label2.classList.add("active");
+
+        }
+
+        if (line1) {
+
+            line1.classList.add("complete");
+
+        }
+    }
+
+
+    if (step >= 3) {
+
+        const circle3 =
+            document.getElementById("flowCircle3");
+
+        const label3 =
+            document.getElementById("flowLabel3");
+
+        if (circle3) {
+
+            circle3.classList.add("complete");
+
+        }
+
+        if (label3) {
+
+            label3.classList.add("active");
+
+        }
+
+        if (line2) {
+
+            line2.classList.add("complete");
+
+        }
+    }
+}
+
+
+// ---------------------------------------------------------
+// FORM DATA
+// ---------------------------------------------------------
+
+function getFormData() {
+
+    const emailElement =
+        document.getElementById("email");
+
+    const firstNameElement =
+        document.getElementById("firstName");
+
+    const lastNameElement =
+        document.getElementById("lastName");
+
+    const passwordElement =
+        document.getElementById("password");
+
+
+    return {
+
+        email:
+            emailElement
+                ? emailElement.value.trim()
+                : "",
+
+        first_name:
+            firstNameElement
+                ? firstNameElement.value.trim()
+                : "",
+
+        last_name:
+            lastNameElement
+                ? lastNameElement.value.trim()
+                : "",
+
+        password:
+            passwordElement
+                ? passwordElement.value
+                : ""
+
+    };
+}
+
+
+// ---------------------------------------------------------
+// PASSWORD VALIDATION
+// ---------------------------------------------------------
+
+function validatePassword(password) {
+
+    if (password.length < 8) {
+
+        return (
+            "Password must be at least 8 characters."
+        );
+
+    }
+
+
+    if (password.length > 128) {
+
+        return (
+            "Password cannot exceed 128 characters."
+        );
+
+    }
+
+
+    if (!/[A-Z]/.test(password)) {
+
+        return (
+            "Password must contain at least one uppercase letter."
+        );
+
+    }
+
+
+    if (!/[a-z]/.test(password)) {
+
+        return (
+            "Password must contain at least one lowercase letter."
+        );
+
+    }
+
+
+    if (!/[0-9]/.test(password)) {
+
+        return (
+            "Password must contain at least one number."
+        );
+
+    }
+
+
+    if (!/[^A-Za-z0-9]/.test(password)) {
+
+        return (
+            "Password must contain at least one special character."
+        );
+
+    }
+
+
+    return null;
+}
+
+
+// ---------------------------------------------------------
+// START ONBOARDING
+// ---------------------------------------------------------
+
+async function startOnboarding() {
+
+    const data =
+        getFormData();
+
+
+    const confirmPasswordElement =
+        document.getElementById(
+            "confirmPassword"
         );
 
 
-    if (!card) {
+    const confirmPassword =
+        confirmPasswordElement
+            ? confirmPasswordElement.value
+            : "";
+
+
+    if (!data.email) {
+
+        showStatus(
+            "Email is required.",
+            "error"
+        );
+
         return;
     }
 
 
-    card.style.display =
-        "block";
+    if (!data.first_name) {
 
-
-    setSettingsBackButton(
-        "Account Settings"
-    );
-
-}
-
-
-/* =================================================
-   OPEN ACCOUNT PASSWORD
-   ================================================= */
-
-function openAccountPassword() {
-
-    hideSettingsOptions();
-
-    hideAccountDetails();
-
-    hideSigningKeySettings();
-
-
-    const card =
-        document.getElementById(
-            "accountPasswordCard"
+        showStatus(
+            "First name is required.",
+            "error"
         );
 
-
-    if (!card) {
         return;
     }
 
 
-    card.style.display =
-        "block";
+    if (!data.last_name) {
 
-
-    setSettingsBackButton(
-        "Account Settings"
-    );
-
-}
-
-
-/* =================================================
-   OPEN SIGNING KEY SETTINGS
-   ================================================= */
-
-function openSigningKeySettings() {
-
-    hideSettingsOptions();
-
-    hideAccountDetails();
-
-    hideAccountPassword();
-
-
-    initializeSigningKeySettings();
-
-
-    const card =
-        document.getElementById(
-            "signingKeySettingsCard"
+        showStatus(
+            "Last name is required.",
+            "error"
         );
 
-
-    if (!card) {
         return;
     }
 
 
-    card.style.display =
-        "block";
+    if (!data.password) {
 
-
-    setSettingsBackButton(
-        "Account Settings"
-    );
-
-}
-
-
-/* =================================================
-   CLOSE SETTINGS FORM
-   ================================================= */
-
-function closeSettingsForm() {
-
-    hideAccountDetails();
-
-    hideAccountPassword();
-
-    hideSigningKeySettings();
-
-    showSettingsOptions();
-
-    setSettingsBackButton(
-        "Dashboard"
-    );
-
-}
-
-
-/* =================================================
-   SETTINGS BACK BUTTON
-   ================================================= */
-
-function handleSettingsBack() {
-
-    const optionsCard =
-        document.getElementById(
-            "settingsOptionsCard"
+        showStatus(
+            "Password is required.",
+            "error"
         );
+
+        return;
+    }
+
+
+    const passwordError =
+        validatePassword(
+            data.password
+        );
+
+
+    if (passwordError) {
+
+        showStatus(
+            passwordError,
+            "error"
+        );
+
+        return;
+    }
 
 
     if (
-        optionsCard &&
-        optionsCard.style.display !== "none"
+        data.password !==
+        confirmPassword
     ) {
 
-        goToDashboard();
+        showStatus(
+            "Passwords do not match.",
+            "error"
+        );
 
         return;
-
     }
 
 
-    closeSettingsForm();
-
-}
-
-
-/* =================================================
-   SETTINGS BACK BUTTON LABEL
-   ================================================= */
-
-function setSettingsBackButton(
-    label
-) {
-
-    const labelElement =
+    const button =
         document.getElementById(
-            "settingsBackLabel"
+            "startButton"
         );
 
 
-    if (!labelElement) {
-        return;
-    }
+    if (button) {
 
+        button.disabled = true;
 
-    labelElement.textContent =
-        label;
-
-}
-
-
-/* =================================================
-   SIGNING KEY SETTINGS
-   ================================================= */
-
-function initializeSigningKeySettings() {
-
-    const select =
-        document.getElementById(
-            "signingKeyBackupSetting"
-        );
-
-
-    if (!select) {
-        return;
-    }
-
-
-    const savedSetting =
-        sessionStorage.getItem(
-            "signingKeyBackupSetting"
-        );
-
-
-    if (savedSetting) {
-
-        select.value =
-            savedSetting;
+        button.textContent =
+            "Creating Account...";
 
     }
 
-}
 
-
-function handleSigningKeyBackupSetting(
-    value
-) {
-
-    sessionStorage.setItem(
-        "signingKeyBackupSetting",
-        value
+    showStatus(
+        "Creating account...",
+        "info"
     );
 
-}
+
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/api/v1/onboarding",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(data)
+                }
+            );
 
 
-/* =================================================
-   VISIBILITY HELPERS
-   ================================================= */
+        const responseData =
+            await response.json();
 
-function hideSettingsOptions() {
 
-    const card =
-        document.getElementById(
-            "settingsOptionsCard"
+        showDeveloperResponse(
+            response,
+            responseData
         );
 
 
-    if (!card) {
+        if (!response.ok) {
+
+            showStatus(
+                responseData.detail ||
+                "The server rejected the account creation request.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        onboardingId =
+            responseData.onboarding_id;
+
+
+        if (!onboardingId) {
+
+            showStatus(
+                "The server did not return an onboarding ID.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        const emailDisplay =
+            document.getElementById(
+                "signupEmailDisplay"
+            );
+
+
+        if (emailDisplay) {
+
+            emailDisplay.textContent =
+                data.email;
+
+        }
+
+
+        const statusDisplay =
+            document.getElementById(
+                "onboardingStatusDisplay"
+            );
+
+
+        if (statusDisplay) {
+
+            statusDisplay.textContent =
+                responseData.status ||
+                "OTP_REQUIRED";
+
+        }
+
+
+        setSignupStep(2);
+
+
+        showStatus(
+            "Enter the verification code sent to your email.",
+            "success"
+        );
+
+
+        const otp =
+            document.getElementById("otp");
+
+
+        if (otp) {
+
+            otp.focus();
+
+        }
+
+
+    } catch (error) {
+
+        showStatus(
+            "Could not connect to the Main Server.",
+            "error"
+        );
+
+        showDeveloperError(error);
+
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Create Account";
+
+        }
+    }
+}
+
+
+// ---------------------------------------------------------
+// VERIFY ONBOARDING
+// ---------------------------------------------------------
+
+async function verifyOnboarding() {
+
+    if (!onboardingId) {
+
+        showStatus(
+            "No onboarding session is active.",
+            "error"
+        );
+
         return;
     }
 
 
-    card.style.display =
-        "none";
-
-}
+    const otpElement =
+        document.getElementById("otp");
 
 
-function showSettingsOptions() {
+    const otp =
+        otpElement
+            ? otpElement.value.trim()
+            : "";
 
-    const card =
-        document.getElementById(
-            "settingsOptionsCard"
+
+    if (!/^\d{6}$/.test(otp)) {
+
+        showStatus(
+            "Verification code must contain exactly 6 digits.",
+            "error"
         );
 
-
-    if (!card) {
         return;
     }
 
 
-    card.style.display =
-        "block";
-
-}
-
-
-function hideAccountDetails() {
-
-    const card =
+    const button =
         document.getElementById(
-            "accountDetailsCard"
+            "verifyButton"
         );
 
 
-    if (!card) {
-        return;
+    if (button) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "Verifying...";
+
     }
 
 
-    card.style.display =
-        "none";
+    showStatus(
+        "Verifying your email...",
+        "info"
+    );
 
-}
+
+    try {
+
+        const response =
+            await fetch(
+
+                API_BASE_URL +
+                "/api/v1/onboarding/" +
+                encodeURIComponent(
+                    onboardingId
+                ) +
+                "/verify",
+
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            otp: otp
+                        })
+                }
+            );
 
 
-function hideAccountPassword() {
+        const responseData =
+            await response.json();
 
-    const card =
-        document.getElementById(
-            "accountPasswordCard"
+
+        showDeveloperResponse(
+            response,
+            responseData
         );
 
 
-    if (!card) {
-        return;
-    }
+        if (!response.ok) {
+
+            showStatus(
+                responseData.detail ||
+                "Email verification failed.",
+                "error"
+            );
+
+            return;
+        }
 
 
-    card.style.display =
-        "none";
-
-}
+        merchantId =
+            responseData.merchant_id;
 
 
-function hideSigningKeySettings() {
+        const resultStatus =
+            document.getElementById(
+                "resultStatus"
+            );
 
-    const card =
-        document.getElementById(
-            "signingKeySettingsCard"
+
+        if (resultStatus) {
+
+            resultStatus.textContent =
+                responseData.status ||
+                "COMPLETED";
+
+        }
+
+
+        const resultMerchantId =
+            document.getElementById(
+                "resultMerchantId"
+            );
+
+
+        if (resultMerchantId) {
+
+            resultMerchantId.textContent =
+                merchantId ||
+                "Not returned";
+
+        }
+
+
+        setSignupStep(3);
+
+
+        showStatus(
+            "Your merchant account was created successfully.",
+            "success"
         );
 
 
-    if (!card) {
-        return;
+    } catch (error) {
+
+        showStatus(
+            "Could not connect to the Main Server.",
+            "error"
+        );
+
+        showDeveloperError(error);
+
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Verify Email";
+
+        }
     }
-
-
-    card.style.display =
-        "none";
-
 }
 
 
-/* =================================================
-   SAVE ACCOUNT DETAILS
-   ================================================= */
+// ---------------------------------------------------------
+// LOGIN
+// ---------------------------------------------------------
 
-function saveAccountDetails(
-    event
-) {
+async function login() {
 
-    event.preventDefault();
-
-
-    const firstName =
+    const emailElement =
         document.getElementById(
-            "firstNameInput"
-        ).value.trim();
+            "loginEmail"
+        );
 
 
-    const lastName =
+    const passwordElement =
         document.getElementById(
-            "lastNameInput"
-        ).value.trim();
+            "loginPassword"
+        );
 
 
     const email =
-        document.getElementById(
-            "emailInput"
-        ).value.trim().toLowerCase();
+        emailElement
+            ? emailElement.value.trim()
+            : "";
 
 
-    if (!firstName) {
-
-        alert(
-            "First name is required."
-        );
-
-        return;
-
-    }
-
-
-    if (!lastName) {
-
-        alert(
-            "Last name is required."
-        );
-
-        return;
-
-    }
+    const password =
+        passwordElement
+            ? passwordElement.value
+            : "";
 
 
     if (!email) {
 
-        alert(
-            "Email address is required."
+        showStatus(
+            "Email is required.",
+            "error"
         );
 
         return;
+    }
+
+
+    if (!password) {
+
+        showStatus(
+            "Password is required.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "loginButton"
+        );
+
+
+    if (button) {
+
+        button.disabled = true;
+
+        button.textContent =
+            "Signing In...";
 
     }
 
 
-    /*
-     * Backend update will be connected here.
-     *
-     * For now, update the local session so
-     * the dashboard reflects the edited values
-     * during development.
-     */
-
-    sessionStorage.setItem(
-        "merchantFirstName",
-        firstName
+    showStatus(
+        "Signing in...",
+        "info"
     );
 
 
-    sessionStorage.setItem(
-        "merchantLastName",
-        lastName
-    );
+    try {
+
+        const response =
+            await fetch(
+                API_BASE_URL +
+                "/api/v1/auth/login",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                }
+            );
 
 
-    sessionStorage.setItem(
-        "merchantEmail",
-        email
-    );
+        const responseData =
+            await response.json();
 
 
-    alert(
-        "Account details updated."
-    );
+        showDeveloperResponse(
+            response,
+            responseData
+        );
 
 
-    closeSettingsForm();
+        if (!response.ok) {
 
+            showStatus(
+                responseData.detail ||
+                "Invalid email or password.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        authToken =
+            responseData.access_token;
+
+
+        merchantId =
+            responseData.merchant_id;
+
+
+        if (!authToken) {
+
+            showStatus(
+                "The server did not return an authentication token.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        // -------------------------------------------------
+        // STORE AUTHENTICATED SESSION
+        // -------------------------------------------------
+
+        sessionStorage.setItem(
+            "authToken",
+            authToken
+        );
+
+
+        sessionStorage.setItem(
+            "merchantId",
+            merchantId || ""
+        );
+
+
+        sessionStorage.setItem(
+            "merchantEmail",
+            responseData.email ||
+            email
+        );
+
+
+        sessionStorage.setItem(
+            "merchantFirstName",
+            responseData.first_name ||
+            ""
+        );
+
+
+        sessionStorage.setItem(
+            "merchantLastName",
+            responseData.last_name ||
+            ""
+        );
+
+
+        sessionStorage.setItem(
+            "merchantType",
+            responseData.type ||
+            ""
+        );
+
+
+        sessionStorage.setItem(
+            "merchantStatus",
+            responseData.status ||
+            ""
+        );
+
+
+        sessionStorage.setItem(
+            "merchantCreatedAt",
+            responseData.created_at ||
+            ""
+        );
+
+
+        sessionStorage.setItem(
+            "merchantUpdatedAt",
+            responseData.updated_at ||
+            ""
+        );
+
+
+        // -------------------------------------------------
+        // REDIRECT TO DASHBOARD
+        // -------------------------------------------------
+
+        const dashboardUrl =
+            new URL(
+                "dashboard.html",
+                window.location.href
+            ).href;
+
+
+        window.location.assign(
+            dashboardUrl
+        );
+
+
+        return;
+
+
+    } catch (error) {
+
+        showStatus(
+            "Could not connect to the Main Server.",
+            "error"
+        );
+
+        showDeveloperError(error);
+
+
+    } finally {
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "Log In";
+
+        }
+    }
 }
 
 
-/* =================================================
-   SAVE ACCOUNT PASSWORD
-   ================================================= */
+// ---------------------------------------------------------
+// RESET SIGNUP
+// ---------------------------------------------------------
 
-function saveAccountPassword(
-    event
-) {
+function resetSignupState() {
 
-    event.preventDefault();
-
-
-    const currentPassword =
-        document.getElementById(
-            "currentPasswordInput"
-        ).value;
+    onboardingId = null;
+    merchantId = null;
 
 
-    const newPassword =
-        document.getElementById(
-            "newPasswordInput"
-        ).value;
+    const email =
+        document.getElementById("email");
 
+    const firstName =
+        document.getElementById("firstName");
+
+    const lastName =
+        document.getElementById("lastName");
+
+    const password =
+        document.getElementById("password");
 
     const confirmPassword =
         document.getElementById(
-            "confirmPasswordInput"
-        ).value;
-
-
-    if (!currentPassword) {
-
-        alert(
-            "Current password is required."
+            "confirmPassword"
         );
 
-        return;
+    const otp =
+        document.getElementById("otp");
+
+    const signupEmailDisplay =
+        document.getElementById(
+            "signupEmailDisplay"
+        );
+
+    const onboardingStatusDisplay =
+        document.getElementById(
+            "onboardingStatusDisplay"
+        );
+
+    const resultStatus =
+        document.getElementById(
+            "resultStatus"
+        );
+
+    const resultMerchantId =
+        document.getElementById(
+            "resultMerchantId"
+        );
+
+
+    if (email) {
+
+        email.value = "";
 
     }
 
 
-    if (!newPassword) {
+    if (firstName) {
 
-        alert(
-            "New password is required."
-        );
-
-        return;
+        firstName.value = "John";
 
     }
 
 
-    if (newPassword !== confirmPassword) {
+    if (lastName) {
 
-        alert(
-            "The new passwords do not match."
-        );
-
-        return;
+        lastName.value = "Smith";
 
     }
 
 
-    /*
-     * Backend password update will be
-     * connected here.
-     */
+    if (password) {
 
-    alert(
-        "Password change will be connected to the server next."
-    );
+        password.value = "";
 
+    }
+
+
+    if (confirmPassword) {
+
+        confirmPassword.value = "";
+
+    }
+
+
+    if (otp) {
+
+        otp.value = "";
+
+    }
+
+
+    if (signupEmailDisplay) {
+
+        signupEmailDisplay.textContent =
+            "—";
+
+    }
+
+
+    if (onboardingStatusDisplay) {
+
+        onboardingStatusDisplay.textContent =
+            "OTP_REQUIRED";
+
+    }
+
+
+    if (resultStatus) {
+
+        resultStatus.textContent =
+            "—";
+
+    }
+
+
+    if (resultMerchantId) {
+
+        resultMerchantId.textContent =
+            "—";
+
+    }
+
+
+    setSignupStep(1);
 }
 
 
-/* =================================================
-   NAVIGATION
-   ================================================= */
+// ---------------------------------------------------------
+// DOM INITIALIZATION
+// ---------------------------------------------------------
 
-function goToDashboard() {
+function initializePage() {
 
-    window.location.href =
-        "dashboard.html";
+    const developerModal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (developerModal) {
+
+        developerModal.classList.remove(
+            "visible"
+        );
+
+        developerModal.style.display = "";
+
+    }
+
+
+    const otp =
+        document.getElementById("otp");
+
+
+    if (otp) {
+
+        otp.addEventListener(
+            "input",
+            function() {
+
+                this.value =
+                    this.value
+                        .replace(
+                            /\D/g,
+                            ""
+                        )
+                        .slice(
+                            0,
+                            6
+                        );
+
+            }
+        );
+
+
+        otp.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    verifyOnboarding();
+
+                }
+
+            }
+        );
+    }
+
+
+    const loginPassword =
+        document.getElementById(
+            "loginPassword"
+        );
+
+
+    if (loginPassword) {
+
+        loginPassword.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter"
+                ) {
+
+                    event.preventDefault();
+
+                    login();
+
+                }
+
+            }
+        );
+    }
+}
+
+
+// ---------------------------------------------------------
+// INITIALIZATION
+// ---------------------------------------------------------
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializePage
+    );
+
+} else {
+
+    initializePage();
 
 }
