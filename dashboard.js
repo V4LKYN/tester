@@ -338,6 +338,15 @@ function showEndpoints() {
 }
 
 
+function showSources() {
+
+    setDashboardTab(
+        "sources"
+    );
+
+}
+
+
 function setDashboardTab(tab) {
 
     const overviewContent =
@@ -355,6 +364,12 @@ function setDashboardTab(tab) {
             "endpointsContent"
         );
 
+    const sourcesContent =
+        document.getElementById(
+            "sourcesContent"
+        );
+
+
     const overviewNavigation =
         document.getElementById(
             "overviewNavigation"
@@ -370,14 +385,21 @@ function setDashboardTab(tab) {
             "endpointsNavigation"
         );
 
+    const sourcesNavigation =
+        document.getElementById(
+            "sourcesNavigation"
+        );
+
 
     if (
         !overviewContent ||
         !entitiesContent ||
         !endpointsContent ||
+        !sourcesContent ||
         !overviewNavigation ||
         !entitiesNavigation ||
-        !endpointsNavigation
+        !endpointsNavigation ||
+        !sourcesNavigation
     ) {
 
         return;
@@ -394,6 +416,9 @@ function setDashboardTab(tab) {
     endpointsContent.style.display =
         "none";
 
+    sourcesContent.style.display =
+        "none";
+
 
     overviewNavigation.classList.remove(
         "active"
@@ -404,6 +429,10 @@ function setDashboardTab(tab) {
     );
 
     endpointsNavigation.classList.remove(
+        "active"
+    );
+
+    sourcesNavigation.classList.remove(
         "active"
     );
 
@@ -428,6 +457,20 @@ function setDashboardTab(tab) {
             "block";
 
         endpointsNavigation.classList.add(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    if (tab === "sources") {
+
+        sourcesContent.style.display =
+            "block";
+
+        sourcesNavigation.classList.add(
             "active"
         );
 
@@ -649,9 +692,31 @@ async function copyMerchantId() {
 
 function showCopyState() {
 
+    const merchantIdElement =
+        document.getElementById(
+            "merchantId"
+        );
+
+
+    if (!merchantIdElement) {
+        return;
+    }
+
+
+    const row =
+        merchantIdElement.closest(
+            ".merchant-id-row"
+        );
+
+
+    if (!row) {
+        return;
+    }
+
+
     const button =
-        document.querySelector(
-            ".account-overview-card .copy-button"
+        row.querySelector(
+            ".copy-button"
         );
 
 
