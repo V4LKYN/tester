@@ -142,9 +142,6 @@ function initializeDashboard() {
 
     /*
      * Welcome message.
-     *
-     * Uses the actual Merchant
-     * first name returned by login.
      */
 
     setText(
@@ -211,13 +208,6 @@ function initializeDashboard() {
             createdAt
         )
     );
-
-
-    /*
-     * Start on the Overview tab.
-     */
-
-    showOverview();
 
 }
 
@@ -340,11 +330,8 @@ function showOverview() {
         );
 
 
-    if (overviewContent) {
-
-        overviewContent.style.display =
-            "block";
-
+    if (!overviewContent) {
+        return;
     }
 
 
@@ -354,6 +341,10 @@ function showOverview() {
             "none";
 
     }
+
+
+    overviewContent.style.display =
+        "block";
 
 
     if (overviewNavigation) {
@@ -399,6 +390,11 @@ function showEntities() {
         );
 
 
+    if (!entitiesContent) {
+        return;
+    }
+
+
     if (overviewContent) {
 
         overviewContent.style.display =
@@ -407,12 +403,8 @@ function showEntities() {
     }
 
 
-    if (entitiesContent) {
-
-        entitiesContent.style.display =
-            "block";
-
-    }
+    entitiesContent.style.display =
+        "block";
 
 
     if (overviewNavigation) {
