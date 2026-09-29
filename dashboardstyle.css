@@ -832,3 +832,255 @@ body {
     }
 
 }
+
+/* =================================================
+   SETTINGS PAGE
+   ================================================= */
+
+.settings-back {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 8px;
+
+    margin: 0 0 24px 0;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #5f6672;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 16px;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    transition:
+        color 0.15s ease;
+
+}
+
+
+.settings-back:hover {
+
+    color: #1f2937;
+
+}
+
+
+.settings-back-arrow {
+
+    display: block;
+
+    width: 16px;
+
+    height: 16px;
+
+    flex: 0 0 16px;
+
+}
+
+
+.settings-card {
+
+    overflow: hidden;
+
+}
+
+
+.settings-card-header {
+
+    padding: 24px 28px;
+
+    border-bottom: 1px solid #eceef1;
+
+}
+
+
+.settings-card-header h2 {
+
+    margin: 0;
+
+}
+
+
+.settings-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.settings-item {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    min-height: 86px;
+
+    padding: 20px 28px;
+
+    border: none;
+
+    border-bottom: 1px solid #eceef1;
+
+    background: transparent;
+
+    color: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    transition:
+        background-color 0.15s ease;
+
+}
+
+
+.settings-item:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.settings-item:hover {
+
+    background-color: #f8f9fb;
+
+}
+
+
+.settings-item-content {
+
+    min-width: 0;
+
+    padding-right: 24px;
+
+}
+
+
+.settings-item-title {
+
+    margin-bottom: 5px;
+
+    color: #1f2937;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    line-height: 20px;
+
+}
+
+
+.settings-item-description {
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    font-weight: 400;
+
+    line-height: 21px;
+
+}
+
+
+.settings-item-arrow {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 20px;
+
+    width: 20px;
+
+    height: 20px;
+
+    color: #9aa1ab;
+
+    font-size: 22px;
+
+    font-weight: 400;
+
+    line-height: 20px;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+
+}
+
+
+.settings-item:hover .settings-item-arrow {
+
+    color: #4b5563;
+
+    transform: translateX(2px);
+
+}
+
+
+@media (max-width: 600px) {
+
+    .settings-card-header {
+
+        padding: 20px;
+
+    }
+
+
+    .settings-item {
+
+        min-height: 0;
+
+        padding: 20px;
+
+    }
+
+
+    .settings-item-content {
+
+        padding-right: 16px;
+
+    }
+
+
+    .settings-item-description {
+
+        max-width: 95%;
+
+    }
+
+}
