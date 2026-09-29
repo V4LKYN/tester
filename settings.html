@@ -29,6 +29,8 @@
 
             align-items: center;
 
+            justify-content: flex-start;
+
             gap: 7px;
 
             margin-bottom: 24px;
@@ -44,6 +46,8 @@
             font-size: 14px;
 
             font-weight: 500;
+
+            line-height: 1;
 
             text-decoration: none;
 
@@ -64,9 +68,19 @@
 
         .settings-back-arrow {
 
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 16px;
+
+            height: 16px;
+
             font-size: 17px;
 
-            line-height: 1;
+            line-height: 16px;
 
         }
 
@@ -89,16 +103,7 @@
 
         .settings-card-header h2 {
 
-            margin: 0 0 5px;
-
-        }
-
-
-        .settings-card-header p {
-
             margin: 0;
-
-            color: #6b7280;
 
         }
 
@@ -189,13 +194,23 @@
 
         .settings-item-arrow {
 
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
             flex-shrink: 0;
+
+            width: 20px;
+
+            height: 20px;
 
             color: #9aa1ab;
 
             font-size: 21px;
 
-            line-height: 1;
+            line-height: 20px;
 
             transition:
                 color 0.15s ease,
@@ -379,27 +394,6 @@
 
 
         <!-- =================================================
-             PAGE HEADING
-             ================================================= -->
-
-        <div class="dashboard-heading">
-
-            <div>
-
-                <h1>
-                    Account Settings
-                </h1>
-
-                <p>
-                    Manage your merchant account settings.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
              SETTINGS CONTENT
              ================================================= -->
 
@@ -428,7 +422,9 @@
             </button>
 
 
-            <!-- Account Settings Card -->
+            <!-- =================================================
+                 ACCOUNT SETTINGS CARD
+                 ================================================= -->
 
             <section class="dashboard-card settings-card">
 
@@ -438,12 +434,8 @@
                 <div class="settings-card-header">
 
                     <h2>
-                        Account
+                        Account Settings
                     </h2>
-
-                    <p>
-                        Manage your account information and security.
-                    </p>
 
                 </div>
 
