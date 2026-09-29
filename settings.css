@@ -928,30 +928,67 @@ body {
 
 
 /* =========================================================
-   SIGNING KEY POPUP CHECK
+   SIGNING KEY POPUP RADIO
    ========================================================= */
 
-.signing-key-popup-check {
+.signing-key-popup-radio {
+
+    position: relative;
 
     flex-shrink: 0;
 
+    width: 18px;
+
+    height: 18px;
+
     margin-top: 2px;
 
-    color: #555c64;
+    border: 1px solid #aeb4bc;
 
-    font-size: 14px;
+    border-radius: 50%;
 
-    line-height: 18px;
+    background: #ffffff;
 
-    visibility: hidden;
+}
+
+
+.signing-key-popup-radio::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #555c64;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
 
 }
 
 
 .signing-key-popup-option.selected
-.signing-key-popup-check {
+.signing-key-popup-radio {
 
-    visibility: visible;
+    border-color: #555c64;
+
+}
+
+
+.signing-key-popup-option.selected
+.signing-key-popup-radio::after {
+
+    opacity: 1;
 
 }
 
