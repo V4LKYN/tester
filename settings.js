@@ -3,11 +3,19 @@
    ================================================= */
 
 
+let accountMenuOpen = false;
+
+
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
         initializeSettings();
+
+        document.addEventListener(
+            "click",
+            handleDocumentClick
+        );
 
     }
 );
@@ -927,6 +935,87 @@ function saveAccountPassword(
 
 
 /* =================================================
+   ACCOUNT MENU
+   ================================================= */
+
+function toggleAccountMenu() {
+
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        !accountMenuOpen;
+
+
+    menu.classList.toggle(
+        "open",
+        accountMenuOpen
+    );
+
+}
+
+
+function closeAccountMenu() {
+
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        false;
+
+
+    menu.classList.remove(
+        "open"
+    );
+
+}
+
+
+function handleDocumentClick(
+    event
+) {
+
+    const container =
+        document.querySelector(
+            ".account-container"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    if (
+        !container.contains(
+            event.target
+        )
+    ) {
+
+        closeAccountMenu();
+
+    }
+
+}
+
+
+/* =================================================
    NAVIGATION
    ================================================= */
 
@@ -936,3 +1025,28 @@ function goToDashboard() {
         "dashboard.html";
 
 }
+
+
+/* =================================================
+   ESCAPE KEY
+   ================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key !== "Escape"
+        ) {
+
+            return;
+
+        }
+
+
+        closeAccountMenu();
+
+        closeDeveloperResponse();
+
+    }
+);
