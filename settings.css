@@ -1694,34 +1694,28 @@ body {
 
     align-items: flex-start;
 
-    gap: 8px;
+    gap: 7px;
 
     margin: 4px 10px 0;
 
-    padding: 10px 11px;
+    padding: 9px 10px;
 
-    border: 1px solid #e1e4e8;
+    color: #8a9097;
 
-    border-radius: 6px;
+    font-size: 10px;
 
-    background: #f8f9fa;
-
-    color: #737982;
-
-    font-size: 11px;
-
-    line-height: 16px;
+    line-height: 15px;
 
 }
 
 
 .signing-key-popup-notice-icon {
 
-    flex: 0 0 16px;
+    flex: 0 0 14px;
 
-    width: 16px;
+    width: 14px;
 
-    height: 16px;
+    height: 14px;
 
     display: flex;
 
@@ -1731,13 +1725,13 @@ body {
 
     margin-top: 0;
 
-    border: 1px solid #aeb4bc;
+    border: 1px solid #b8bdc4;
 
     border-radius: 50%;
 
-    color: #737982;
+    color: #8a9097;
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: 600;
 
@@ -1753,7 +1747,6 @@ body {
     min-width: 0;
 
 }
-
 
 /* =========================================================
    SIGNING KEY POPUP ACTIONS
