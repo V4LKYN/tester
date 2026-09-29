@@ -186,7 +186,7 @@
                 id="overviewNavigation"
                 class="navigation-item active"
                 type="button"
-                onclick="showOverview()"
+                onclick="setDashboardTab('overview')"
             >
                 Overview
             </button>
@@ -196,7 +196,7 @@
                 id="entitiesNavigation"
                 class="navigation-item"
                 type="button"
-                onclick="showEntities()"
+                onclick="setDashboardTab('entities')"
             >
                 Entities
             </button>
@@ -419,7 +419,7 @@
             <div
                 id="entitiesContent"
                 class="dashboard-tab-content"
-                style="display:none"
+                style="display: none;"
             >
 
                 <section class="dashboard-card entities-card">
@@ -540,6 +540,87 @@
     </div>
 
 </div>
+
+
+<!-- =================================================
+     DASHBOARD TAB CONTROLLER
+     ================================================= -->
+
+<script>
+
+function setDashboardTab(tab) {
+
+    const overviewContent =
+        document.getElementById(
+            "overviewContent"
+        );
+
+    const entitiesContent =
+        document.getElementById(
+            "entitiesContent"
+        );
+
+    const overviewNavigation =
+        document.getElementById(
+            "overviewNavigation"
+        );
+
+    const entitiesNavigation =
+        document.getElementById(
+            "entitiesNavigation"
+        );
+
+
+    if (
+        !overviewContent ||
+        !entitiesContent ||
+        !overviewNavigation ||
+        !entitiesNavigation
+    ) {
+
+        return;
+
+    }
+
+
+    if (tab === "entities") {
+
+        overviewContent.style.display =
+            "none";
+
+        entitiesContent.style.display =
+            "block";
+
+        overviewNavigation.classList.remove(
+            "active"
+        );
+
+        entitiesNavigation.classList.add(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    overviewContent.style.display =
+        "block";
+
+    entitiesContent.style.display =
+        "none";
+
+    overviewNavigation.classList.add(
+        "active"
+    );
+
+    entitiesNavigation.classList.remove(
+        "active"
+    );
+
+}
+
+</script>
 
 
 <script src="dashboard.js"></script>
