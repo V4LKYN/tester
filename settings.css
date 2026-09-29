@@ -665,15 +665,44 @@ body {
 }
 
 
+/* =========================================================
+   SETTINGS SELECT CHEVRON
+   ========================================================= */
+
 .settings-select-chevron {
+
+    position: relative;
 
     flex-shrink: 0;
 
-    padding-right: 2px;
+    width: 18px;
 
-    color: #777d85;
+    height: 18px;
 
-    font-size: 11px;
+    margin-left: 10px;
+
+}
+
+
+.settings-select-chevron::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 5px;
+
+    left: 4px;
+
+    width: 8px;
+
+    height: 8px;
+
+    border-right: 1.5px solid #6f757d;
+
+    border-bottom: 1.5px solid #6f757d;
+
+    transform: rotate(45deg);
 
 }
 
