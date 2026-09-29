@@ -3,19 +3,27 @@
    ================================================= */
 
 
+let accountMenuOpen = false;
+
+
+/* =================================================
+   INITIALIZATION
+   ================================================= */
+
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
         initializeSettings();
 
+        document.addEventListener(
+            "click",
+            handleDocumentClick
+        );
+
     }
 );
 
-
-/* =================================================
-   INITIALIZATION
-   ================================================= */
 
 function initializeSettings() {
 
@@ -23,6 +31,7 @@ function initializeSettings() {
         sessionStorage.getItem(
             "authToken"
         );
+
 
     if (!authToken) {
 
@@ -35,6 +44,8 @@ function initializeSettings() {
 
 
     populateAccountDetails();
+
+    initializeSigningKeySettings();
 
 }
 
@@ -113,19 +124,25 @@ function openAccountDetails() {
 
     hideAccountPassword();
 
+    hideSigningKeySettings();
+
     populateAccountDetails();
+
 
     const card =
         document.getElementById(
             "accountDetailsCard"
         );
 
+
     if (!card) {
         return;
     }
 
+
     card.style.display =
         "block";
+
 
     setSettingsBackButton(
         "Account Settings"
@@ -144,17 +161,23 @@ function openAccountPassword() {
 
     hideAccountDetails();
 
+    hideSigningKeySettings();
+
+
     const card =
         document.getElementById(
             "accountPasswordCard"
         );
 
+
     if (!card) {
         return;
     }
 
+
     card.style.display =
         "block";
+
 
     setSettingsBackButton(
         "Account Settings"
@@ -164,7 +187,44 @@ function openAccountPassword() {
 
 
 /* =================================================
-   CLOSE SETTINGS FORM
+   OPEN SIGNING KEY SETTINGS
+   ================================================= */
+
+function openSigningKeySettings() {
+
+    hideSettingsOptions();
+
+    hideAccountDetails();
+
+    hideAccountPassword();
+
+    initializeSigningKeySettings();
+
+
+    const card =
+        document.getElementById(
+            "signingKeySettingsCard"
+        );
+
+
+    if (!card) {
+        return;
+    }
+
+
+    card.style.display =
+        "block";
+
+
+    setSettingsBackButton(
+        "Account Settings"
+    );
+
+}
+
+
+/* =================================================
+   CLOSE SETTINGS CARD
    ================================================= */
 
 function closeSettingsForm() {
@@ -172,6 +232,8 @@ function closeSettingsForm() {
     hideAccountDetails();
 
     hideAccountPassword();
+
+    hideSigningKeySettings();
 
     showSettingsOptions();
 
@@ -232,6 +294,51 @@ function setSettingsBackButton(
 
     labelElement.textContent =
         label;
+
+}
+
+
+/* =================================================
+   SIGNING KEY SETTINGS
+   ================================================= */
+
+function initializeSigningKeySettings() {
+
+    const select =
+        document.getElementById(
+            "signingKeyBackupSetting"
+        );
+
+
+    if (!select) {
+        return;
+    }
+
+
+    const savedSetting =
+        sessionStorage.getItem(
+            "signingKeyBackupSetting"
+        );
+
+
+    if (savedSetting) {
+
+        select.value =
+            savedSetting;
+
+    }
+
+}
+
+
+function handleSigningKeyBackupSetting(
+    value
+) {
+
+    sessionStorage.setItem(
+        "signingKeyBackupSetting",
+        value
+    );
 
 }
 
@@ -316,6 +423,258 @@ function hideAccountPassword() {
 }
 
 
+function hideSigningKeySettings() {
+
+    const card =
+        document.getElementById(
+            "signingKeySettingsCard"
+        );
+
+
+    if (!card) {
+        return;
+    }
+
+
+    card.style.display =
+        "none";
+
+}
+
+
+/* =================================================
+   ACCOUNT MENU
+   ================================================= */
+
+function toggleAccountMenu() {
+
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        !accountMenuOpen;
+
+
+    menu.classList.toggle(
+        "open",
+        accountMenuOpen
+    );
+
+}
+
+
+function closeAccountMenu() {
+
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        false;
+
+
+    menu.classList.remove(
+        "open"
+    );
+
+}
+
+
+function handleDocumentClick(
+    event
+) {
+
+    const container =
+        document.querySelector(
+            ".account-container"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    if (
+        !container.contains(
+            event.target
+        )
+    ) {
+
+        closeAccountMenu();
+
+    }
+
+}
+
+
+/* =================================================
+   LOGOUT
+   ================================================= */
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "authToken"
+    );
+
+    sessionStorage.removeItem(
+        "merchantId"
+    );
+
+    sessionStorage.removeItem(
+        "merchantEmail"
+    );
+
+    sessionStorage.removeItem(
+        "merchantFirstName"
+    );
+
+    sessionStorage.removeItem(
+        "merchantLastName"
+    );
+
+    sessionStorage.removeItem(
+        "merchantType"
+    );
+
+    sessionStorage.removeItem(
+        "merchantStatus"
+    );
+
+    sessionStorage.removeItem(
+        "merchantCreatedAt"
+    );
+
+    sessionStorage.removeItem(
+        "merchantUpdatedAt"
+    );
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =================================================
+   ACCOUNT NAVIGATION
+   ================================================= */
+
+function goToSettings() {
+
+    window.location.href =
+        "settings.html";
+
+}
+
+
+function goToDashboard() {
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* =================================================
+   DEVELOPER MODAL
+   ================================================= */
+
+function openDeveloperResponse() {
+
+    const modal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.add(
+        "open"
+    );
+
+}
+
+
+function closeDeveloperResponse(
+    event
+) {
+
+    if (
+        event &&
+        event.target &&
+        event.target.id !==
+            "developerModal"
+    ) {
+
+        return;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.remove(
+        "open"
+    );
+
+}
+
+
+/* =================================================
+   ESCAPE KEY
+   ================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key !== "Escape"
+        ) {
+
+            return;
+
+        }
+
+
+        closeAccountMenu();
+
+        closeDeveloperResponse();
+
+    }
+);
+
+
 /* =================================================
    SAVE ACCOUNT DETAILS
    ================================================= */
@@ -332,10 +691,12 @@ function saveAccountDetails(
             "firstNameInput"
         ).value.trim();
 
+
     const lastName =
         document.getElementById(
             "lastNameInput"
         ).value.trim();
+
 
     const email =
         document.getElementById(
@@ -389,10 +750,12 @@ function saveAccountDetails(
         firstName
     );
 
+
     sessionStorage.setItem(
         "merchantLastName",
         lastName
     );
+
 
     sessionStorage.setItem(
         "merchantEmail",
@@ -426,10 +789,12 @@ function saveAccountPassword(
             "currentPasswordInput"
         ).value;
 
+
     const newPassword =
         document.getElementById(
             "newPasswordInput"
         ).value;
+
 
     const confirmPassword =
         document.getElementById(
@@ -459,7 +824,10 @@ function saveAccountPassword(
     }
 
 
-    if (newPassword !== confirmPassword) {
+    if (
+        newPassword !==
+        confirmPassword
+    ) {
 
         alert(
             "The new passwords do not match."
@@ -478,17 +846,5 @@ function saveAccountPassword(
     alert(
         "Password change will be connected to the server next."
     );
-
-}
-
-
-/* =================================================
-   NAVIGATION
-   ================================================= */
-
-function goToDashboard() {
-
-    window.location.href =
-        "dashboard.html";
 
 }

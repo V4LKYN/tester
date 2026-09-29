@@ -202,7 +202,7 @@
 
 
             <!-- =================================================
-                 SETTINGS OPTIONS
+                 ACCOUNT SETTINGS
                  ================================================= -->
 
             <section
@@ -222,7 +222,9 @@
                 <div class="settings-list">
 
 
-                    <!-- Account Details -->
+                    <!-- =================================================
+                         CHANGE ACCOUNT DETAILS
+                         ================================================= -->
 
                     <button
                         class="settings-item"
@@ -253,7 +255,9 @@
                     </button>
 
 
-                    <!-- Account Password -->
+                    <!-- =================================================
+                         CHANGE ACCOUNT PASSWORD
+                         ================================================= -->
 
                     <button
                         class="settings-item"
@@ -283,70 +287,38 @@
 
                     </button>
 
-                </div>
 
-            </section>
+                    <!-- =================================================
+                         SIGNING KEY SETTINGS
+                         ================================================= -->
 
-
-            <!-- =================================================
-                 SIGNING KEY SETTINGS
-                 ================================================= -->
-
-            <section
-                class="dashboard-card settings-card signing-key-settings-card"
-            >
-
-                <div class="settings-card-header">
-
-                    <h2>
-                        Signing Key Settings
-                    </h2>
-
-                </div>
-
-
-                <div class="settings-list">
-
-                    <div class="settings-setting-row">
+                    <button
+                        class="settings-item"
+                        type="button"
+                        onclick="openSigningKeySettings()"
+                    >
 
                         <div class="settings-item-content">
 
                             <div class="settings-item-title">
-                                Entity Signing Key Backup
+                                Signing Key Settings
                             </div>
 
                             <div class="settings-item-description">
-                                Choose how your entity signing keys are backed up and recovered.
+                                Manage your entity signing key preferences and recovery settings.
                             </div>
 
                         </div>
 
 
-                        <div class="settings-select-wrapper">
+                        <span
+                            class="settings-item-arrow"
+                            aria-hidden="true"
+                        >
+                            ›
+                        </span>
 
-                            <select
-                                id="signingKeyBackupSetting"
-                                class="settings-select"
-                                onchange="handleSigningKeyBackupSetting(this.value)"
-                            >
-
-                                <option value="automatic">
-                                    Back Up Automatically
-                                </option>
-
-                                <option value="self_managed">
-                                    I’ll Manage My Keys
-                                </option>
-
-                                <option value="ask_each_time">
-                                    Ask Me Each Time
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
+                    </button>
 
                 </div>
 
@@ -385,6 +357,7 @@
                     class="settings-form"
                     onsubmit="saveAccountDetails(event)"
                 >
+
 
                     <div class="settings-field">
 
@@ -501,6 +474,7 @@
                     onsubmit="saveAccountPassword(event)"
                 >
 
+
                     <div class="settings-field">
 
                         <label
@@ -582,6 +556,86 @@
 
             </section>
 
+
+            <!-- =================================================
+                 SIGNING KEY SETTINGS CARD
+                 ================================================= -->
+
+            <section
+                id="signingKeySettingsCard"
+                class="dashboard-card settings-form-card"
+                style="display: none;"
+            >
+
+                <div class="settings-form-header">
+
+                    <div>
+
+                        <h2>
+                            Signing Key Settings
+                        </h2>
+
+                        <p>
+                            Manage how your entity signing keys are backed up and recovered.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-list">
+
+
+                    <!-- =================================================
+                         ENTITY SIGNING KEY BACKUP
+                         ================================================= -->
+
+                    <div class="settings-setting-row">
+
+                        <div class="settings-item-content">
+
+                            <div class="settings-item-title">
+                                Entity Signing Key Backup
+                            </div>
+
+                            <div class="settings-item-description">
+                                Choose how your entity signing keys are backed up and recovered.
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-select-wrapper">
+
+                            <select
+                                id="signingKeyBackupSetting"
+                                class="settings-select"
+                                onchange="handleSigningKeyBackupSetting(this.value)"
+                            >
+
+                                <option value="automatic">
+                                    Back Up Automatically
+                                </option>
+
+                                <option value="self_managed">
+                                    I’ll Manage My Keys
+                                </option>
+
+                                <option value="ask_each_time">
+                                    Ask Me Each Time
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
         </section>
 
     </main>
@@ -652,7 +706,6 @@
 </div>
 
 
-<script src="dashboard.js"></script>
 <script src="settings.js"></script>
 
 </body>

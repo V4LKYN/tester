@@ -24,6 +24,7 @@ function initializeSettings() {
             "authToken"
         );
 
+
     if (!authToken) {
 
         window.location.href =
@@ -115,7 +116,10 @@ function openAccountDetails() {
 
     hideAccountPassword();
 
+    hideSigningKeySettings();
+
     populateAccountDetails();
+
 
     const card =
         document.getElementById(
@@ -149,9 +153,50 @@ function openAccountPassword() {
 
     hideAccountDetails();
 
+    hideSigningKeySettings();
+
+
     const card =
         document.getElementById(
             "accountPasswordCard"
+        );
+
+
+    if (!card) {
+        return;
+    }
+
+
+    card.style.display =
+        "block";
+
+
+    setSettingsBackButton(
+        "Account Settings"
+    );
+
+}
+
+
+/* =================================================
+   OPEN SIGNING KEY SETTINGS
+   ================================================= */
+
+function openSigningKeySettings() {
+
+    hideSettingsOptions();
+
+    hideAccountDetails();
+
+    hideAccountPassword();
+
+
+    initializeSigningKeySettings();
+
+
+    const card =
+        document.getElementById(
+            "signingKeySettingsCard"
         );
 
 
@@ -180,6 +225,8 @@ function closeSettingsForm() {
     hideAccountDetails();
 
     hideAccountPassword();
+
+    hideSigningKeySettings();
 
     showSettingsOptions();
 
@@ -250,12 +297,6 @@ function setSettingsBackButton(
 
 function initializeSigningKeySettings() {
 
-    const savedSetting =
-        sessionStorage.getItem(
-            "signingKeyBackupSetting"
-        );
-
-
     const select =
         document.getElementById(
             "signingKeyBackupSetting"
@@ -265,6 +306,12 @@ function initializeSigningKeySettings() {
     if (!select) {
         return;
     }
+
+
+    const savedSetting =
+        sessionStorage.getItem(
+            "signingKeyBackupSetting"
+        );
 
 
     if (savedSetting) {
@@ -369,6 +416,25 @@ function hideAccountPassword() {
 }
 
 
+function hideSigningKeySettings() {
+
+    const card =
+        document.getElementById(
+            "signingKeySettingsCard"
+        );
+
+
+    if (!card) {
+        return;
+    }
+
+
+    card.style.display =
+        "none";
+
+}
+
+
 /* =================================================
    SAVE ACCOUNT DETAILS
    ================================================= */
@@ -385,10 +451,12 @@ function saveAccountDetails(
             "firstNameInput"
         ).value.trim();
 
+
     const lastName =
         document.getElementById(
             "lastNameInput"
         ).value.trim();
+
 
     const email =
         document.getElementById(
@@ -442,10 +510,12 @@ function saveAccountDetails(
         firstName
     );
 
+
     sessionStorage.setItem(
         "merchantLastName",
         lastName
     );
+
 
     sessionStorage.setItem(
         "merchantEmail",
@@ -479,10 +549,12 @@ function saveAccountPassword(
             "currentPasswordInput"
         ).value;
 
+
     const newPassword =
         document.getElementById(
             "newPasswordInput"
         ).value;
+
 
     const confirmPassword =
         document.getElementById(

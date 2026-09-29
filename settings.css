@@ -4,7 +4,7 @@
 
 
 /* =================================================
-   BACK TO DASHBOARD
+   BACK TO DASHBOARD / ACCOUNT SETTINGS
    ================================================= */
 
 .settings-back {
@@ -90,6 +90,10 @@
 
 }
 
+
+/* =================================================
+   SETTINGS ITEMS
+   ================================================= */
 
 .settings-item {
 
@@ -193,15 +197,8 @@
 
 
 /* =================================================
-   SIGNING KEY SETTINGS
+   SIGNING KEY SETTINGS ROW
    ================================================= */
-
-.signing-key-settings-card {
-
-    margin-top: 20px;
-
-}
-
 
 .settings-setting-row {
 
@@ -215,9 +212,9 @@
 
     width: 100%;
 
-    padding: 22px 28px;
-
     box-sizing: border-box;
+
+    padding: 22px 28px;
 
 }
 
@@ -397,6 +394,10 @@
 
 }
 
+
+/* =================================================
+   FORM ACTIONS
+   ================================================= */
 
 .settings-form-actions {
 
