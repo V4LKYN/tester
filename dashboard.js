@@ -212,6 +212,13 @@ function initializeDashboard() {
         )
     );
 
+
+    /*
+     * Start on the Overview tab.
+     */
+
+    showOverview();
+
 }
 
 
@@ -302,6 +309,128 @@ function formatAccountStatus(
 
             }
         );
+
+}
+
+
+/* ==============================
+   Dashboard Tabs
+   ============================== */
+
+function showOverview() {
+
+    const overviewContent =
+        document.getElementById(
+            "overviewContent"
+        );
+
+    const entitiesContent =
+        document.getElementById(
+            "entitiesContent"
+        );
+
+    const overviewNavigation =
+        document.getElementById(
+            "overviewNavigation"
+        );
+
+    const entitiesNavigation =
+        document.getElementById(
+            "entitiesNavigation"
+        );
+
+
+    if (overviewContent) {
+
+        overviewContent.style.display =
+            "block";
+
+    }
+
+
+    if (entitiesContent) {
+
+        entitiesContent.style.display =
+            "none";
+
+    }
+
+
+    if (overviewNavigation) {
+
+        overviewNavigation.classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (entitiesNavigation) {
+
+        entitiesNavigation.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+function showEntities() {
+
+    const overviewContent =
+        document.getElementById(
+            "overviewContent"
+        );
+
+    const entitiesContent =
+        document.getElementById(
+            "entitiesContent"
+        );
+
+    const overviewNavigation =
+        document.getElementById(
+            "overviewNavigation"
+        );
+
+    const entitiesNavigation =
+        document.getElementById(
+            "entitiesNavigation"
+        );
+
+
+    if (overviewContent) {
+
+        overviewContent.style.display =
+            "none";
+
+    }
+
+
+    if (entitiesContent) {
+
+        entitiesContent.style.display =
+            "block";
+
+    }
+
+
+    if (overviewNavigation) {
+
+        overviewNavigation.classList.remove(
+            "active"
+        );
+
+    }
+
+
+    if (entitiesNavigation) {
+
+        entitiesNavigation.classList.add(
+            "active"
+        );
+
+    }
 
 }
 

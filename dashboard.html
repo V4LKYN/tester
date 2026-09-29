@@ -183,17 +183,20 @@
         <nav class="dashboard-navigation">
 
             <button
+                id="overviewNavigation"
                 class="navigation-item active"
                 type="button"
+                onclick="showOverview()"
             >
                 Overview
             </button>
 
 
             <button
+                id="entitiesNavigation"
                 class="navigation-item"
                 type="button"
-                onclick="showComingSoon('Entities')"
+                onclick="showEntities()"
             >
                 Entities
             </button>
@@ -227,173 +230,246 @@
 
 
             <!-- =================================================
-                 WELCOME
+                 OVERVIEW
                  ================================================= -->
 
-            <section class="welcome-section">
-
-                <div>
-
-                    <h2 id="welcomeName">
-                        Welcome
-                    </h2>
-
-                    <p>
-                        Your merchant account is active.
-                    </p>
-
-                </div>
-
-            </section>
+            <div
+                id="overviewContent"
+                class="dashboard-tab-content"
+            >
 
 
-            <!-- =================================================
-                 ACCOUNT OVERVIEW
-                 ================================================= -->
+                <!-- =================================================
+                     WELCOME
+                     ================================================= -->
 
-            <section class="dashboard-card">
-
-                <div class="card-header">
+                <section class="welcome-section">
 
                     <div>
 
-                        <h2>
-                            Account Overview
+                        <h2 id="welcomeName">
+                            Welcome
                         </h2>
 
                         <p>
-                            Current merchant configuration.
+                            Your merchant account is active.
                         </p>
 
                     </div>
 
+                </section>
 
-                    <div class="account-summary-status">
 
-                        <span class="status-label">
-                            Status
-                        </span>
+                <!-- =================================================
+                     ACCOUNT OVERVIEW
+                     ================================================= -->
 
-                        <span
-                            id="accountStatusBadge"
-                            class="status-badge"
-                        >
-                            Active
-                        </span>
+                <section class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Account Overview
+                            </h2>
+
+                            <p>
+                                Current merchant configuration.
+                            </p>
+
+                        </div>
+
+
+                        <div class="account-summary-status">
+
+                            <span class="status-label">
+                                Status
+                            </span>
+
+                            <span
+                                id="accountStatusBadge"
+                                class="status-badge"
+                            >
+                                Active
+                            </span>
+
+                        </div>
 
                     </div>
 
-                </div>
+
+                    <div class="account-details">
 
 
-                <div class="account-details">
+                        <!-- Account Type -->
 
+                        <div class="detail">
 
-                    <!-- Account Type -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Account Type
-                        </div>
-
-                        <div
-                            id="configurationAccountType"
-                            class="detail-value"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <!-- Merchant ID -->
-
-                    <div class="detail">
-
-                        <div class="detail-label">
-                            Merchant ID
-                        </div>
-
-                        <div class="merchant-id-row">
+                            <div class="detail-label">
+                                Account Type
+                            </div>
 
                             <div
-                                id="merchantId"
+                                id="configurationAccountType"
                                 class="detail-value"
-                                style="font-weight:500"
                             >
                                 —
                             </div>
 
-                            <button
-                                class="copy-button"
-                                type="button"
-                                onclick="copyMerchantId()"
+                        </div>
+
+
+                        <!-- Merchant ID -->
+
+                        <div class="detail">
+
+                            <div class="detail-label">
+                                Merchant ID
+                            </div>
+
+                            <div class="merchant-id-row">
+
+                                <div
+                                    id="merchantId"
+                                    class="detail-value"
+                                    style="font-weight:500"
+                                >
+                                    —
+                                </div>
+
+                                <button
+                                    class="copy-button"
+                                    type="button"
+                                    onclick="copyMerchantId()"
+                                >
+                                    Copy
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Entities -->
+
+                        <div class="detail">
+
+                            <div class="detail-label">
+                                Entities
+                            </div>
+
+                            <div
+                                id="configurationEntityCount"
+                                class="detail-value"
                             >
-                                Copy
-                            </button>
+                                0 configured
+                            </div>
+
+                        </div>
+
+
+                        <!-- Last Updated -->
+
+                        <div class="detail detail-full-width">
+
+                            <div class="detail-label">
+                                Last Updated
+                            </div>
+
+                            <div
+                                id="configurationUpdatedAt"
+                                class="detail-value"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+
+                        <!-- Created -->
+
+                        <div class="detail detail-full-width">
+
+                            <div class="detail-label">
+                                Created
+                            </div>
+
+                            <div
+                                id="configurationCreatedAt"
+                                class="detail-value"
+                            >
+                                —
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 ENTITIES
+                 ================================================= -->
+
+            <div
+                id="entitiesContent"
+                class="dashboard-tab-content"
+                style="display:none"
+            >
+
+                <section class="dashboard-card entities-card">
+
+
+                    <!-- Entity Header -->
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Entities
+                            </h2>
+
+                            <p>
+                                Manage the entities associated with your merchant account.
+                            </p>
 
                         </div>
 
                     </div>
 
 
-                    <!-- Entities -->
+                    <!-- Empty State -->
 
-                    <div class="detail">
+                    <div class="entities-empty-state">
 
-                        <div class="detail-label">
-                            Entities
-                        </div>
+                        <h3>
+                            You have not created any entities
+                        </h3>
 
-                        <div
-                            id="configurationEntityCount"
-                            class="detail-value"
+                        <p>
+                            Create an entity to begin configuring your merchant account.
+                        </p>
+
+                        <button
+                            class="copy-button"
+                            type="button"
+                            onclick="showComingSoon('Create Entity')"
                         >
-                            0 configured
-                        </div>
+                            Create Entity
+                        </button>
 
                     </div>
 
 
-                    <!-- Last Updated -->
+                </section>
 
-                    <div class="detail detail-full-width">
-
-                        <div class="detail-label">
-                            Last Updated
-                        </div>
-
-                        <div
-                            id="configurationUpdatedAt"
-                            class="detail-value"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-
-                    <!-- Created -->
-
-                    <div class="detail detail-full-width">
-
-                        <div class="detail-label">
-                            Created
-                        </div>
-
-                        <div
-                            id="configurationCreatedAt"
-                            class="detail-value"
-                        >
-                            —
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
+            </div>
 
 
         </section>
