@@ -105,14 +105,8 @@ function initializeDashboard() {
 
 
     /*
-     * Account header.
+     * Account menu email.
      */
-
-    setText(
-        "accountEmail",
-        displayEmail
-    );
-
 
     setText(
         "menuEmail",
@@ -145,8 +139,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "welcomeName",
-        "Welcome, " +
+        "welcomeFirstName",
         displayFirstName
     );
 
@@ -156,7 +149,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "configurationAccountType",
+        "accountType",
         displayAccountType
     );
 
@@ -181,7 +174,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "configurationEntityCount",
+        "entityCount",
         "0 configured"
     );
 
@@ -191,7 +184,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "configurationUpdatedAt",
+        "accountUpdatedAt",
         formatDateTime(
             updatedAt
         )
@@ -203,7 +196,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "configurationCreatedAt",
+        "accountCreatedAt",
         formatDateTime(
             createdAt
         )
@@ -304,130 +297,6 @@ function formatAccountStatus(
 
 
 /* ==============================
-   Dashboard Tabs
-   ============================== */
-
-function showOverview() {
-
-    const overviewContent =
-        document.getElementById(
-            "overviewContent"
-        );
-
-    const entitiesContent =
-        document.getElementById(
-            "entitiesContent"
-        );
-
-    const overviewNavigation =
-        document.getElementById(
-            "overviewNavigation"
-        );
-
-    const entitiesNavigation =
-        document.getElementById(
-            "entitiesNavigation"
-        );
-
-
-    if (!overviewContent) {
-        return;
-    }
-
-
-    if (entitiesContent) {
-
-        entitiesContent.style.display =
-            "none";
-
-    }
-
-
-    overviewContent.style.display =
-        "block";
-
-
-    if (overviewNavigation) {
-
-        overviewNavigation.classList.add(
-            "active"
-        );
-
-    }
-
-
-    if (entitiesNavigation) {
-
-        entitiesNavigation.classList.remove(
-            "active"
-        );
-
-    }
-
-}
-
-
-function showEntities() {
-
-    const overviewContent =
-        document.getElementById(
-            "overviewContent"
-        );
-
-    const entitiesContent =
-        document.getElementById(
-            "entitiesContent"
-        );
-
-    const overviewNavigation =
-        document.getElementById(
-            "overviewNavigation"
-        );
-
-    const entitiesNavigation =
-        document.getElementById(
-            "entitiesNavigation"
-        );
-
-
-    if (!entitiesContent) {
-        return;
-    }
-
-
-    if (overviewContent) {
-
-        overviewContent.style.display =
-            "none";
-
-    }
-
-
-    entitiesContent.style.display =
-        "block";
-
-
-    if (overviewNavigation) {
-
-        overviewNavigation.classList.remove(
-            "active"
-        );
-
-    }
-
-
-    if (entitiesNavigation) {
-
-        entitiesNavigation.classList.add(
-            "active"
-        );
-
-    }
-
-}
-
-
-/* ==============================
    Page Navigation
    ============================== */
 
@@ -506,7 +375,7 @@ function handleDocumentClick(
 
     const container =
         document.querySelector(
-            ".account-container"
+            ".account-menu-container"
         );
 
 
@@ -632,7 +501,7 @@ function showCopyState() {
 
     const button =
         document.querySelector(
-            ".copy-button"
+            ".account-overview-card .copy-button"
         );
 
 
@@ -679,10 +548,10 @@ function showComingSoon(
 
 
 /* ==============================
-   Developer Response
+   Developer Modal
    ============================== */
 
-function openDeveloperResponse() {
+function openDeveloperModal() {
 
     const modal =
         document.getElementById(
@@ -702,7 +571,7 @@ function openDeveloperResponse() {
 }
 
 
-function closeDeveloperResponse(
+function closeDeveloperModal(
     event
 ) {
 
@@ -755,7 +624,7 @@ document.addEventListener(
 
         closeAccountMenu();
 
-        closeDeveloperResponse();
+        closeDeveloperModal();
 
     }
 );
