@@ -42,9 +42,214 @@ function initializeSettings() {
     }
 
 
+    populateAccountMenu();
+
     populateAccountDetails();
 
     initializeSigningKeyBackupSetting();
+
+}
+
+
+/* =================================================
+   ACCOUNT MENU
+   ================================================= */
+
+function populateAccountMenu() {
+
+    const email =
+        sessionStorage.getItem(
+            "merchantEmail"
+        );
+
+    const merchantId =
+        sessionStorage.getItem(
+            "merchantId"
+        );
+
+
+    const displayEmail =
+        email || "—";
+
+    const displayMerchantId =
+        merchantId || "—";
+
+
+    const accountEmail =
+        document.getElementById(
+            "accountEmail"
+        );
+
+    const menuEmail =
+        document.getElementById(
+            "menuEmail"
+        );
+
+    const menuMerchantId =
+        document.getElementById(
+            "menuMerchantId"
+        );
+
+
+    if (accountEmail) {
+
+        accountEmail.textContent =
+            displayEmail;
+
+    }
+
+
+    if (menuEmail) {
+
+        menuEmail.textContent =
+            displayEmail;
+
+    }
+
+
+    if (menuMerchantId) {
+
+        menuMerchantId.textContent =
+            displayMerchantId;
+
+    }
+
+}
+
+
+function toggleAccountMenu() {
+
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    if (!menu) {
+        return;
+    }
+
+
+    accountMenuOpen =
+        !accountMenuOpen;
+
+
+    menu.classList.toggle(
+        "open",
+        accountMenuOpen
+    );
+
+}
+
+
+function closeAccountMenu() {
+
+    const menu =
+        document.getElementById(
+            "accountMenu"
+        );
+
+
+    accountMenuOpen =
+        false;
+
+
+    if (menu) {
+
+        menu.classList.remove(
+            "open"
+        );
+
+    }
+
+}
+
+
+function handleDocumentClick(
+    event
+) {
+
+    const container =
+        document.querySelector(
+            ".account-container"
+        );
+
+
+    if (!container) {
+        return;
+    }
+
+
+    if (
+        !container.contains(
+            event.target
+        )
+    ) {
+
+        closeAccountMenu();
+
+    }
+
+}
+
+
+/* =================================================
+   ACCOUNT MENU NAVIGATION
+   ================================================= */
+
+function goToSettings() {
+
+    closeAccountMenu();
+
+}
+
+
+function logout() {
+
+    sessionStorage.removeItem(
+        "authToken"
+    );
+
+    sessionStorage.removeItem(
+        "merchantId"
+    );
+
+    sessionStorage.removeItem(
+        "merchantEmail"
+    );
+
+    sessionStorage.removeItem(
+        "merchantFirstName"
+    );
+
+    sessionStorage.removeItem(
+        "merchantLastName"
+    );
+
+    sessionStorage.removeItem(
+        "merchantType"
+    );
+
+    sessionStorage.removeItem(
+        "merchantStatus"
+    );
+
+    sessionStorage.removeItem(
+        "merchantCreatedAt"
+    );
+
+    sessionStorage.removeItem(
+        "merchantUpdatedAt"
+    );
+
+
+    sessionStorage.removeItem(
+        "signingKeyBackupSetting"
+    );
+
+
+    window.location.href =
+        "index.html";
 
 }
 
@@ -119,6 +324,8 @@ function populateAccountDetails() {
 
 function openAccountDetails() {
 
+    closeAccountMenu();
+
     hideSettingsOptions();
 
     hideAccountPassword();
@@ -154,6 +361,8 @@ function openAccountDetails() {
 
 function openAccountPassword() {
 
+    closeAccountMenu();
+
     hideSettingsOptions();
 
     hideAccountDetails();
@@ -186,6 +395,8 @@ function openAccountPassword() {
    ================================================= */
 
 function openSigningKeySettings() {
+
+    closeAccountMenu();
 
     hideSettingsOptions();
 
@@ -432,6 +643,8 @@ function initializeSigningKeyBackupSetting() {
 
 
     updateSigningKeyBackupSettingUI();
+
+    updateSavedSigningKeyBackupSettingUI();
 
 }
 
@@ -852,6 +1065,9 @@ function saveAccountDetails(
     );
 
 
+    populateAccountMenu();
+
+
     alert(
         "Account details updated."
     );
@@ -935,87 +1151,6 @@ function saveAccountPassword(
 
 
 /* =================================================
-   ACCOUNT MENU
-   ================================================= */
-
-function toggleAccountMenu() {
-
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
-
-
-    if (!menu) {
-        return;
-    }
-
-
-    accountMenuOpen =
-        !accountMenuOpen;
-
-
-    menu.classList.toggle(
-        "open",
-        accountMenuOpen
-    );
-
-}
-
-
-function closeAccountMenu() {
-
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
-
-
-    if (!menu) {
-        return;
-    }
-
-
-    accountMenuOpen =
-        false;
-
-
-    menu.classList.remove(
-        "open"
-    );
-
-}
-
-
-function handleDocumentClick(
-    event
-) {
-
-    const container =
-        document.querySelector(
-            ".account-container"
-        );
-
-
-    if (!container) {
-        return;
-    }
-
-
-    if (
-        !container.contains(
-            event.target
-        )
-    ) {
-
-        closeAccountMenu();
-
-    }
-
-}
-
-
-/* =================================================
    NAVIGATION
    ================================================= */
 
@@ -1023,6 +1158,64 @@ function goToDashboard() {
 
     window.location.href =
         "dashboard.html";
+
+}
+
+
+/* =================================================
+   DEVELOPER MODAL
+   ================================================= */
+
+function openDeveloperResponse() {
+
+    const modal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.add(
+        "open"
+    );
+
+}
+
+
+function closeDeveloperResponse(
+    event
+) {
+
+    if (
+        event &&
+        event.target &&
+        event.target.id !==
+            "developerModal"
+    ) {
+
+        return;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "developerModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.remove(
+        "open"
+    );
 
 }
 
