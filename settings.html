@@ -837,10 +837,58 @@
                 ></span>
 
             </button>
-            
-                    <p class="signing-key-popup-description">
-            Changes to this setting only apply to entities created after the setting is updated. Previously configured entities will not be affected.
-        </p>
+
+
+            <!-- =================================================
+                 INFORMATION NOTICE
+                 ================================================= -->
+
+            <div class="signing-key-popup-notice">
+
+                <span
+                    class="signing-key-popup-notice-icon"
+                    aria-hidden="true"
+                >
+                    i
+                </span>
+
+                <span class="signing-key-popup-notice-text">
+                    Changes to this setting only apply to entities created after the setting is updated. Previously configured entities will not be affected.
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 SETTINGS ACTIONS
+                 ================================================= -->
+
+            <div
+                id="signingKeyBackupActions"
+                class="signing-key-popup-actions"
+                style="display: none;"
+            >
+
+                <button
+                    id="signingKeyBackupCancel"
+                    class="settings-secondary-button"
+                    type="button"
+                    onclick="cancelSigningKeyBackupSetting()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    id="signingKeyBackupSave"
+                    class="settings-primary-button"
+                    type="button"
+                    onclick="saveSigningKeyBackupSetting()"
+                >
+                    Save Changes
+                </button>
+
+            </div>
 
 
         </div>

@@ -388,6 +388,13 @@ function hideSigningKeySettings() {
    SIGNING KEY BACKUP SETTING
    ================================================= */
 
+let originalSigningKeyBackupSetting =
+    "ask_each_time";
+
+let pendingSigningKeyBackupSetting =
+    "ask_each_time";
+
+
 function initializeSigningKeyBackupSetting() {
 
     let setting =
@@ -409,6 +416,13 @@ function initializeSigningKeyBackupSetting() {
     }
 
 
+    originalSigningKeyBackupSetting =
+        setting;
+
+    pendingSigningKeyBackupSetting =
+        setting;
+
+
     updateSigningKeyBackupSettingUI();
 
 }
@@ -421,9 +435,8 @@ function initializeSigningKeyBackupSetting() {
 function updateSigningKeyBackupSettingUI() {
 
     const setting =
-        sessionStorage.getItem(
-            "signingKeyBackupSetting"
-        ) || "ask_each_time";
+        pendingSigningKeyBackupSetting ||
+        "ask_each_time";
 
 
     const label =
@@ -470,11 +483,6 @@ function updateSigningKeyBackupSettingUI() {
                     "data-setting"
                 );
 
-            const check =
-                option.querySelector(
-                    ".signing-key-popup-check"
-                );
-
 
             if (
                 optionSetting === setting
@@ -484,14 +492,6 @@ function updateSigningKeyBackupSettingUI() {
                     "selected"
                 );
 
-
-                if (check) {
-
-                    check.style.visibility =
-                        "visible";
-
-                }
-
             }
             else {
 
@@ -499,18 +499,13 @@ function updateSigningKeyBackupSettingUI() {
                     "selected"
                 );
 
-
-                if (check) {
-
-                    check.style.visibility =
-                        "hidden";
-
-                }
-
             }
 
         }
     );
+
+
+    updateSigningKeyBackupActions();
 
 }
 
@@ -530,6 +525,19 @@ function openSigningKeyBackupPopup() {
     if (!popup) {
         return;
     }
+
+
+    const savedSetting =
+        sessionStorage.getItem(
+            "signingKeyBackupSetting"
+        ) || "ask_each_time";
+
+
+    originalSigningKeyBackupSetting =
+        savedSetting;
+
+    pendingSigningKeyBackupSetting =
+        savedSetting;
 
 
     updateSigningKeyBackupSettingUI();
@@ -630,16 +638,96 @@ function handleSigningKeyBackupSetting(
     }
 
 
-    sessionStorage.setItem(
-        "signingKeyBackupSetting",
-        setting
-    );
+    pendingSigningKeyBackupSetting =
+        setting;
 
 
     updateSigningKeyBackupSettingUI();
 
 
     closeSigningKeyBackupPopup();
+
+}
+
+
+/* =================================================
+   UPDATE SIGNING KEY BACKUP ACTIONS
+   ================================================= */
+
+function updateSigningKeyBackupActions() {
+
+    const actions =
+        document.getElementById(
+            "signingKeyBackupActions"
+        );
+
+
+    if (!actions) {
+        return;
+    }
+
+
+    if (
+        pendingSigningKeyBackupSetting !==
+        originalSigningKeyBackupSetting
+    ) {
+
+        actions.style.display =
+            "flex";
+
+    }
+    else {
+
+        actions.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =================================================
+   CANCEL SIGNING KEY BACKUP SETTING
+   ================================================= */
+
+function cancelSigningKeyBackupSetting() {
+
+    pendingSigningKeyBackupSetting =
+        originalSigningKeyBackupSetting;
+
+
+    updateSigningKeyBackupSettingUI();
+
+}
+
+
+/* =================================================
+   SAVE SIGNING KEY BACKUP SETTING
+   ================================================= */
+
+function saveSigningKeyBackupSetting() {
+
+    if (
+        pendingSigningKeyBackupSetting ===
+        originalSigningKeyBackupSetting
+    ) {
+
+        return;
+
+    }
+
+
+    sessionStorage.setItem(
+        "signingKeyBackupSetting",
+        pendingSigningKeyBackupSetting
+    );
+
+
+    originalSigningKeyBackupSetting =
+        pendingSigningKeyBackupSetting;
+
+
+    updateSigningKeyBackupSettingUI();
 
 }
 
