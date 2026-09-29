@@ -289,6 +289,71 @@
 
 
             <!-- =================================================
+                 SIGNING KEY SETTINGS
+                 ================================================= -->
+
+            <section
+                class="dashboard-card settings-card signing-key-settings-card"
+            >
+
+                <div class="settings-card-header">
+
+                    <h2>
+                        Signing Key Settings
+                    </h2>
+
+                </div>
+
+
+                <div class="settings-list">
+
+                    <div class="settings-setting-row">
+
+                        <div class="settings-item-content">
+
+                            <div class="settings-item-title">
+                                Entity Signing Key Backup
+                            </div>
+
+                            <div class="settings-item-description">
+                                Choose how your entity signing keys are backed up and recovered.
+                            </div>
+
+                        </div>
+
+
+                        <div class="settings-select-wrapper">
+
+                            <select
+                                id="signingKeyBackupSetting"
+                                class="settings-select"
+                                onchange="handleSigningKeyBackupSetting(this.value)"
+                            >
+
+                                <option value="automatic">
+                                    Back Up Automatically
+                                </option>
+
+                                <option value="self_managed">
+                                    I’ll Manage My Keys
+                                </option>
+
+                                <option value="ask_each_time">
+                                    Ask Me Each Time
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
                  ACCOUNT DETAILS CARD
                  ================================================= -->
 
@@ -321,9 +386,6 @@
                     onsubmit="saveAccountDetails(event)"
                 >
 
-
-                    <!-- First Name -->
-
                     <div class="settings-field">
 
                         <label
@@ -342,8 +404,6 @@
 
                     </div>
 
-
-                    <!-- Last Name -->
 
                     <div class="settings-field">
 
@@ -364,8 +424,6 @@
                     </div>
 
 
-                    <!-- Email -->
-
                     <div class="settings-field">
 
                         <label
@@ -384,8 +442,6 @@
 
                     </div>
 
-
-                    <!-- Actions -->
 
                     <div class="settings-form-actions">
 
@@ -445,9 +501,6 @@
                     onsubmit="saveAccountPassword(event)"
                 >
 
-
-                    <!-- Current Password -->
-
                     <div class="settings-field">
 
                         <label
@@ -466,8 +519,6 @@
 
                     </div>
 
-
-                    <!-- New Password -->
 
                     <div class="settings-field">
 
@@ -488,8 +539,6 @@
                     </div>
 
 
-                    <!-- Confirm Password -->
-
                     <div class="settings-field">
 
                         <label
@@ -508,8 +557,6 @@
 
                     </div>
 
-
-                    <!-- Actions -->
 
                     <div class="settings-form-actions">
 

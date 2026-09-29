@@ -193,6 +193,93 @@
 
 
 /* =================================================
+   SIGNING KEY SETTINGS
+   ================================================= */
+
+.signing-key-settings-card {
+
+    margin-top: 20px;
+
+}
+
+
+.settings-setting-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    width: 100%;
+
+    padding: 22px 28px;
+
+    box-sizing: border-box;
+
+}
+
+
+/* =================================================
+   SIGNING KEY SELECT
+   ================================================= */
+
+.settings-select-wrapper {
+
+    flex-shrink: 0;
+
+}
+
+
+.settings-select {
+
+    min-width: 190px;
+
+    padding: 9px 32px 9px 11px;
+
+    border: 1px solid #d6d9de;
+
+    border-radius: 6px;
+
+    background-color: #ffffff;
+
+    color: #374151;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    line-height: 20px;
+
+    cursor: pointer;
+
+    outline: none;
+
+}
+
+
+.settings-select:hover {
+
+    border-color: #b9bec7;
+
+}
+
+
+.settings-select:focus {
+
+    border-color: #6b7280;
+
+    box-shadow:
+        0 0 0 3px rgba(107, 114, 128, 0.10);
+
+}
+
+
+/* =================================================
    SETTINGS FORM CARD
    ================================================= */
 
@@ -418,6 +505,37 @@
     .settings-item-description {
 
         max-width: 95%;
+
+    }
+
+
+    .settings-setting-row {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 14px;
+
+        padding: 20px;
+
+    }
+
+
+    .settings-select-wrapper {
+
+        width: 100%;
+
+    }
+
+
+    .settings-select {
+
+        width: 100%;
+
+        min-width: 0;
+
+        box-sizing: border-box;
 
     }
 
