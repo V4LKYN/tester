@@ -213,11 +213,12 @@
 
 
             <button
+                id="sourcesNavigation"
                 class="navigation-item"
                 type="button"
-                onclick="showComingSoon('API')"
+                onclick="setDashboardTab('sources')"
             >
-                API
+                Sources
             </button>
 
         </nav>
@@ -533,6 +534,66 @@
             </div>
 
 
+            <!-- =================================================
+                 SOURCES
+                 ================================================= -->
+
+            <div
+                id="sourcesContent"
+                class="dashboard-tab-content"
+                style="display: none;"
+            >
+
+                <section class="dashboard-card entities-card">
+
+
+                    <!-- Source Header -->
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2>
+                                Sources
+                            </h2>
+
+                            <p>
+                                Manage the sources associated with your entities.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Empty State -->
+
+                    <div class="entities-empty-state">
+
+                        <h3>
+                            You have not created any entities
+                        </h3>
+
+                        <p>
+                            Create an entity to begin configuring your merchant account.
+                        </p>
+
+                        <button
+                            class="copy-button"
+                            type="button"
+                            onclick="showComingSoon('Configure Entity')"
+                        >
+                            Configure Entity
+                        </button>
+
+                    </div>
+
+
+                </section>
+
+            </div>
+
+
         </section>
 
     </main>
@@ -626,6 +687,11 @@ function setDashboardTab(tab) {
             "endpointsContent"
         );
 
+    const sourcesContent =
+        document.getElementById(
+            "sourcesContent"
+        );
+
     const overviewNavigation =
         document.getElementById(
             "overviewNavigation"
@@ -641,14 +707,21 @@ function setDashboardTab(tab) {
             "endpointsNavigation"
         );
 
+    const sourcesNavigation =
+        document.getElementById(
+            "sourcesNavigation"
+        );
+
 
     if (
         !overviewContent ||
         !entitiesContent ||
         !endpointsContent ||
+        !sourcesContent ||
         !overviewNavigation ||
         !entitiesNavigation ||
-        !endpointsNavigation
+        !endpointsNavigation ||
+        !sourcesNavigation
     ) {
 
         return;
@@ -667,6 +740,9 @@ function setDashboardTab(tab) {
         endpointsContent.style.display =
             "none";
 
+        sourcesContent.style.display =
+            "none";
+
         overviewNavigation.classList.remove(
             "active"
         );
@@ -676,6 +752,10 @@ function setDashboardTab(tab) {
         );
 
         endpointsNavigation.classList.remove(
+            "active"
+        );
+
+        sourcesNavigation.classList.remove(
             "active"
         );
 
@@ -695,6 +775,9 @@ function setDashboardTab(tab) {
         endpointsContent.style.display =
             "block";
 
+        sourcesContent.style.display =
+            "none";
+
         overviewNavigation.classList.remove(
             "active"
         );
@@ -704,6 +787,45 @@ function setDashboardTab(tab) {
         );
 
         endpointsNavigation.classList.add(
+            "active"
+        );
+
+        sourcesNavigation.classList.remove(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    if (tab === "sources") {
+
+        overviewContent.style.display =
+            "none";
+
+        entitiesContent.style.display =
+            "none";
+
+        endpointsContent.style.display =
+            "none";
+
+        sourcesContent.style.display =
+            "block";
+
+        overviewNavigation.classList.remove(
+            "active"
+        );
+
+        entitiesNavigation.classList.remove(
+            "active"
+        );
+
+        endpointsNavigation.classList.remove(
+            "active"
+        );
+
+        sourcesNavigation.classList.add(
             "active"
         );
 
@@ -721,6 +843,9 @@ function setDashboardTab(tab) {
     endpointsContent.style.display =
         "none";
 
+    sourcesContent.style.display =
+        "none";
+
     overviewNavigation.classList.add(
         "active"
     );
@@ -730,6 +855,10 @@ function setDashboardTab(tab) {
     );
 
     endpointsNavigation.classList.remove(
+        "active"
+    );
+
+    sourcesNavigation.classList.remove(
         "active"
     );
 
