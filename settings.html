@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -12,140 +9,98 @@
 
     <title>Account Settings</title>
 
-    <link
-        rel="stylesheet"
-        href="dashboardstyle.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="settings.css"
-    >
-
+    <link rel="stylesheet" href="dashboardstyle.css">
+    <link rel="stylesheet" href="settings.css">
 </head>
-
 
 <body>
 
-<div class="dashboard-page">
-
-
-    <!-- =================================================
-         HEADER
-         ================================================= -->
-
     <header class="dashboard-header">
 
-        <div class="brand">
-
-            <div class="brand-name">
-                Merchant Portal Development
-            </div>
-
-        </div>
-
-
-        <!-- ACCOUNT MENU -->
-
-        <div class="account-container">
-
+        <div class="dashboard-header-left">
             <button
-                id="accountButton"
-                class="account-button"
+                id="settingsBackButton"
+                class="dashboard-back-button"
                 type="button"
-                onclick="toggleAccountMenu()"
+                onclick="handleSettingsBack()"
             >
-
-                <span
-                    class="account-initial"
-                    aria-hidden="true"
+                <svg
+                    class="dashboard-back-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                 >
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        width="18"
-                        height="18"
-                        fill="none"
+                    <path
+                        d="M15 18L9 12L15 6"
                         stroke="currentColor"
-                        stroke-width="1.8"
+                        stroke-width="2"
                         stroke-linecap="round"
                         stroke-linejoin="round"
-                    >
+                    />
+                </svg>
 
-                        <circle
-                            cx="12"
-                            cy="8"
-                            r="3.5"
-                        ></circle>
-
-                        <path
-                            d="M5.5 20c.8-3.4 3.2-5.5 6.5-5.5s5.7 2.1 6.5 5.5"
-                        ></path>
-
-                    </svg>
-
-                </span>
-
-
-                <span
-                    id="accountEmail"
-                    class="account-email"
-                >
-                    —
-                </span>
-
-
-                <span class="account-chevron">
-                    ▾
-                </span>
-
+                <span id="settingsBackText">Dashboard</span>
             </button>
+        </div>
 
+        <div class="dashboard-header-right">
 
-            <div
-                id="accountMenu"
-                class="account-menu"
-            >
+            <div class="dashboard-account-container">
 
-                <div class="account-menu-header">
-
-                    <div class="account-menu-label">
-                        Signed in as
-                    </div>
-
-                    <div
-                        id="menuEmail"
-                        class="account-menu-email"
+                <button
+                    id="accountButton"
+                    class="dashboard-account-button"
+                    type="button"
+                    onclick="toggleAccountMenu()"
+                >
+                    <span
+                        id="accountButtonName"
+                        class="dashboard-account-name"
                     >
-                        —
-                    </div>
+                        Account
+                    </span>
 
-                    <div
-                        id="menuMerchantId"
-                        class="account-menu-merchant-id"
+                    <svg
+                        class="dashboard-account-chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                     >
-                        —
-                    </div>
+                        <path
+                            d="M6 9L12 15L18 9"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </button>
 
+                <div
+                    id="accountMenu"
+                    class="dashboard-account-menu"
+                >
+                    <button
+                        type="button"
+                        onclick="goToSettings()"
+                    >
+                        Account Settings
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="openDeveloperResponse()"
+                    >
+                        Developer
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="logout()"
+                    >
+                        Log Out
+                    </button>
                 </div>
-
-
-                <button
-                    class="account-menu-item"
-                    type="button"
-                    onclick="goToSettings()"
-                >
-                    Account Settings
-                </button>
-
-
-                <button
-                    class="account-menu-item"
-                    type="button"
-                    onclick="logout()"
-                >
-                    Log Out
-                </button>
 
             </div>
 
@@ -154,269 +109,203 @@
     </header>
 
 
-    <!-- =================================================
-         MAIN
-         ================================================= -->
+    <main class="settings-page">
 
-    <main class="dashboard-main">
+        <!-- ========================= -->
+        <!-- MAIN ACCOUNT SETTINGS VIEW -->
+        <!-- ========================= -->
 
-        <section class="dashboard-content">
+        <section
+            id="accountSettingsView"
+            class="settings-view"
+        >
 
-
-            <!-- =================================================
-                 BACK BUTTON
-                 ================================================= -->
-
-            <button
-                id="settingsBackButton"
-                class="settings-back"
-                type="button"
-                onclick="handleSettingsBack()"
-            >
-
-                <svg
-                    class="settings-back-arrow"
-                    viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                >
-
-                    <path
-                        d="M15 18l-6-6 6-6"
-                    ></path>
-
-                </svg>
-
-
-                <span id="settingsBackLabel">
-                    Dashboard
-                </span>
-
-            </button>
-
-
-            <!-- =================================================
-                 ACCOUNT SETTINGS
-                 ================================================= -->
-
-            <section
-                id="settingsOptionsCard"
-                class="dashboard-card settings-card"
-            >
+            <div class="settings-main-card">
 
                 <div class="settings-card-header">
+                    <h1>Account Settings</h1>
 
-                    <h2>
-                        Account Settings
-                    </h2>
-
+                    <p>
+                        Manage your account information, password, and security settings.
+                    </p>
                 </div>
 
 
-                <div class="settings-list">
-
-
-                    <!-- CHANGE ACCOUNT DETAILS -->
+                <div class="settings-card-options">
 
                     <button
-                        class="settings-item"
+                        class="settings-main-option"
                         type="button"
                         onclick="openAccountDetails()"
                     >
+                        <div class="settings-main-option-content">
+                            <h2>Change Account Details</h2>
 
-                        <div class="settings-item-content">
-
-                            <div class="settings-item-title">
-                                Change Account Details
-                            </div>
-
-                            <div class="settings-item-description">
+                            <p>
                                 Update your name, email address, and other account information.
-                            </div>
-
+                            </p>
                         </div>
 
-
-                        <span
-                            class="settings-item-arrow"
-                            aria-hidden="true"
+                        <svg
+                            class="settings-main-option-chevron"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            ›
-                        </span>
-
+                            <path
+                                d="M9 6L15 12L9 18"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
                     </button>
 
 
-                    <!-- CHANGE ACCOUNT PASSWORD -->
-
                     <button
-                        class="settings-item"
+                        class="settings-main-option"
                         type="button"
                         onclick="openAccountPassword()"
                     >
+                        <div class="settings-main-option-content">
+                            <h2>Change Account Password</h2>
 
-                        <div class="settings-item-content">
-
-                            <div class="settings-item-title">
-                                Change Account Password
-                            </div>
-
-                            <div class="settings-item-description">
+                            <p>
                                 Update your account password and security credentials.
-                            </div>
-
+                            </p>
                         </div>
 
-
-                        <span
-                            class="settings-item-arrow"
-                            aria-hidden="true"
+                        <svg
+                            class="settings-main-option-chevron"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            ›
-                        </span>
-
+                            <path
+                                d="M9 6L15 12L9 18"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
                     </button>
 
 
-                    <!-- KEY SETTINGS -->
-
                     <button
-                        class="settings-item"
+                        class="settings-main-option"
                         type="button"
                         onclick="openSigningKeySettings()"
                     >
+                        <div class="settings-main-option-content">
+                            <h2>Key Backup Settings</h2>
 
-                        <div class="settings-item-content">
-
-                            <div class="settings-item-title">
-                                Key Backup Settings
-                            </div>
-
-                            <div class="settings-item-description">
+                            <p>
                                 Manage your key backup preferences and recovery settings.
-                            </div>
-
+                            </p>
                         </div>
 
-
-                        <span
-                            class="settings-item-arrow"
-                            aria-hidden="true"
+                        <svg
+                            class="settings-main-option-chevron"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
                         >
-                            ›
-                        </span>
-
+                            <path
+                                d="M9 6L15 12L9 18"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
                     </button>
 
                 </div>
 
-            </section>
+            </div>
+
+        </section>
 
 
-            <!-- =================================================
-                 ACCOUNT DETAILS CARD
-                 ================================================= -->
+        <!-- ========================= -->
+        <!-- ACCOUNT DETAILS VIEW -->
+        <!-- ========================= -->
 
-            <section
-                id="accountDetailsCard"
-                class="dashboard-card settings-form-card"
-                style="display: none;"
-            >
+        <section
+            id="accountDetailsView"
+            class="settings-view settings-subview hidden"
+        >
 
-                <div class="settings-form-header">
+            <div class="settings-sub-card">
 
-                    <div>
+                <div class="settings-sub-card-header">
+                    <h1>Account Details</h1>
 
-                        <h2>
-                            Account Details
-                        </h2>
-
-                        <p>
-                            Update the personal information associated with your merchant account.
-                        </p>
-
-                    </div>
-
+                    <p>
+                        Update your account information.
+                    </p>
                 </div>
 
 
                 <form
                     id="accountDetailsForm"
-                    class="settings-form"
                     onsubmit="saveAccountDetails(event)"
                 >
 
-                    <div class="settings-field">
-
-                        <label for="firstNameInput">
+                    <div class="settings-form-group">
+                        <label for="settingsFirstName">
                             First Name
                         </label>
 
                         <input
-                            id="firstNameInput"
-                            name="first_name"
+                            id="settingsFirstName"
                             type="text"
                             autocomplete="given-name"
-                            required
                         >
-
                     </div>
 
 
-                    <div class="settings-field">
-
-                        <label for="lastNameInput">
+                    <div class="settings-form-group">
+                        <label for="settingsLastName">
                             Last Name
                         </label>
 
                         <input
-                            id="lastNameInput"
-                            name="last_name"
+                            id="settingsLastName"
                             type="text"
                             autocomplete="family-name"
-                            required
                         >
-
                     </div>
 
 
-                    <div class="settings-field">
-
-                        <label for="emailInput">
+                    <div class="settings-form-group">
+                        <label for="settingsEmail">
                             Email Address
                         </label>
 
                         <input
-                            id="emailInput"
-                            name="email"
+                            id="settingsEmail"
                             type="email"
                             autocomplete="email"
-                            required
                         >
-
                     </div>
 
 
                     <div class="settings-form-actions">
 
                         <button
-                            class="settings-secondary-button"
                             type="button"
+                            class="settings-secondary-button"
                             onclick="closeSettingsForm()"
                         >
                             Cancel
                         </button>
 
-
                         <button
-                            class="settings-primary-button"
                             type="submit"
+                            class="settings-primary-button"
                         >
                             Save Changes
                         </button>
@@ -425,149 +314,122 @@
 
                 </form>
 
-            </section>
+            </div>
+
+        </section>
 
 
-            <!-- =================================================
-                 ACCOUNT PASSWORD CARD
-                 ================================================= -->
+        <!-- ========================= -->
+        <!-- ACCOUNT PASSWORD VIEW -->
+        <!-- ========================= -->
 
-            <section
-                id="accountPasswordCard"
-                class="dashboard-card settings-form-card"
-                style="display: none;"
-            >
+        <section
+            id="accountPasswordView"
+            class="settings-view settings-subview hidden"
+        >
 
-                <div class="settings-form-header">
+            <div class="settings-sub-card">
 
-                    <div>
+                <div class="settings-sub-card-header">
+                    <h1>Account Password</h1>
 
-                        <h2>
-                            Change Account Password
-                        </h2>
-
-                        <p>
-                            Update the password used to access your merchant account.
-                        </p>
-
-                    </div>
-
+                    <p>
+                        Update your account password and security credentials.
+                    </p>
                 </div>
 
 
                 <form
                     id="accountPasswordForm"
-                    class="settings-form"
                     onsubmit="saveAccountPassword(event)"
                 >
 
-                    <div class="settings-field">
-
-                        <label for="currentPasswordInput">
+                    <div class="settings-form-group">
+                        <label for="currentPassword">
                             Current Password
                         </label>
 
                         <input
-                            id="currentPasswordInput"
-                            name="current_password"
+                            id="currentPassword"
                             type="password"
                             autocomplete="current-password"
-                            required
                         >
-
                     </div>
 
 
-                    <div class="settings-field">
-
-                        <label for="newPasswordInput">
+                    <div class="settings-form-group">
+                        <label for="newPassword">
                             New Password
                         </label>
 
                         <input
-                            id="newPasswordInput"
-                            name="new_password"
+                            id="newPassword"
                             type="password"
                             autocomplete="new-password"
-                            required
                         >
-
                     </div>
 
 
-                    <div class="settings-field">
-
-                        <label for="confirmPasswordInput">
+                    <div class="settings-form-group">
+                        <label for="confirmPassword">
                             Confirm New Password
                         </label>
 
                         <input
-                            id="confirmPasswordInput"
-                            name="confirm_password"
+                            id="confirmPassword"
                             type="password"
                             autocomplete="new-password"
-                            required
                         >
-
                     </div>
 
 
                     <div class="settings-form-actions">
 
                         <button
-                            class="settings-secondary-button"
                             type="button"
+                            class="settings-secondary-button"
                             onclick="closeSettingsForm()"
                         >
                             Cancel
                         </button>
 
-
                         <button
-                            class="settings-primary-button"
                             type="submit"
+                            class="settings-primary-button"
                         >
-                            Change Password
+                            Update Password
                         </button>
 
                     </div>
 
                 </form>
 
-            </section>
+            </div>
+
+        </section>
 
 
-            <!-- =================================================
-                 KEY SETTINGS CARD
-                 ================================================= -->
+        <!-- ========================= -->
+        <!-- KEY BACKUP SETTINGS VIEW -->
+        <!-- ========================= -->
 
-            <section
-                id="signingKeySettingsCard"
-                class="dashboard-card settings-form-card"
-                style="display: none;"
-            >
+        <section
+            id="signingKeySettingsView"
+            class="settings-view settings-subview hidden"
+        >
 
-                <div class="settings-form-header">
+            <div class="settings-sub-card">
 
-                    <div>
+                <div class="settings-sub-card-header">
+                    <h1>Key Backup Settings</h1>
 
-                        <h2>
-                            Key Backup Settings
-                        </h2>
-
-                        <p>
-                            Manage how your keys are backed up and recovered.
-                        </p>
-
-                    </div>
-
+                    <p>
+                        Manage how your keys are backed up and recovered.
+                    </p>
                 </div>
 
 
-                <div class="settings-list">
-
-
-                    <!-- ENTITY SIGNING KEY BACKUP -->
+                <div class="settings-settings-list">
 
                     <button
                         id="signingKeyBackupButton"
@@ -576,16 +438,14 @@
                         onclick="openSigningKeyBackupPopup()"
                     >
 
-                        <div class="settings-item-content">
-
-                            <div class="settings-item-title">
+                        <div class="settings-setting-content">
+                            <h2>
                                 Entity Signing Key Backup
-                            </div>
+                            </h2>
 
-                            <div class="settings-item-description">
+                            <p>
                                 Choose how your entity signing keys are backed up and recovered.
-                            </div>
-
+                            </p>
                         </div>
 
 
@@ -598,24 +458,19 @@
                                 Ask Me Each Time
                             </span>
 
-
                             <svg
                                 class="settings-setting-chevron"
                                 viewBox="0 0 24 24"
-                                width="18"
-                                height="18"
                                 fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.8"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg"
                             >
-
                                 <path
-                                    d="M9 6l6 6-6 6"
-                                ></path>
-
+                                    d="M9 6L15 12L9 18"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
                             </svg>
 
                         </div>
@@ -624,235 +479,173 @@
 
                 </div>
 
-            </section>
+            </div>
 
         </section>
 
     </main>
 
 
-    <!-- =================================================
-         DEVELOPER BUTTON
-         ================================================= -->
-
-    <button
-        id="developerButton"
-        class="developer-button"
-        type="button"
-        onclick="openDeveloperResponse()"
-    >
-        Developer
-    </button>
-
-</div>
-
-
-<!-- =================================================
-     SIGNING KEY BACKUP POPUP
-     ================================================= -->
-
-<div
-    id="signingKeyBackupPopup"
-    class="settings-popup-overlay"
-    onclick="handleSigningKeyBackupPopupClick(event)"
->
+    <!-- ========================= -->
+    <!-- ENTITY SIGNING KEY POPUP -->
+    <!-- ========================= -->
 
     <div
-        class="settings-popup"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="signingKeyBackupPopupTitle"
+        id="signingKeyBackupPopup"
+        class="settings-popup-overlay hidden"
+        onclick="handleSigningKeyBackupPopupClick(event)"
     >
 
-        <div class="settings-popup-header">
+        <div class="settings-popup">
 
-            <div>
+            <div class="settings-popup-header">
 
-                <h2 id="signingKeyBackupPopupTitle">
-                    Entity Signing Key Backup
-                </h2>
+                <div>
+                    <h2>Entity Signing Key Backup</h2>
 
-                <p>
-                    Choose how your entity signing keys are backed up and recovered.
-                </p>
+                    <p>
+                        Choose how your entity signing keys are backed up and recovered.
+                    </p>
+                </div>
+
+                <button
+                    class="settings-popup-close"
+                    type="button"
+                    aria-label="Close"
+                    onclick="closeSigningKeyBackupPopup()"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M6 6L18 18M18 6L6 18"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                    </svg>
+                </button>
 
             </div>
 
 
-            <button
-                class="settings-popup-close"
-                type="button"
-                onclick="closeSigningKeyBackupPopup()"
-                aria-label="Close"
-            >
-                ×
-            </button>
+            <div class="settings-popup-options">
 
-        </div>
-
-
-        <div class="settings-popup-options">
-
-
-            <!-- =================================================
-                 AUTOMATIC
-                 ================================================= -->
-
-            <button
-                id="signingKeyOptionAutomatic"
-                class="settings-popup-option"
-                type="button"
-                onclick="selectSigningKeyBackupSetting('automatic')"
-            >
-
-                <span
-                    class="settings-popup-option-radio"
-                    aria-hidden="true"
+                <button
+                    class="settings-popup-option"
+                    type="button"
+                    data-value="automatic"
+                    onclick="selectSigningKeyBackupSetting('automatic')"
                 >
-                    <span></span>
-                </span>
 
+                    <span class="settings-popup-radio"></span>
 
-                <span class="settings-popup-option-content">
+                    <span class="settings-popup-option-content">
 
-                    <span class="settings-popup-option-title">
-                        Back Up Automatically
+                        <strong>Back Up Automatically</strong>
+
+                        <span>
+                            Your entity signing keys are backed up automatically according to the system's backup process. This is intended for merchants who want backup management handled for them.
+                        </span>
+
                     </span>
 
-                    <span class="settings-popup-option-description">
-                        Your entity signing keys are backed up automatically according to the system's backup process. This is intended for merchants who want backup management handled for them.
-                    </span>
-
-                </span>
-
-            </button>
+                </button>
 
 
-            <!-- =================================================
-                 SELF MANAGED
-                 ================================================= -->
-
-            <button
-                id="signingKeyOptionSelfManaged"
-                class="settings-popup-option"
-                type="button"
-                onclick="selectSigningKeyBackupSetting('self_managed')"
-            >
-
-                <span
-                    class="settings-popup-option-radio"
-                    aria-hidden="true"
+                <button
+                    class="settings-popup-option"
+                    type="button"
+                    data-value="manual"
+                    onclick="selectSigningKeyBackupSetting('manual')"
                 >
-                    <span></span>
-                </span>
 
+                    <span class="settings-popup-radio"></span>
 
-                <span class="settings-popup-option-content">
+                    <span class="settings-popup-option-content">
 
-                    <span class="settings-popup-option-title">
-                        I’ll Manage My Keys
+                        <strong>I’ll Manage My Keys</strong>
+
+                        <span>
+                            You are responsible for maintaining your own backups and recovery copies of your entity signing keys. The system does not automatically manage those backups for you.
+                        </span>
+
                     </span>
 
-                    <span class="settings-popup-option-description">
-                        You are responsible for maintaining your own backups and recovery copies of your entity signing keys. The system does not automatically manage those backups for you.
-                    </span>
-
-                </span>
-
-            </button>
+                </button>
 
 
-            <!-- =================================================
-                 ASK EACH TIME
-                 ================================================= -->
-
-            <button
-                id="signingKeyOptionAskEachTime"
-                class="settings-popup-option"
-                type="button"
-                onclick="selectSigningKeyBackupSetting('ask_each_time')"
-            >
-
-                <span
-                    class="settings-popup-option-radio"
-                    aria-hidden="true"
+                <button
+                    class="settings-popup-option"
+                    type="button"
+                    data-value="ask"
+                    onclick="selectSigningKeyBackupSetting('ask')"
                 >
-                    <span></span>
-                </span>
 
+                    <span class="settings-popup-radio"></span>
 
-                <span class="settings-popup-option-content">
+                    <span class="settings-popup-option-content">
 
-                    <span class="settings-popup-option-title">
-                        Ask Me Each Time
+                        <strong>Ask Me Each Time</strong>
+
+                        <span>
+                            The system asks you how to handle the signing key backup when a backup or recovery decision is required. No permanent backup preference is applied.
+                        </span>
+
                     </span>
 
-                    <span class="settings-popup-option-description">
-                        The system asks you how to handle the signing key backup when a backup or recovery decision is required. No permanent backup preference is applied.
-                    </span>
+                </button>
 
-                </span>
-
-            </button>
+            </div>
 
         </div>
 
     </div>
 
-</div>
 
-
-<!-- =================================================
-     DEVELOPER RESPONSE MODAL
-     ================================================= -->
-
-<div
-    id="developerModal"
-    class="developer-modal"
-    onclick="closeDeveloperResponse(event)"
->
+    <!-- ========================= -->
+    <!-- DEVELOPER MODAL -->
+    <!-- ========================= -->
 
     <div
-        class="developer-modal-content"
-        onclick="event.stopPropagation()"
+        id="developerModal"
+        class="dashboard-modal-overlay hidden"
     >
 
-        <div class="developer-modal-header">
+        <div class="dashboard-modal">
 
-            <h2>
-                Developer Response
-            </h2>
+            <div class="dashboard-modal-header">
 
+                <h2>Developer Response</h2>
 
-            <button
-                class="developer-close"
-                type="button"
-                onclick="closeDeveloperResponse()"
-                aria-label="Close"
-            >
-                ×
-            </button>
+                <button
+                    type="button"
+                    class="dashboard-modal-close"
+                    onclick="closeDeveloperResponse()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div
+                id="developerMeta"
+                class="dashboard-developer-meta"
+            ></div>
+
+            <pre
+                id="developerResponseText"
+                class="dashboard-developer-response"
+            ></pre>
 
         </div>
-
-
-        <div
-            id="developerMeta"
-            class="developer-meta"
-        >
-            No request information.
-        </div>
-
-
-        <pre id="developerResponseText">No response yet.</pre>
 
     </div>
 
-</div>
 
-
-<script src="settings.js"></script>
+    <script src="settings.js"></script>
 
 </body>
-
 </html>
