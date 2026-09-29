@@ -105,6 +105,16 @@ function initializeDashboard() {
 
 
     /*
+     * Account header email.
+     */
+
+    setText(
+        "accountEmail",
+        displayEmail
+    );
+
+
+    /*
      * Account menu email.
      */
 
@@ -139,7 +149,8 @@ function initializeDashboard() {
      */
 
     setText(
-        "welcomeFirstName",
+        "welcomeName",
+        "Welcome, " +
         displayFirstName
     );
 
@@ -149,7 +160,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "accountType",
+        "configurationAccountType",
         displayAccountType
     );
 
@@ -174,7 +185,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "entityCount",
+        "configurationEntityCount",
         "0 configured"
     );
 
@@ -184,7 +195,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "accountUpdatedAt",
+        "configurationUpdatedAt",
         formatDateTime(
             updatedAt
         )
@@ -196,7 +207,7 @@ function initializeDashboard() {
      */
 
     setText(
-        "accountCreatedAt",
+        "configurationCreatedAt",
         formatDateTime(
             createdAt
         )
@@ -297,6 +308,145 @@ function formatAccountStatus(
 
 
 /* ==============================
+   Dashboard Tabs
+   ============================== */
+
+function showOverview() {
+
+    setDashboardTab(
+        "overview"
+    );
+
+}
+
+
+function showEntities() {
+
+    setDashboardTab(
+        "entities"
+    );
+
+}
+
+
+function showEndpoints() {
+
+    setDashboardTab(
+        "endpoints"
+    );
+
+}
+
+
+function setDashboardTab(tab) {
+
+    const overviewContent =
+        document.getElementById(
+            "overviewContent"
+        );
+
+    const entitiesContent =
+        document.getElementById(
+            "entitiesContent"
+        );
+
+    const endpointsContent =
+        document.getElementById(
+            "endpointsContent"
+        );
+
+    const overviewNavigation =
+        document.getElementById(
+            "overviewNavigation"
+        );
+
+    const entitiesNavigation =
+        document.getElementById(
+            "entitiesNavigation"
+        );
+
+    const endpointsNavigation =
+        document.getElementById(
+            "endpointsNavigation"
+        );
+
+
+    if (
+        !overviewContent ||
+        !entitiesContent ||
+        !endpointsContent ||
+        !overviewNavigation ||
+        !entitiesNavigation ||
+        !endpointsNavigation
+    ) {
+
+        return;
+
+    }
+
+
+    overviewContent.style.display =
+        "none";
+
+    entitiesContent.style.display =
+        "none";
+
+    endpointsContent.style.display =
+        "none";
+
+
+    overviewNavigation.classList.remove(
+        "active"
+    );
+
+    entitiesNavigation.classList.remove(
+        "active"
+    );
+
+    endpointsNavigation.classList.remove(
+        "active"
+    );
+
+
+    if (tab === "entities") {
+
+        entitiesContent.style.display =
+            "block";
+
+        entitiesNavigation.classList.add(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    if (tab === "endpoints") {
+
+        endpointsContent.style.display =
+            "block";
+
+        endpointsNavigation.classList.add(
+            "active"
+        );
+
+        return;
+
+    }
+
+
+    overviewContent.style.display =
+        "block";
+
+    overviewNavigation.classList.add(
+        "active"
+    );
+
+}
+
+
+/* ==============================
    Page Navigation
    ============================== */
 
@@ -375,7 +525,7 @@ function handleDocumentClick(
 
     const container =
         document.querySelector(
-            ".account-menu-container"
+            ".account-container"
         );
 
 
@@ -551,7 +701,7 @@ function showComingSoon(
    Developer Modal
    ============================== */
 
-function openDeveloperModal() {
+function openDeveloperResponse() {
 
     const modal =
         document.getElementById(
@@ -571,7 +721,7 @@ function openDeveloperModal() {
 }
 
 
-function closeDeveloperModal(
+function closeDeveloperResponse(
     event
 ) {
 
@@ -624,7 +774,7 @@ document.addEventListener(
 
         closeAccountMenu();
 
-        closeDeveloperModal();
+        closeDeveloperResponse();
 
     }
 );
