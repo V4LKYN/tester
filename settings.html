@@ -745,6 +745,10 @@
         <div class="signing-key-popup-options">
 
 
+            <!-- =================================================
+                 BACK UP AUTOMATICALLY
+                 ================================================= -->
+
             <button
                 class="signing-key-popup-option"
                 type="button"
@@ -752,9 +756,18 @@
                 onclick="handleSigningKeyBackupSetting('automatic')"
             >
 
-                <span>
-                    Back Up Automatically
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        Back Up Automatically
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        Your signing keys are backed up automatically. You can use the configured recovery method if your keys need to be restored.
+                    </span>
+
                 </span>
+
 
                 <span class="signing-key-popup-check">
                     ✓
@@ -762,6 +775,10 @@
 
             </button>
 
+
+            <!-- =================================================
+                 I’LL MANAGE MY KEYS
+                 ================================================= -->
 
             <button
                 class="signing-key-popup-option"
@@ -770,9 +787,18 @@
                 onclick="handleSigningKeyBackupSetting('self_managed')"
             >
 
-                <span>
-                    I’ll Manage My Keys
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        I’ll Manage My Keys
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        You are responsible for securely storing and recovering your signing keys. The system will not automatically back them up.
+                    </span>
+
                 </span>
+
 
                 <span class="signing-key-popup-check">
                     ✓
@@ -781,6 +807,10 @@
             </button>
 
 
+            <!-- =================================================
+                 ASK ME EACH TIME
+                 ================================================= -->
+
             <button
                 class="signing-key-popup-option"
                 type="button"
@@ -788,9 +818,18 @@
                 onclick="handleSigningKeyBackupSetting('ask_each_time')"
             >
 
-                <span>
-                    Ask Me Each Time
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        Ask Me Each Time
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        You will be asked how to handle a signing-key backup whenever a backup decision is required.
+                    </span>
+
                 </span>
+
 
                 <span class="signing-key-popup-check">
                     ✓
