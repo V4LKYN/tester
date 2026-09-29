@@ -518,8 +518,16 @@ body {
 .merchant-id-row {
     display: flex;
     align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
 
-    gap: 9px;
+.merchant-id-row .detail-value {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .copy-button {
