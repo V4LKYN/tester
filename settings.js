@@ -2,6 +2,8 @@
 SETTINGS PAGE
 ================================================= */
 
+alert("SETTINGS.JS IS LOADING");
+
 let accountMenuOpen = false;
 
 document.addEventListener(
