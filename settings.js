@@ -1136,6 +1136,113 @@ label.textContent =
 }
 
 /* =================================================
+SIGNING KEY BACKUP ERROR
+================================================= */
+
+function clearSigningKeyBackupError() {
+
+const error =
+document.getElementById(
+"signingKeyBackupError"
+);
+
+if (!error) {
+return;
+}
+
+error.style.display =
+"none";
+
+}
+
+function showSigningKeyBackupError() {
+
+const popup =
+document.getElementById(
+"signingKeyBackupPopup"
+);
+
+if (!popup) {
+return;
+}
+
+let error =
+document.getElementById(
+"signingKeyBackupError"
+);
+
+if (!error) {
+
+error =
+document.createElement(
+"div"
+);
+
+error.id =
+"signingKeyBackupError";
+
+error.textContent =
+"You must create a Backup Password before enabling automatic signing key backups.";
+
+error.style.display =
+"block";
+
+error.style.marginTop =
+"16px";
+
+error.style.padding =
+"12px 14px";
+
+error.style.border =
+"1px solid #dc2626";
+
+error.style.borderRadius =
+"8px";
+
+error.style.backgroundColor =
+"#fef2f2";
+
+error.style.color =
+"#b91c1c";
+
+error.style.fontSize =
+"14px";
+
+error.style.lineHeight =
+"1.4";
+
+const actions =
+document.getElementById(
+"signingKeyBackupActions"
+);
+
+if (actions) {
+
+popup.insertBefore(
+    error,
+    actions
+);
+
+}
+else {
+
+popup.appendChild(
+    error
+);
+
+}
+
+}
+else {
+
+error.style.display =
+"block";
+
+}
+
+}
+
+/* =================================================
 OPEN SIGNING KEY BACKUP POPUP
 ================================================= */
 
@@ -1149,6 +1256,8 @@ document.getElementById(
 if (!popup) {
 return;
 }
+
+clearSigningKeyBackupError();
 
 const savedSetting =
 sessionStorage.getItem(
@@ -1204,6 +1313,8 @@ return;
 
 }
 
+clearSigningKeyBackupError();
+
 const popup =
 document.getElementById(
 "signingKeyBackupPopup"
@@ -1254,6 +1365,8 @@ return;
 pendingSigningKeyBackupSetting =
 setting;
 
+clearSigningKeyBackupError();
+
 updateSigningKeyBackupSettingUI();
 
 }
@@ -1300,6 +1413,8 @@ function cancelSigningKeyBackupSetting() {
 pendingSigningKeyBackupSetting =
 originalSigningKeyBackupSetting;
 
+clearSigningKeyBackupError();
+
 updateSigningKeyBackupSettingUI();
 
 closeSigningKeyBackupPopup();
@@ -1333,13 +1448,13 @@ backupPasswordState !==
 "true"
 ) {
 
-alert(
-"You must create a Backup Password before enabling automatic signing key backups."
-);
+showSigningKeyBackupError();
 
 return;
 
 }
+
+clearSigningKeyBackupError();
 
 sessionStorage.setItem(
 "signingKeyBackupSetting",
