@@ -232,6 +232,10 @@ sessionStorage.removeItem(
 );
 
 sessionStorage.removeItem(
+"merchantBackupPasswordState"
+);
+
+sessionStorage.removeItem(
 "signingKeyBackupSetting"
 );
 
@@ -321,6 +325,8 @@ hideSigningKeySettings();
 
 hideBackupPassword();
 
+hideCreateBackupPassword();
+
 closeSigningKeyBackupPopup();
 
 closeConfigurationSecurityPopup();
@@ -362,6 +368,8 @@ hideChangePassword();
 hideSigningKeySettings();
 
 hideBackupPassword();
+
+hideCreateBackupPassword();
 
 closeSigningKeyBackupPopup();
 
@@ -406,6 +414,8 @@ hideAccountPassword();
 hideSigningKeySettings();
 
 hideBackupPassword();
+
+hideCreateBackupPassword();
 
 closeSigningKeyBackupPopup();
 
@@ -483,6 +493,8 @@ hideChangePassword();
 
 hideBackupPassword();
 
+hideCreateBackupPassword();
+
 closeSigningKeyBackupPopup();
 
 closeConfigurationSecurityPopup();
@@ -527,9 +539,100 @@ hideChangePassword();
 
 hideSigningKeySettings();
 
+hideBackupPassword();
+
+hideCreateBackupPassword();
+
 closeSigningKeyBackupPopup();
 
 closeConfigurationSecurityPopup();
+
+const backupPasswordState =
+sessionStorage.getItem(
+"merchantBackupPasswordState"
+);
+
+if (
+backupPasswordState ===
+"true"
+) {
+
+openChangeBackupPassword();
+
+}
+else {
+
+openCreateBackupPassword();
+
+}
+
+}
+
+/* =================================================
+OPEN CREATE BACKUP PASSWORD
+================================================= */
+
+function openCreateBackupPassword() {
+
+const card =
+document.getElementById(
+"createBackupPasswordCard"
+);
+
+if (!card) {
+return;
+}
+
+const newBackupPasswordInput =
+document.getElementById(
+"newCreateBackupPasswordInput"
+);
+
+const confirmNewBackupPasswordInput =
+document.getElementById(
+"confirmCreateBackupPasswordInput"
+);
+
+const accountPasswordInput =
+document.getElementById(
+"createBackupAccountPasswordInput"
+);
+
+if (newBackupPasswordInput) {
+
+newBackupPasswordInput.value =
+    "";
+
+}
+
+if (confirmNewBackupPasswordInput) {
+
+confirmNewBackupPasswordInput.value =
+    "";
+
+}
+
+if (accountPasswordInput) {
+
+accountPasswordInput.value =
+    "";
+
+}
+
+card.style.display =
+"block";
+
+setSettingsBackButton(
+"Signing Key Settings"
+);
+
+}
+
+/* =================================================
+OPEN CHANGE BACKUP PASSWORD
+================================================= */
+
+function openChangeBackupPassword() {
 
 const card =
 document.getElementById(
@@ -613,6 +716,8 @@ hideSigningKeySettings();
 
 hideBackupPassword();
 
+hideCreateBackupPassword();
+
 closeSigningKeyBackupPopup();
 
 closeConfigurationSecurityPopup();
@@ -671,6 +776,22 @@ document.getElementById(
 if (
 backupPasswordCard &&
 backupPasswordCard.style.display !== "none"
+) {
+
+openSigningKeySettings();
+
+return;
+
+}
+
+const createBackupPasswordCard =
+document.getElementById(
+"createBackupPasswordCard"
+);
+
+if (
+createBackupPasswordCard &&
+createBackupPasswordCard.style.display !== "none"
 ) {
 
 openSigningKeySettings();
@@ -826,6 +947,22 @@ function hideBackupPassword() {
 const card =
 document.getElementById(
 "backupPasswordCard"
+);
+
+if (!card) {
+return;
+}
+
+card.style.display =
+"none";
+
+}
+
+function hideCreateBackupPassword() {
+
+const card =
+document.getElementById(
+"createBackupPasswordCard"
 );
 
 if (!card) {
@@ -1722,32 +1859,47 @@ event
 
 event.preventDefault();
 
-const currentBackupPassword =
-document.getElementById(
-"currentBackupPasswordInput"
-).value;
+const backupPasswordState =
+sessionStorage.getItem(
+"merchantBackupPasswordState"
+);
+
+if (
+backupPasswordState ===
+"true"
+) {
+
+saveChangedBackupPassword();
+
+}
+else {
+
+saveCreatedBackupPassword();
+
+}
+
+}
+
+/* =================================================
+SAVE CREATED BACKUP PASSWORD
+================================================= */
+
+function saveCreatedBackupPassword() {
 
 const newBackupPassword =
 document.getElementById(
-"newBackupPasswordInput"
+"newCreateBackupPasswordInput"
 ).value;
 
 const confirmNewBackupPassword =
 document.getElementById(
-"confirmNewBackupPasswordInput"
+"confirmCreateBackupPasswordInput"
 ).value;
 
 const accountPassword =
 document.getElementById(
-"backupAccountPasswordInput"
+"createBackupAccountPasswordInput"
 ).value;
-
-/*
-
-* Current Backup Password is intentionally
-* allowed to be blank when no Backup Password
-* has been configured.
-  */
 
 if (!newBackupPassword) {
 
@@ -1800,23 +1952,131 @@ return;
 * The server will eventually:
 * 
 * 1. Verify the Account Password.
-* 2. Determine whether a Backup Password
-* is currently configured.
-* 3. If configured, verify the Current
-* Backup Password.
-* 4. Derive the encryption key from the
-* new Backup Password.
-* 5. Re-wrap the Entity Signing Key backup.
-* 6. Store the updated encrypted backup.
+* 2. Create the Backup Password.
+* 3. Derive the encryption key from
+*    the Backup Password.
+* 4. Wrap the Entity Signing Key.
+* 5. Store the encrypted backup.
 * 
-* The Current Backup Password is not stored
+* The Backup Password is not stored
+* or verified in the browser.
+  */
+
+void newBackupPassword;
+
+void accountPassword;
+
+alert(
+"Backup password setup will be connected to the server next."
+);
+
+}
+
+/* =================================================
+SAVE CHANGED BACKUP PASSWORD
+================================================= */
+
+function saveChangedBackupPassword() {
+
+const currentBackupPassword =
+document.getElementById(
+"currentBackupPasswordInput"
+).value;
+
+const newBackupPassword =
+document.getElementById(
+"newBackupPasswordInput"
+).value;
+
+const confirmNewBackupPassword =
+document.getElementById(
+"confirmNewBackupPasswordInput"
+).value;
+
+const accountPassword =
+document.getElementById(
+"backupAccountPasswordInput"
+).value;
+
+if (!currentBackupPassword) {
+
+alert(
+    "Current Backup Password is required."
+);
+
+return;
+
+}
+
+if (!newBackupPassword) {
+
+alert(
+    "New Backup Password is required."
+);
+
+return;
+
+}
+
+if (!confirmNewBackupPassword) {
+
+alert(
+    "Please confirm your new Backup Password."
+);
+
+return;
+
+}
+
+if (
+newBackupPassword !==
+confirmNewBackupPassword
+) {
+
+alert(
+    "The new Backup Passwords do not match."
+);
+
+return;
+
+}
+
+if (!accountPassword) {
+
+alert(
+    "Account Password is required."
+);
+
+return;
+
+}
+
+/*
+
+* Actual verification will be handled
+* by the server later.
+* 
+* The server will eventually:
+* 
+* 1. Verify the Account Password.
+* 2. Verify the Current Backup Password.
+* 3. Derive the encryption key from
+*    the new Backup Password.
+* 4. Re-wrap the Entity Signing Key backup.
+* 5. Store the updated encrypted backup.
+* 
+* The Backup Password is not stored
 * or verified in the browser.
   */
 
 void currentBackupPassword;
 
+void newBackupPassword;
+
+void accountPassword;
+
 alert(
-"Backup password setup will be connected to the server next."
+"Backup password change will be connected to the server next."
 );
 
 }

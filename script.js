@@ -1130,6 +1130,15 @@ try {
     );
 
 
+    sessionStorage.setItem(
+        "merchantBackupPasswordState",
+        String(
+            responseData.preferences?.backuppasswordstate ??
+            false
+        )
+    );
+
+
     // -------------------------------------------------
     // REDIRECT TO DASHBOARD
     // -------------------------------------------------
@@ -1169,6 +1178,7 @@ try {
             "Log In";
 
     }
+
 }
 
 }
