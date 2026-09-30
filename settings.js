@@ -1321,6 +1321,26 @@ return;
 
 }
 
+const backupPasswordState =
+sessionStorage.getItem(
+"merchantBackupPasswordState"
+);
+
+if (
+pendingSigningKeyBackupSetting ===
+"automatic" &&
+backupPasswordState !==
+"true"
+) {
+
+alert(
+"You must create a Backup Password before enabling automatic signing key backups."
+);
+
+return;
+
+}
+
 sessionStorage.setItem(
 "signingKeyBackupSetting",
 pendingSigningKeyBackupSetting
