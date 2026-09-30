@@ -11,8 +11,8 @@ function() {
 initializeSettings();
 
 document.addEventListener(
-    "click",
-    handleDocumentClick
+"click",
+handleDocumentClick
 );
 
 }
@@ -33,11 +33,51 @@ sessionStorage.getItem(
 if (!authToken) {
 
 window.location.href =
-    "index.html";
+"index.html";
 
 return;
 
 }
+
+/* =================================================
+TEMPORARY LOGIN DATA DEBUG
+================================================= */
+
+const sessionData = {};
+
+for (
+let index = 0;
+index < sessionStorage.length;
+index++
+) {
+
+const key =
+    sessionStorage.key(
+        index
+    );
+
+if (!key) {
+    continue;
+}
+
+sessionData[key] =
+    sessionStorage.getItem(
+        key
+    );
+
+}
+
+alert(
+JSON.stringify(
+sessionData,
+null,
+2
+)
+);
+
+/* =================================================
+CONTINUE INITIALIZATION
+================================================= */
 
 populateAccountMenu();
 
@@ -89,21 +129,21 @@ document.getElementById(
 if (accountEmail) {
 
 accountEmail.textContent =
-    displayEmail;
+displayEmail;
 
 }
 
 if (menuEmail) {
 
 menuEmail.textContent =
-    displayEmail;
+displayEmail;
 
 }
 
 if (menuMerchantId) {
 
 menuMerchantId.textContent =
-    displayMerchantId;
+displayMerchantId;
 
 }
 
@@ -143,7 +183,7 @@ false;
 if (menu) {
 
 menu.classList.remove(
-    "open"
+"open"
 );
 
 }
@@ -275,21 +315,21 @@ document.getElementById(
 if (firstNameInput) {
 
 firstNameInput.value =
-    firstName;
+firstName;
 
 }
 
 if (lastNameInput) {
 
 lastNameInput.value =
-    lastName;
+lastName;
 
 }
 
 if (emailInput) {
 
 emailInput.value =
-    email;
+email;
 
 }
 
@@ -430,21 +470,21 @@ document.getElementById(
 if (currentPasswordInput) {
 
 currentPasswordInput.value =
-    "";
+"";
 
 }
 
 if (newPasswordInput) {
 
 newPasswordInput.value =
-    "";
+"";
 
 }
 
 if (confirmPasswordInput) {
 
 confirmPasswordInput.value =
-    "";
+"";
 
 }
 
@@ -553,28 +593,28 @@ document.getElementById(
 if (currentBackupPasswordInput) {
 
 currentBackupPasswordInput.value =
-    "";
+"";
 
 }
 
 if (newBackupPasswordInput) {
 
 newBackupPasswordInput.value =
-    "";
+"";
 
 }
 
 if (confirmNewBackupPasswordInput) {
 
 confirmNewBackupPasswordInput.value =
-    "";
+"";
 
 }
 
 if (accountPasswordInput) {
 
 accountPasswordInput.value =
-    "";
+"";
 
 }
 
@@ -847,11 +887,11 @@ sessionStorage.getItem(
 if (!setting) {
 
 setting =
-    "ask_each_time";
+"ask_each_time";
 
 sessionStorage.setItem(
-    "signingKeyBackupSetting",
-    setting
+"signingKeyBackupSetting",
+setting
 );
 
 }
@@ -886,29 +926,29 @@ document.querySelectorAll(
 options.forEach(
 function(option) {
 
-    const optionSetting =
-        option.getAttribute(
-            "data-setting"
-        );
+const optionSetting =
+    option.getAttribute(
+        "data-setting"
+    );
 
 
-    if (
-        optionSetting ===
-        setting
-    ) {
+if (
+    optionSetting ===
+    setting
+) {
 
-        option.classList.add(
-            "selected"
-        );
+    option.classList.add(
+        "selected"
+    );
 
-    }
-    else {
+}
+else {
 
-        option.classList.remove(
-            "selected"
-        );
+    option.classList.remove(
+        "selected"
+    );
 
-    }
+}
 
 }
 
@@ -940,19 +980,19 @@ return;
 if (setting === "automatic") {
 
 label.textContent =
-    "Back Up Automatically";
+"Back Up Automatically";
 
 }
 else if (setting === "self_managed") {
 
 label.textContent =
-    "I’ll Manage My Keys";
+"I’ll Manage My Keys";
 
 }
 else {
 
 label.textContent =
-    "Ask Me Each Time";
+"Ask Me Each Time";
 
 }
 
@@ -1000,8 +1040,8 @@ document.getElementById(
 if (selector) {
 
 selector.setAttribute(
-    "aria-expanded",
-    "true"
+"aria-expanded",
+"true"
 );
 
 }
@@ -1035,7 +1075,7 @@ document.getElementById(
 if (popup) {
 
 popup.classList.remove(
-    "open"
+"open"
 );
 
 }
@@ -1048,8 +1088,8 @@ document.getElementById(
 if (selector) {
 
 selector.setAttribute(
-    "aria-expanded",
-    "false"
+"aria-expanded",
+"false"
 );
 
 }
@@ -1102,13 +1142,13 @@ originalSigningKeyBackupSetting
 ) {
 
 actions.style.display =
-    "flex";
+"flex";
 
 }
 else {
 
 actions.style.display =
-    "none";
+"none";
 
 }
 
@@ -1183,11 +1223,11 @@ setting !== "ask_every_time"
 ) {
 
 setting =
-    "ask_every_time";
+"ask_every_time";
 
 sessionStorage.setItem(
-    "securitySetting",
-    setting
+"securitySetting",
+setting
 );
 
 }
@@ -1218,27 +1258,27 @@ document.querySelectorAll(
 options.forEach(
 function(option) {
 
-    const optionSetting =
-        option.dataset.securitySetting;
+const optionSetting =
+    option.dataset.securitySetting;
 
 
-    if (
-        optionSetting ===
-        pendingConfigurationSecuritySetting
-    ) {
+if (
+    optionSetting ===
+    pendingConfigurationSecuritySetting
+) {
 
-        option.classList.add(
-            "selected"
-        );
+    option.classList.add(
+        "selected"
+    );
 
-    }
-    else {
+}
+else {
 
-        option.classList.remove(
-            "selected"
-        );
+    option.classList.remove(
+        "selected"
+    );
 
-    }
+}
 
 }
 
@@ -1267,13 +1307,13 @@ originalConfigurationSecuritySetting ===
 ) {
 
 label.textContent =
-    "Trust Sessions";
+"Trust Sessions";
 
 }
 else {
 
 label.textContent =
-    "Ask Every Time";
+"Ask Every Time";
 
 }
 
@@ -1310,11 +1350,11 @@ setting !== "ask_every_time"
 ) {
 
 setting =
-    "ask_every_time";
+"ask_every_time";
 
 sessionStorage.setItem(
-    "securitySetting",
-    setting
+"securitySetting",
+setting
 );
 
 }
@@ -1336,8 +1376,8 @@ popup.classList.add(
 if (settingButton) {
 
 settingButton.setAttribute(
-    "aria-expanded",
-    "true"
+"aria-expanded",
+"true"
 );
 
 }
@@ -1382,8 +1422,8 @@ popup.classList.remove(
 if (settingButton) {
 
 settingButton.setAttribute(
-    "aria-expanded",
-    "false"
+"aria-expanded",
+"false"
 );
 
 }
@@ -1437,13 +1477,13 @@ originalConfigurationSecuritySetting
 ) {
 
 actions.style.display =
-    "flex";
+"flex";
 
 }
 else {
 
 actions.style.display =
-    "none";
+"none";
 
 }
 
@@ -1518,7 +1558,7 @@ document.getElementById(
 if (!firstName) {
 
 alert(
-    "First name is required."
+"First name is required."
 );
 
 return;
@@ -1528,7 +1568,7 @@ return;
 if (!lastName) {
 
 alert(
-    "Last name is required."
+"Last name is required."
 );
 
 return;
@@ -1538,7 +1578,7 @@ return;
 if (!email) {
 
 alert(
-    "Email address is required."
+"Email address is required."
 );
 
 return;
@@ -1607,7 +1647,7 @@ document.getElementById(
 if (!currentPassword) {
 
 alert(
-    "Current password is required."
+"Current password is required."
 );
 
 return;
@@ -1617,7 +1657,7 @@ return;
 if (!newPassword) {
 
 alert(
-    "New password is required."
+"New password is required."
 );
 
 return;
@@ -1630,7 +1670,7 @@ confirmPassword
 ) {
 
 alert(
-    "The new passwords do not match."
+"The new passwords do not match."
 );
 
 return;
@@ -1689,7 +1729,7 @@ document.getElementById(
 if (!newBackupPassword) {
 
 alert(
-    "New Backup Password is required."
+"New Backup Password is required."
 );
 
 return;
@@ -1699,7 +1739,7 @@ return;
 if (!confirmNewBackupPassword) {
 
 alert(
-    "Please confirm your new Backup Password."
+"Please confirm your new Backup Password."
 );
 
 return;
@@ -1712,7 +1752,7 @@ confirmNewBackupPassword
 ) {
 
 alert(
-    "The new Backup Passwords do not match."
+"The new Backup Passwords do not match."
 );
 
 return;
@@ -1722,7 +1762,7 @@ return;
 if (!accountPassword) {
 
 alert(
-    "Account Password is required."
+"Account Password is required."
 );
 
 return;
@@ -1829,13 +1869,12 @@ document.addEventListener(
 function(event) {
 
 if (
-    event.key !== "Escape"
+event.key !== "Escape"
 ) {
 
-    return;
+return;
 
 }
-
 
 closeAccountMenu();
 

@@ -16,32 +16,6 @@
      HEADER
      ================================================= -->
 
-
-<!-- TEMPORARY LOGIN DATA DEBUG -->
-<div style="
-    margin: 20px;
-    padding: 16px;
-    background: #111;
-    color: #fff;
-    border-radius: 8px;
-    font-family: monospace;
-    white-space: pre-wrap;
-    word-break: break-word;
-">
-    <strong>Login Response</strong>
-
-    <pre id="loginResponseDebug">Loading...</pre>
-</div>
-
-<script>  
-const loginData = JSON.parse(
-    sessionStorage.getItem("loginData") || "{}"
-);
-
-document.getElementById("loginResponseDebug").textContent =
-    JSON.stringify(loginData, null, 2);
-</script>
-
 <header class="dashboard-header">
 
     <div class="brand">
