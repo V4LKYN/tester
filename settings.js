@@ -5,19 +5,19 @@ SETTINGS PAGE
 let accountMenuOpen = false;
 
 document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+"DOMContentLoaded",
+function() {
 
-        initializeSettings();
+    initializeSettings();
 
-        document.addEventListener(
-            "click",
-            handleDocumentClick
-        );
+    document.addEventListener(
+        "click",
+        handleDocumentClick
+    );
 
-    }
+}
+
 );
-
 
 /* =================================================
 INITIALIZATION
@@ -25,31 +25,30 @@ INITIALIZATION
 
 function initializeSettings() {
 
-    const authToken =
-        sessionStorage.getItem(
-            "authToken"
-        );
+const authToken =
+    sessionStorage.getItem(
+        "authToken"
+    );
 
-    if (!authToken) {
+if (!authToken) {
 
-        window.location.href =
-            "index.html";
+    window.location.href =
+        "index.html";
 
-        return;
-
-    }
-
-
-    populateAccountMenu();
-
-    populateAccountDetails();
-
-    initializeSigningKeyBackupSetting();
-
-    initializeSecuritySetting();
+    return;
 
 }
 
+
+populateAccountMenu();
+
+populateAccountDetails();
+
+initializeSigningKeyBackupSetting();
+
+initializeSecuritySetting();
+
+}
 
 /* =================================================
 ACCOUNT MENU
@@ -57,141 +56,137 @@ ACCOUNT MENU
 
 function populateAccountMenu() {
 
-    const email =
-        sessionStorage.getItem(
-            "merchantEmail"
-        );
+const email =
+    sessionStorage.getItem(
+        "merchantEmail"
+    );
 
-    const merchantId =
-        sessionStorage.getItem(
-            "merchantId"
-        );
-
-
-    const displayEmail =
-        email || "—";
-
-    const displayMerchantId =
-        merchantId || "—";
+const merchantId =
+    sessionStorage.getItem(
+        "merchantId"
+    );
 
 
-    const accountEmail =
-        document.getElementById(
-            "accountEmail"
-        );
+const displayEmail =
+    email || "—";
 
-    const menuEmail =
-        document.getElementById(
-            "menuEmail"
-        );
-
-    const menuMerchantId =
-        document.getElementById(
-            "menuMerchantId"
-        );
+const displayMerchantId =
+    merchantId || "—";
 
 
-    if (accountEmail) {
+const accountEmail =
+    document.getElementById(
+        "accountEmail"
+    );
 
-        accountEmail.textContent =
-            displayEmail;
+const menuEmail =
+    document.getElementById(
+        "menuEmail"
+    );
 
-    }
-
-
-    if (menuEmail) {
-
-        menuEmail.textContent =
-            displayEmail;
-
-    }
+const menuMerchantId =
+    document.getElementById(
+        "menuMerchantId"
+    );
 
 
-    if (menuMerchantId) {
+if (accountEmail) {
 
-        menuMerchantId.textContent =
-            displayMerchantId;
-
-    }
+    accountEmail.textContent =
+        displayEmail;
 
 }
 
 
+if (menuEmail) {
+
+    menuEmail.textContent =
+        displayEmail;
+
+}
+
+
+if (menuMerchantId) {
+
+    menuMerchantId.textContent =
+        displayMerchantId;
+
+}
+
+}
+
 function toggleAccountMenu() {
 
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
+const menu =
+    document.getElementById(
+        "accountMenu"
+    );
 
 
-    if (!menu) {
-        return;
-    }
+if (!menu) {
+    return;
+}
 
 
-    accountMenuOpen =
-        !accountMenuOpen;
+accountMenuOpen =
+    !accountMenuOpen;
 
 
-    menu.classList.toggle(
-        "open",
-        accountMenuOpen
+menu.classList.toggle(
+    "open",
+    accountMenuOpen
+);
+
+}
+
+function closeAccountMenu() {
+
+const menu =
+    document.getElementById(
+        "accountMenu"
+    );
+
+
+accountMenuOpen =
+    false;
+
+
+if (menu) {
+
+    menu.classList.remove(
+        "open"
     );
 
 }
 
-
-function closeAccountMenu() {
-
-    const menu =
-        document.getElementById(
-            "accountMenu"
-        );
-
-
-    accountMenuOpen =
-        false;
-
-
-    if (menu) {
-
-        menu.classList.remove(
-            "open"
-        );
-
-    }
-
 }
-
 
 function handleDocumentClick(
-    event
+event
 ) {
 
-    const container =
-        document.querySelector(
-            ".account-container"
-        );
+const container =
+    document.querySelector(
+        ".account-container"
+    );
 
 
-    if (!container) {
-        return;
-    }
+if (!container) {
+    return;
+}
 
 
-    if (
-        !container.contains(
-            event.target
-        )
-    ) {
+if (
+    !container.contains(
+        event.target
+    )
+) {
 
-        closeAccountMenu();
-
-    }
+    closeAccountMenu();
 
 }
 
+}
 
 /* =================================================
 ACCOUNT MENU NAVIGATION
@@ -199,64 +194,62 @@ ACCOUNT MENU NAVIGATION
 
 function goToSettings() {
 
-    closeAccountMenu();
+closeAccountMenu();
 
 }
-
 
 function logout() {
 
-    sessionStorage.removeItem(
-        "authToken"
-    );
+sessionStorage.removeItem(
+    "authToken"
+);
 
-    sessionStorage.removeItem(
-        "merchantId"
-    );
+sessionStorage.removeItem(
+    "merchantId"
+);
 
-    sessionStorage.removeItem(
-        "merchantEmail"
-    );
+sessionStorage.removeItem(
+    "merchantEmail"
+);
 
-    sessionStorage.removeItem(
-        "merchantFirstName"
-    );
+sessionStorage.removeItem(
+    "merchantFirstName"
+);
 
-    sessionStorage.removeItem(
-        "merchantLastName"
-    );
+sessionStorage.removeItem(
+    "merchantLastName"
+);
 
-    sessionStorage.removeItem(
-        "merchantType"
-    );
+sessionStorage.removeItem(
+    "merchantType"
+);
 
-    sessionStorage.removeItem(
-        "merchantStatus"
-    );
+sessionStorage.removeItem(
+    "merchantStatus"
+);
 
-    sessionStorage.removeItem(
-        "merchantCreatedAt"
-    );
+sessionStorage.removeItem(
+    "merchantCreatedAt"
+);
 
-    sessionStorage.removeItem(
-        "merchantUpdatedAt"
-    );
-
-
-    sessionStorage.removeItem(
-        "signingKeyBackupSetting"
-    );
-
-    sessionStorage.removeItem(
-        "securitySetting"
-    );
+sessionStorage.removeItem(
+    "merchantUpdatedAt"
+);
 
 
-    window.location.href =
-        "index.html";
+sessionStorage.removeItem(
+    "signingKeyBackupSetting"
+);
+
+sessionStorage.removeItem(
+    "securitySetting"
+);
+
+
+window.location.href =
+    "index.html";
 
 }
-
 
 /* =================================================
 ACCOUNT DETAILS
@@ -264,63 +257,62 @@ ACCOUNT DETAILS
 
 function populateAccountDetails() {
 
-    const firstName =
-        sessionStorage.getItem(
-            "merchantFirstName"
-        ) || "";
+const firstName =
+    sessionStorage.getItem(
+        "merchantFirstName"
+    ) || "";
 
-    const lastName =
-        sessionStorage.getItem(
-            "merchantLastName"
-        ) || "";
+const lastName =
+    sessionStorage.getItem(
+        "merchantLastName"
+    ) || "";
 
-    const email =
-        sessionStorage.getItem(
-            "merchantEmail"
-        ) || "";
-
-
-    const firstNameInput =
-        document.getElementById(
-            "firstNameInput"
-        );
-
-    const lastNameInput =
-        document.getElementById(
-            "lastNameInput"
-        );
-
-    const emailInput =
-        document.getElementById(
-            "emailInput"
-        );
+const email =
+    sessionStorage.getItem(
+        "merchantEmail"
+    ) || "";
 
 
-    if (firstNameInput) {
+const firstNameInput =
+    document.getElementById(
+        "firstNameInput"
+    );
 
-        firstNameInput.value =
-            firstName;
+const lastNameInput =
+    document.getElementById(
+        "lastNameInput"
+    );
 
-    }
-
-
-    if (lastNameInput) {
-
-        lastNameInput.value =
-            lastName;
-
-    }
+const emailInput =
+    document.getElementById(
+        "emailInput"
+    );
 
 
-    if (emailInput) {
+if (firstNameInput) {
 
-        emailInput.value =
-            email;
-
-    }
+    firstNameInput.value =
+        firstName;
 
 }
 
+
+if (lastNameInput) {
+
+    lastNameInput.value =
+        lastName;
+
+}
+
+
+if (emailInput) {
+
+    emailInput.value =
+        email;
+
+}
+
+}
 
 /* =================================================
 OPEN ACCOUNT DETAILS
@@ -328,46 +320,45 @@ OPEN ACCOUNT DETAILS
 
 function openAccountDetails() {
 
-    closeAccountMenu();
+closeAccountMenu();
 
-    hideSettingsOptions();
+hideSettingsOptions();
 
-    hideAccountPassword();
+hideAccountPassword();
 
-    hideChangePassword();
+hideChangePassword();
 
-    hideSigningKeySettings();
+hideSigningKeySettings();
 
-    hideBackupPassword();
+hideBackupPassword();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
-    closeSecurityPopup();
+closeConfigurationSecurityPopup();
 
-    populateAccountDetails();
-
-
-    const card =
-        document.getElementById(
-            "accountDetailsCard"
-        );
+populateAccountDetails();
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "block";
-
-
-    setSettingsBackButton(
-        "Account Settings"
+const card =
+    document.getElementById(
+        "accountDetailsCard"
     );
 
+
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "block";
+
+
+setSettingsBackButton(
+    "Account Settings"
+);
+
+}
 
 /* =================================================
 OPEN PASSWORD SETTINGS
@@ -375,47 +366,46 @@ OPEN PASSWORD SETTINGS
 
 function openAccountPassword() {
 
-    closeAccountMenu();
+closeAccountMenu();
 
-    hideSettingsOptions();
+hideSettingsOptions();
 
-    hideAccountDetails();
+hideAccountDetails();
 
-    hideChangePassword();
+hideChangePassword();
 
-    hideSigningKeySettings();
+hideSigningKeySettings();
 
-    hideBackupPassword();
+hideBackupPassword();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
-    closeSecurityPopup();
-
-
-    const card =
-        document.getElementById(
-            "accountPasswordCard"
-        );
+closeConfigurationSecurityPopup();
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "block";
-
-
-    setSettingsBackButton(
-        "Account Settings"
+const card =
+    document.getElementById(
+        "accountPasswordCard"
     );
 
 
-    updateSecuritySettingUI();
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "block";
+
+
+setSettingsBackButton(
+    "Account Settings"
+);
+
+
+updateSecuritySettingUI();
+
+}
 
 /* =================================================
 OPEN CHANGE PASSWORD
@@ -423,84 +413,83 @@ OPEN CHANGE PASSWORD
 
 function openChangePassword() {
 
-    closeAccountMenu();
+closeAccountMenu();
 
-    hideSettingsOptions();
+hideSettingsOptions();
 
-    hideAccountDetails();
+hideAccountDetails();
 
-    hideAccountPassword();
+hideAccountPassword();
 
-    hideSigningKeySettings();
+hideSigningKeySettings();
 
-    hideBackupPassword();
+hideBackupPassword();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
-    closeSecurityPopup();
-
-
-    const card =
-        document.getElementById(
-            "changePasswordCard"
-        );
+closeConfigurationSecurityPopup();
 
 
-    if (!card) {
-        return;
-    }
-
-
-    const currentPasswordInput =
-        document.getElementById(
-            "currentPasswordInput"
-        );
-
-    const newPasswordInput =
-        document.getElementById(
-            "newPasswordInput"
-        );
-
-    const confirmPasswordInput =
-        document.getElementById(
-            "confirmPasswordInput"
-        );
-
-
-    if (currentPasswordInput) {
-
-        currentPasswordInput.value =
-            "";
-
-    }
-
-
-    if (newPasswordInput) {
-
-        newPasswordInput.value =
-            "";
-
-    }
-
-
-    if (confirmPasswordInput) {
-
-        confirmPasswordInput.value =
-            "";
-
-    }
-
-
-    card.style.display =
-        "block";
-
-
-    setSettingsBackButton(
-        "Password Settings"
+const card =
+    document.getElementById(
+        "changePasswordCard"
     );
+
+
+if (!card) {
+    return;
+}
+
+
+const currentPasswordInput =
+    document.getElementById(
+        "currentPasswordInput"
+    );
+
+const newPasswordInput =
+    document.getElementById(
+        "newPasswordInput"
+    );
+
+const confirmPasswordInput =
+    document.getElementById(
+        "confirmPasswordInput"
+    );
+
+
+if (currentPasswordInput) {
+
+    currentPasswordInput.value =
+        "";
 
 }
 
+
+if (newPasswordInput) {
+
+    newPasswordInput.value =
+        "";
+
+}
+
+
+if (confirmPasswordInput) {
+
+    confirmPasswordInput.value =
+        "";
+
+}
+
+
+card.style.display =
+    "block";
+
+
+setSettingsBackButton(
+    "Password Settings"
+);
+
+}
 
 /* =================================================
 OPEN SIGNING KEY SETTINGS
@@ -508,47 +497,46 @@ OPEN SIGNING KEY SETTINGS
 
 function openSigningKeySettings() {
 
-    closeAccountMenu();
+closeAccountMenu();
 
-    hideSettingsOptions();
+hideSettingsOptions();
 
-    hideAccountDetails();
+hideAccountDetails();
 
-    hideAccountPassword();
+hideAccountPassword();
 
-    hideChangePassword();
+hideChangePassword();
 
-    hideBackupPassword();
+hideBackupPassword();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
-    closeSecurityPopup();
-
-
-    const card =
-        document.getElementById(
-            "signingKeySettingsCard"
-        );
+closeConfigurationSecurityPopup();
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "block";
-
-
-    setSettingsBackButton(
-        "Account Settings"
+const card =
+    document.getElementById(
+        "signingKeySettingsCard"
     );
 
 
-    updateSigningKeyBackupSettingUI();
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "block";
+
+
+setSettingsBackButton(
+    "Account Settings"
+);
+
+
+updateSigningKeyBackupSettingUI();
+
+}
 
 /* =================================================
 OPEN BACKUP PASSWORD
@@ -556,97 +544,96 @@ OPEN BACKUP PASSWORD
 
 function openBackupPassword() {
 
-    closeAccountMenu();
+closeAccountMenu();
 
-    hideSettingsOptions();
+hideSettingsOptions();
 
-    hideAccountDetails();
+hideAccountDetails();
 
-    hideAccountPassword();
+hideAccountPassword();
 
-    hideChangePassword();
+hideChangePassword();
 
-    hideSigningKeySettings();
+hideSigningKeySettings();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
-    closeSecurityPopup();
-
-
-    const card =
-        document.getElementById(
-            "backupPasswordCard"
-        );
+closeConfigurationSecurityPopup();
 
 
-    if (!card) {
-        return;
-    }
-
-
-    const currentBackupPasswordInput =
-        document.getElementById(
-            "currentBackupPasswordInput"
-        );
-
-    const newBackupPasswordInput =
-        document.getElementById(
-            "newBackupPasswordInput"
-        );
-
-    const confirmNewBackupPasswordInput =
-        document.getElementById(
-            "confirmNewBackupPasswordInput"
-        );
-
-    const accountPasswordInput =
-        document.getElementById(
-            "backupAccountPasswordInput"
-        );
-
-
-    if (currentBackupPasswordInput) {
-
-        currentBackupPasswordInput.value =
-            "";
-
-    }
-
-
-    if (newBackupPasswordInput) {
-
-        newBackupPasswordInput.value =
-            "";
-
-    }
-
-
-    if (confirmNewBackupPasswordInput) {
-
-        confirmNewBackupPasswordInput.value =
-            "";
-
-    }
-
-
-    if (accountPasswordInput) {
-
-        accountPasswordInput.value =
-            "";
-
-    }
-
-
-    card.style.display =
-        "block";
-
-
-    setSettingsBackButton(
-        "Signing Key Settings"
+const card =
+    document.getElementById(
+        "backupPasswordCard"
     );
+
+
+if (!card) {
+    return;
+}
+
+
+const currentBackupPasswordInput =
+    document.getElementById(
+        "currentBackupPasswordInput"
+    );
+
+const newBackupPasswordInput =
+    document.getElementById(
+        "newBackupPasswordInput"
+    );
+
+const confirmNewBackupPasswordInput =
+    document.getElementById(
+        "confirmNewBackupPasswordInput"
+    );
+
+const accountPasswordInput =
+    document.getElementById(
+        "backupAccountPasswordInput"
+    );
+
+
+if (currentBackupPasswordInput) {
+
+    currentBackupPasswordInput.value =
+        "";
 
 }
 
+
+if (newBackupPasswordInput) {
+
+    newBackupPasswordInput.value =
+        "";
+
+}
+
+
+if (confirmNewBackupPasswordInput) {
+
+    confirmNewBackupPasswordInput.value =
+        "";
+
+}
+
+
+if (accountPasswordInput) {
+
+    accountPasswordInput.value =
+        "";
+
+}
+
+
+card.style.display =
+    "block";
+
+
+setSettingsBackButton(
+    "Signing Key Settings"
+);
+
+}
 
 /* =================================================
 CLOSE SETTINGS FORM
@@ -654,29 +641,28 @@ CLOSE SETTINGS FORM
 
 function closeSettingsForm() {
 
-    hideAccountDetails();
+hideAccountDetails();
 
-    hideAccountPassword();
+hideAccountPassword();
 
-    hideChangePassword();
+hideChangePassword();
 
-    hideSigningKeySettings();
+hideSigningKeySettings();
 
-    hideBackupPassword();
+hideBackupPassword();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
-    closeSecurityPopup();
+closeConfigurationSecurityPopup();
 
-    showSettingsOptions();
+showSettingsOptions();
 
 
-    setSettingsBackButton(
-        "Dashboard"
-    );
+setSettingsBackButton(
+    "Dashboard"
+);
 
 }
-
 
 /* =================================================
 SETTINGS BACK BUTTON
@@ -684,89 +670,105 @@ SETTINGS BACK BUTTON
 
 function handleSettingsBack() {
 
-    const optionsCard =
-        document.getElementById(
-            "settingsOptionsCard"
-        );
+const optionsCard =
+    document.getElementById(
+        "settingsOptionsCard"
+    );
 
 
-    if (
-        optionsCard &&
-        optionsCard.style.display !== "none"
-    ) {
+if (
+    optionsCard &&
+    optionsCard.style.display !== "none"
+) {
 
-        goToDashboard();
+    goToDashboard();
 
-        return;
-
-    }
-
-
-    const changePasswordCard =
-        document.getElementById(
-            "changePasswordCard"
-        );
-
-
-    if (
-        changePasswordCard &&
-        changePasswordCard.style.display !== "none"
-    ) {
-
-        openAccountPassword();
-
-        return;
-
-    }
-
-
-    const backupPasswordCard =
-        document.getElementById(
-            "backupPasswordCard"
-        );
-
-
-    if (
-        backupPasswordCard &&
-        backupPasswordCard.style.display !== "none"
-    ) {
-
-        openSigningKeySettings();
-
-        return;
-
-    }
-
-
-    closeSettingsForm();
+    return;
 
 }
 
+
+const changePasswordCard =
+    document.getElementById(
+        "changePasswordCard"
+    );
+
+
+if (
+    changePasswordCard &&
+    changePasswordCard.style.display !== "none"
+) {
+
+    openAccountPassword();
+
+    return;
+
+}
+
+
+const backupPasswordCard =
+    document.getElementById(
+        "backupPasswordCard"
+    );
+
+
+if (
+    backupPasswordCard &&
+    backupPasswordCard.style.display !== "none"
+) {
+
+    openSigningKeySettings();
+
+    return;
+
+}
+
+
+const accountPasswordCard =
+    document.getElementById(
+        "accountPasswordCard"
+    );
+
+
+if (
+    accountPasswordCard &&
+    accountPasswordCard.style.display !== "none"
+) {
+
+    closeSettingsForm();
+
+    return;
+
+}
+
+
+closeSettingsForm();
+
+}
 
 /* =================================================
 SETTINGS BACK BUTTON LABEL
 ================================================= */
 
 function setSettingsBackButton(
-    label
+label
 ) {
 
-    const labelElement =
-        document.getElementById(
-            "settingsBackLabel"
-        );
+const labelElement =
+    document.getElementById(
+        "settingsBackLabel"
+    );
 
 
-    if (!labelElement) {
-        return;
-    }
-
-
-    labelElement.textContent =
-        label;
-
+if (!labelElement) {
+    return;
 }
 
+
+labelElement.textContent =
+    label;
+
+}
 
 /* =================================================
 VISIBILITY HELPERS
@@ -774,182 +776,173 @@ VISIBILITY HELPERS
 
 function hideSettingsOptions() {
 
-    const card =
-        document.getElementById(
-            "settingsOptionsCard"
-        );
+const card =
+    document.getElementById(
+        "settingsOptionsCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "none";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "none";
+
+}
 
 function showSettingsOptions() {
 
-    const card =
-        document.getElementById(
-            "settingsOptionsCard"
-        );
+const card =
+    document.getElementById(
+        "settingsOptionsCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "block";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "block";
+
+}
 
 function hideAccountDetails() {
 
-    const card =
-        document.getElementById(
-            "accountDetailsCard"
-        );
+const card =
+    document.getElementById(
+        "accountDetailsCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "none";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "none";
+
+}
 
 function hideAccountPassword() {
 
-    const card =
-        document.getElementById(
-            "accountPasswordCard"
-        );
+const card =
+    document.getElementById(
+        "accountPasswordCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "none";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "none";
+
+}
 
 function hideChangePassword() {
 
-    const card =
-        document.getElementById(
-            "changePasswordCard"
-        );
+const card =
+    document.getElementById(
+        "changePasswordCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "none";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "none";
+
+}
 
 function hideSigningKeySettings() {
 
-    const card =
-        document.getElementById(
-            "signingKeySettingsCard"
-        );
+const card =
+    document.getElementById(
+        "signingKeySettingsCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "none";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "none";
+
+}
 
 function hideBackupPassword() {
 
-    const card =
-        document.getElementById(
-            "backupPasswordCard"
-        );
+const card =
+    document.getElementById(
+        "backupPasswordCard"
+    );
 
 
-    if (!card) {
-        return;
-    }
-
-
-    card.style.display =
-        "none";
-
+if (!card) {
+    return;
 }
 
+
+card.style.display =
+    "none";
+
+}
 
 /* =================================================
 SIGNING KEY BACKUP SETTING
 ================================================= */
 
 let originalSigningKeyBackupSetting =
-    "ask_each_time";
+"ask_each_time";
 
 let pendingSigningKeyBackupSetting =
-    "ask_each_time";
-
+"ask_each_time";
 
 function initializeSigningKeyBackupSetting() {
 
-    let setting =
-        sessionStorage.getItem(
-            "signingKeyBackupSetting"
-        );
+let setting =
+    sessionStorage.getItem(
+        "signingKeyBackupSetting"
+    );
 
 
-    if (!setting) {
+if (!setting) {
 
-        setting =
-            "ask_each_time";
+    setting =
+        "ask_each_time";
 
-        sessionStorage.setItem(
-            "signingKeyBackupSetting",
-            setting
-        );
-
-    }
-
-
-    originalSigningKeyBackupSetting =
-        setting;
-
-    pendingSigningKeyBackupSetting =
-        setting;
-
-
-    updateSigningKeyBackupSettingUI();
-
-    updateSavedSigningKeyBackupSettingUI();
+    sessionStorage.setItem(
+        "signingKeyBackupSetting",
+        setting
+    );
 
 }
 
+
+originalSigningKeyBackupSetting =
+    setting;
+
+pendingSigningKeyBackupSetting =
+    setting;
+
+
+updateSigningKeyBackupSettingUI();
+
+updateSavedSigningKeyBackupSettingUI();
+
+}
 
 /* =================================================
 UPDATE SIGNING KEY BACKUP UI
@@ -957,52 +950,51 @@ UPDATE SIGNING KEY BACKUP UI
 
 function updateSigningKeyBackupSettingUI() {
 
-    const setting =
-        pendingSigningKeyBackupSetting ||
-        "ask_each_time";
+const setting =
+    pendingSigningKeyBackupSetting ||
+    "ask_each_time";
 
 
-    const options =
-        document.querySelectorAll(
-            ".signing-key-popup-option"
-        );
-
-
-    options.forEach(
-        function(option) {
-
-            const optionSetting =
-                option.getAttribute(
-                    "data-setting"
-                );
-
-
-            if (
-                optionSetting ===
-                setting
-            ) {
-
-                option.classList.add(
-                    "selected"
-                );
-
-            }
-            else {
-
-                option.classList.remove(
-                    "selected"
-                );
-
-            }
-
-        }
+const options =
+    document.querySelectorAll(
+        "#signingKeyBackupPopup .signing-key-popup-option"
     );
 
 
-    updateSigningKeyBackupActions();
+options.forEach(
+    function(option) {
+
+        const optionSetting =
+            option.getAttribute(
+                "data-setting"
+            );
+
+
+        if (
+            optionSetting ===
+            setting
+        ) {
+
+            option.classList.add(
+                "selected"
+            );
+
+        }
+        else {
+
+            option.classList.remove(
+                "selected"
+            );
+
+        }
+
+    }
+);
+
+
+updateSigningKeyBackupActions();
 
 }
-
 
 /* =================================================
 UPDATE SAVED SIGNING KEY BACKUP LABEL
@@ -1010,43 +1002,42 @@ UPDATE SAVED SIGNING KEY BACKUP LABEL
 
 function updateSavedSigningKeyBackupSettingUI() {
 
-    const setting =
-        originalSigningKeyBackupSetting ||
-        "ask_each_time";
+const setting =
+    originalSigningKeyBackupSetting ||
+    "ask_each_time";
 
 
-    const label =
-        document.getElementById(
-            "signingKeyBackupSettingLabel"
-        );
+const label =
+    document.getElementById(
+        "signingKeyBackupSettingLabel"
+    );
 
 
-    if (!label) {
-        return;
-    }
+if (!label) {
+    return;
+}
 
 
-    if (setting === "automatic") {
+if (setting === "automatic") {
 
-        label.textContent =
-            "Back Up Automatically";
+    label.textContent =
+        "Back Up Automatically";
 
-    }
-    else if (setting === "self_managed") {
+}
+else if (setting === "self_managed") {
 
-        label.textContent =
-            "I’ll Manage My Keys";
+    label.textContent =
+        "I’ll Manage My Keys";
 
-    }
-    else {
+}
+else {
 
-        label.textContent =
-            "Ask Me Each Time";
-
-    }
+    label.textContent =
+        "Ask Me Each Time";
 
 }
 
+}
 
 /* =================================================
 OPEN SIGNING KEY BACKUP POPUP
@@ -1054,138 +1045,135 @@ OPEN SIGNING KEY BACKUP POPUP
 
 function openSigningKeyBackupPopup() {
 
-    const popup =
-        document.getElementById(
-            "signingKeyBackupPopup"
-        );
-
-
-    if (!popup) {
-        return;
-    }
-
-
-    const savedSetting =
-        sessionStorage.getItem(
-            "signingKeyBackupSetting"
-        ) || "ask_each_time";
-
-
-    originalSigningKeyBackupSetting =
-        savedSetting;
-
-    pendingSigningKeyBackupSetting =
-        savedSetting;
-
-
-    updateSigningKeyBackupSettingUI();
-
-    updateSavedSigningKeyBackupSettingUI();
-
-
-    popup.classList.add(
-        "open"
+const popup =
+    document.getElementById(
+        "signingKeyBackupPopup"
     );
 
 
-    const selector =
-        document.getElementById(
-            "signingKeyBackupSetting"
-        );
+if (!popup) {
+    return;
+}
 
 
-    if (selector) {
+const savedSetting =
+    sessionStorage.getItem(
+        "signingKeyBackupSetting"
+    ) || "ask_each_time";
 
-        selector.setAttribute(
-            "aria-expanded",
-            "true"
-        );
 
-    }
+originalSigningKeyBackupSetting =
+    savedSetting;
+
+pendingSigningKeyBackupSetting =
+    savedSetting;
+
+
+updateSigningKeyBackupSettingUI();
+
+updateSavedSigningKeyBackupSettingUI();
+
+
+popup.classList.add(
+    "open"
+);
+
+
+const selector =
+    document.getElementById(
+        "signingKeyBackupSetting"
+    );
+
+
+if (selector) {
+
+    selector.setAttribute(
+        "aria-expanded",
+        "true"
+    );
 
 }
 
+}
 
 /* =================================================
 CLOSE SIGNING KEY BACKUP POPUP
 ================================================= */
 
 function closeSigningKeyBackupPopup(
-    event
+event
 ) {
 
-    if (
-        event &&
-        event.target &&
-        event.target.id !==
-            "signingKeyBackupPopup"
-    ) {
+if (
+    event &&
+    event.target &&
+    event.target.id !==
+        "signingKeyBackupPopup"
+) {
 
-        return;
-
-    }
-
-
-    const popup =
-        document.getElementById(
-            "signingKeyBackupPopup"
-        );
-
-
-    if (popup) {
-
-        popup.classList.remove(
-            "open"
-        );
-
-    }
-
-
-    const selector =
-        document.getElementById(
-            "signingKeyBackupSetting"
-        );
-
-
-    if (selector) {
-
-        selector.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    }
+    return;
 
 }
 
+
+const popup =
+    document.getElementById(
+        "signingKeyBackupPopup"
+    );
+
+
+if (popup) {
+
+    popup.classList.remove(
+        "open"
+    );
+
+}
+
+
+const selector =
+    document.getElementById(
+        "signingKeyBackupSetting"
+    );
+
+
+if (selector) {
+
+    selector.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+}
 
 /* =================================================
 HANDLE SIGNING KEY BACKUP SETTING
 ================================================= */
 
 function handleSigningKeyBackupSetting(
-    setting
+setting
 ) {
 
-    if (
-        setting !== "automatic" &&
-        setting !== "self_managed" &&
-        setting !== "ask_each_time"
-    ) {
+if (
+    setting !== "automatic" &&
+    setting !== "self_managed" &&
+    setting !== "ask_each_time"
+) {
 
-        return;
-
-    }
-
-
-    pendingSigningKeyBackupSetting =
-        setting;
-
-
-    updateSigningKeyBackupSettingUI();
+    return;
 
 }
 
+
+pendingSigningKeyBackupSetting =
+    setting;
+
+
+updateSigningKeyBackupSettingUI();
+
+}
 
 /* =================================================
 UPDATE SIGNING KEY BACKUP ACTIONS
@@ -1193,35 +1181,34 @@ UPDATE SIGNING KEY BACKUP ACTIONS
 
 function updateSigningKeyBackupActions() {
 
-    const actions =
-        document.getElementById(
-            "signingKeyBackupActions"
-        );
+const actions =
+    document.getElementById(
+        "signingKeyBackupActions"
+    );
 
 
-    if (!actions) {
-        return;
-    }
+if (!actions) {
+    return;
+}
 
 
-    if (
-        pendingSigningKeyBackupSetting !==
-        originalSigningKeyBackupSetting
-    ) {
+if (
+    pendingSigningKeyBackupSetting !==
+    originalSigningKeyBackupSetting
+) {
 
-        actions.style.display =
-            "flex";
+    actions.style.display =
+        "flex";
 
-    }
-    else {
+}
+else {
 
-        actions.style.display =
-            "none";
-
-    }
+    actions.style.display =
+        "none";
 
 }
 
+}
 
 /* =================================================
 CANCEL SIGNING KEY BACKUP SETTING
@@ -1229,16 +1216,15 @@ CANCEL SIGNING KEY BACKUP SETTING
 
 function cancelSigningKeyBackupSetting() {
 
-    pendingSigningKeyBackupSetting =
-        originalSigningKeyBackupSetting;
+pendingSigningKeyBackupSetting =
+    originalSigningKeyBackupSetting;
 
 
-    updateSigningKeyBackupSettingUI();
+updateSigningKeyBackupSettingUI();
 
-    closeSigningKeyBackupPopup();
+closeSigningKeyBackupPopup();
 
 }
-
 
 /* =================================================
 SAVE SIGNING KEY BACKUP SETTING
@@ -1246,690 +1232,676 @@ SAVE SIGNING KEY BACKUP SETTING
 
 function saveSigningKeyBackupSetting() {
 
-    if (
-        pendingSigningKeyBackupSetting ===
-        originalSigningKeyBackupSetting
-    ) {
+if (
+    pendingSigningKeyBackupSetting ===
+    originalSigningKeyBackupSetting
+) {
 
-        return;
-
-    }
-
-
-    sessionStorage.setItem(
-        "signingKeyBackupSetting",
-        pendingSigningKeyBackupSetting
-    );
-
-
-    originalSigningKeyBackupSetting =
-        pendingSigningKeyBackupSetting;
-
-
-    updateSigningKeyBackupSettingUI();
-
-    updateSavedSigningKeyBackupSettingUI();
-
-    closeSigningKeyBackupPopup();
+    return;
 
 }
 
 
+sessionStorage.setItem(
+    "signingKeyBackupSetting",
+    pendingSigningKeyBackupSetting
+);
+
+
+originalSigningKeyBackupSetting =
+    pendingSigningKeyBackupSetting;
+
+
+updateSigningKeyBackupSettingUI();
+
+updateSavedSigningKeyBackupSettingUI();
+
+closeSigningKeyBackupPopup();
+
+}
+
 /* =================================================
-PASSWORD SECURITY SETTING
+CONFIGURATION SECURITY SETTING
 ================================================= */
 
 let originalSecuritySetting =
-    "ask_each_time";
+"ask_each_time";
 
 let pendingSecuritySetting =
-    "ask_each_time";
-
+"ask_each_time";
 
 function initializeSecuritySetting() {
 
-    let setting =
-        sessionStorage.getItem(
-            "securitySetting"
-        );
+let setting =
+    sessionStorage.getItem(
+        "securitySetting"
+    );
 
 
-    if (
-        setting !== "trust_sessions" &&
-        setting !== "ask_each_time"
-    ) {
+if (
+    setting !== "trust_sessions" &&
+    setting !== "ask_each_time"
+) {
 
-        setting =
-            "ask_each_time";
+    setting =
+        "ask_each_time";
 
-        sessionStorage.setItem(
-            "securitySetting",
-            setting
-        );
-
-    }
-
-
-    originalSecuritySetting =
-        setting;
-
-    pendingSecuritySetting =
-        setting;
-
-
-    updateSecuritySettingUI();
-
-    updateSavedSecuritySettingUI();
+    sessionStorage.setItem(
+        "securitySetting",
+        setting
+    );
 
 }
 
 
+originalSecuritySetting =
+    setting;
+
+pendingSecuritySetting =
+    setting;
+
+
+updateSecuritySettingUI();
+
+updateSavedSecuritySettingUI();
+
+}
+
 /* =================================================
-UPDATE SECURITY SETTING UI
+UPDATE CONFIGURATION SECURITY UI
 ================================================= */
 
 function updateSecuritySettingUI() {
 
-    const setting =
-        pendingSecuritySetting ||
-        "ask_each_time";
+const setting =
+    pendingSecuritySetting ||
+    "ask_each_time";
 
 
-    const options =
-        document.querySelectorAll(
-            ".security-popup-option"
-        );
-
-
-    options.forEach(
-        function(option) {
-
-            const optionSetting =
-                option.getAttribute(
-                    "data-setting"
-                );
-
-
-            if (
-                optionSetting ===
-                setting
-            ) {
-
-                option.classList.add(
-                    "selected"
-                );
-
-            }
-            else {
-
-                option.classList.remove(
-                    "selected"
-                );
-
-            }
-
-        }
+const options =
+    document.querySelectorAll(
+        "#configurationSecurityPopup .signing-key-popup-option"
     );
 
 
-    updateSecurityActions();
+options.forEach(
+    function(option) {
+
+        const optionSetting =
+            option.getAttribute(
+                "data-security-setting"
+            );
+
+
+        if (
+            optionSetting ===
+            setting
+        ) {
+
+            option.classList.add(
+                "selected"
+            );
+
+        }
+        else {
+
+            option.classList.remove(
+                "selected"
+            );
+
+        }
+
+    }
+);
+
+
+updateSecurityActions();
 
 }
 
-
 /* =================================================
-UPDATE SAVED SECURITY LABEL
+UPDATE SAVED CONFIGURATION SECURITY LABEL
 ================================================= */
 
 function updateSavedSecuritySettingUI() {
 
-    const setting =
-        originalSecuritySetting ||
-        "ask_each_time";
+const setting =
+    originalSecuritySetting ||
+    "ask_each_time";
 
 
-    const label =
-        document.getElementById(
-            "securitySettingLabel"
-        );
-
-
-    if (!label) {
-        return;
-    }
-
-
-    if (
-        setting ===
-        "trust_sessions"
-    ) {
-
-        label.textContent =
-            "Trust Sessions";
-
-    }
-    else {
-
-        label.textContent =
-            "Ask Every Time";
-
-    }
-
-}
-
-
-/* =================================================
-OPEN SECURITY POPUP
-================================================= */
-
-function openSecurityPopup() {
-
-    const popup =
-        document.getElementById(
-            "securityPopup"
-        );
-
-
-    if (!popup) {
-        return;
-    }
-
-
-    const savedSetting =
-        sessionStorage.getItem(
-            "securitySetting"
-        ) || "ask_each_time";
-
-
-    originalSecuritySetting =
-        savedSetting;
-
-    pendingSecuritySetting =
-        savedSetting;
-
-
-    updateSecuritySettingUI();
-
-    updateSavedSecuritySettingUI();
-
-
-    popup.classList.add(
-        "open"
+const label =
+    document.getElementById(
+        "configurationSecuritySettingLabel"
     );
 
 
-    const selector =
-        document.getElementById(
-            "securitySetting"
-        );
-
-
-    if (selector) {
-
-        selector.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-    }
-
+if (!label) {
+    return;
 }
 
 
-/* =================================================
-CLOSE SECURITY POPUP
-================================================= */
-
-function closeSecurityPopup(
-    event
+if (
+    setting ===
+    "trust_sessions"
 ) {
 
-    if (
-        event &&
-        event.target &&
-        event.target.id !==
-            "securityPopup"
-    ) {
+    label.textContent =
+        "Trust Sessions";
 
-        return;
+}
+else {
 
-    }
-
-
-    const popup =
-        document.getElementById(
-            "securityPopup"
-        );
-
-
-    if (popup) {
-
-        popup.classList.remove(
-            "open"
-        );
-
-    }
-
-
-    const selector =
-        document.getElementById(
-            "securitySetting"
-        );
-
-
-    if (selector) {
-
-        selector.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    }
+    label.textContent =
+        "Ask Every Time";
 
 }
 
+}
 
 /* =================================================
-HANDLE SECURITY SETTING
+OPEN CONFIGURATION SECURITY POPUP
 ================================================= */
 
-function handleSecuritySetting(
-    setting
+function openConfigurationSecurityPopup() {
+
+const popup =
+    document.getElementById(
+        "configurationSecurityPopup"
+    );
+
+
+if (!popup) {
+    return;
+}
+
+
+const savedSetting =
+    sessionStorage.getItem(
+        "securitySetting"
+    ) || "ask_each_time";
+
+
+originalSecuritySetting =
+    savedSetting;
+
+pendingSecuritySetting =
+    savedSetting;
+
+
+updateSecuritySettingUI();
+
+updateSavedSecuritySettingUI();
+
+
+popup.classList.add(
+    "open"
+);
+
+
+const selector =
+    document.getElementById(
+        "configurationSecuritySetting"
+    );
+
+
+if (selector) {
+
+    selector.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+}
+
+}
+
+/* =================================================
+CLOSE CONFIGURATION SECURITY POPUP
+================================================= */
+
+function closeConfigurationSecurityPopup(
+event
 ) {
 
-    if (
-        setting !== "ask_each_time" &&
-        setting !== "trust_sessions"
-    ) {
+if (
+    event &&
+    event.target &&
+    event.target.id !==
+        "configurationSecurityPopup"
+) {
 
-        return;
-
-    }
-
-
-    pendingSecuritySetting =
-        setting;
-
-
-    updateSecuritySettingUI();
+    return;
 
 }
 
 
+const popup =
+    document.getElementById(
+        "configurationSecurityPopup"
+    );
+
+
+if (popup) {
+
+    popup.classList.remove(
+        "open"
+    );
+
+}
+
+
+const selector =
+    document.getElementById(
+        "configurationSecuritySetting"
+    );
+
+
+if (selector) {
+
+    selector.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+}
+
+}
+
 /* =================================================
-UPDATE SECURITY ACTIONS
+HANDLE CONFIGURATION SECURITY SETTING
+================================================= */
+
+function handleConfigurationSecuritySetting(
+setting
+) {
+
+if (
+    setting !== "ask_each_time" &&
+    setting !== "trust_sessions"
+) {
+
+    return;
+
+}
+
+
+pendingSecuritySetting =
+    setting;
+
+
+updateSecuritySettingUI();
+
+}
+
+/* =================================================
+UPDATE CONFIGURATION SECURITY ACTIONS
 ================================================= */
 
 function updateSecurityActions() {
 
-    const actions =
-        document.getElementById(
-            "securityActions"
-        );
-
-
-    if (!actions) {
-        return;
-    }
-
-
-    if (
-        pendingSecuritySetting !==
-        originalSecuritySetting
-    ) {
-
-        actions.style.display =
-            "flex";
-
-    }
-    else {
-
-        actions.style.display =
-            "none";
-
-    }
-
-}
-
-
-/* =================================================
-CANCEL SECURITY SETTING
-================================================= */
-
-function cancelSecuritySetting() {
-
-    pendingSecuritySetting =
-        originalSecuritySetting;
-
-
-    updateSecuritySettingUI();
-
-    closeSecurityPopup();
-
-}
-
-
-/* =================================================
-SAVE SECURITY SETTING
-================================================= */
-
-function saveSecuritySetting() {
-
-    if (
-        pendingSecuritySetting ===
-        originalSecuritySetting
-    ) {
-
-        return;
-
-    }
-
-
-    sessionStorage.setItem(
-        "securitySetting",
-        pendingSecuritySetting
+const actions =
+    document.getElementById(
+        "configurationSecurityActions"
     );
 
 
-    originalSecuritySetting =
-        pendingSecuritySetting;
+if (!actions) {
+    return;
+}
 
 
-    updateSecuritySettingUI();
+if (
+    pendingSecuritySetting !==
+    originalSecuritySetting
+) {
 
-    updateSavedSecuritySettingUI();
+    actions.style.display =
+        "flex";
 
-    closeSecurityPopup();
+}
+else {
+
+    actions.style.display =
+        "none";
 
 }
 
+}
+
+/* =================================================
+CANCEL CONFIGURATION SECURITY SETTING
+================================================= */
+
+function cancelConfigurationSecuritySetting() {
+
+pendingSecuritySetting =
+    originalSecuritySetting;
+
+
+updateSecuritySettingUI();
+
+closeConfigurationSecurityPopup();
+
+}
+
+/* =================================================
+SAVE CONFIGURATION SECURITY SETTING
+================================================= */
+
+function saveConfigurationSecuritySetting() {
+
+if (
+    pendingSecuritySetting ===
+    originalSecuritySetting
+) {
+
+    return;
+
+}
+
+
+sessionStorage.setItem(
+    "securitySetting",
+    pendingSecuritySetting
+);
+
+
+originalSecuritySetting =
+    pendingSecuritySetting;
+
+
+updateSecuritySettingUI();
+
+updateSavedSecuritySettingUI();
+
+closeConfigurationSecurityPopup();
+
+}
 
 /* =================================================
 SAVE ACCOUNT DETAILS
 ================================================= */
 
 function saveAccountDetails(
-    event
+event
 ) {
 
-    event.preventDefault();
+event.preventDefault();
 
 
-    const firstName =
-        document.getElementById(
-            "firstNameInput"
-        ).value.trim();
+const firstName =
+    document.getElementById(
+        "firstNameInput"
+    ).value.trim();
 
-    const lastName =
-        document.getElementById(
-            "lastNameInput"
-        ).value.trim();
+const lastName =
+    document.getElementById(
+        "lastNameInput"
+    ).value.trim();
 
-    const email =
-        document.getElementById(
-            "emailInput"
-        ).value.trim().toLowerCase();
-
-
-    if (!firstName) {
-
-        alert(
-            "First name is required."
-        );
-
-        return;
-
-    }
+const email =
+    document.getElementById(
+        "emailInput"
+    ).value.trim().toLowerCase();
 
 
-    if (!lastName) {
-
-        alert(
-            "Last name is required."
-        );
-
-        return;
-
-    }
-
-
-    if (!email) {
-
-        alert(
-            "Email address is required."
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Backend update will be connected here.
-     *
-     * For now, update the local session so
-     * the dashboard reflects the edited values
-     * during development.
-     */
-
-    sessionStorage.setItem(
-        "merchantFirstName",
-        firstName
-    );
-
-    sessionStorage.setItem(
-        "merchantLastName",
-        lastName
-    );
-
-    sessionStorage.setItem(
-        "merchantEmail",
-        email
-    );
-
-
-    populateAccountMenu();
-
+if (!firstName) {
 
     alert(
-        "Account details updated."
+        "First name is required."
     );
 
-
-    closeSettingsForm();
+    return;
 
 }
 
+
+if (!lastName) {
+
+    alert(
+        "Last name is required."
+    );
+
+    return;
+
+}
+
+
+if (!email) {
+
+    alert(
+        "Email address is required."
+    );
+
+    return;
+
+}
+
+
+/*
+ * Backend update will be connected here.
+ *
+ * For now, update the local session so
+ * the dashboard reflects the edited values
+ * during development.
+ */
+
+sessionStorage.setItem(
+    "merchantFirstName",
+    firstName
+);
+
+sessionStorage.setItem(
+    "merchantLastName",
+    lastName
+);
+
+sessionStorage.setItem(
+    "merchantEmail",
+    email
+);
+
+
+populateAccountMenu();
+
+
+alert(
+    "Account details updated."
+);
+
+
+closeSettingsForm();
+
+}
 
 /* =================================================
 SAVE ACCOUNT PASSWORD
 ================================================= */
 
 function saveAccountPassword(
-    event
+event
 ) {
 
-    event.preventDefault();
+event.preventDefault();
 
 
-    const currentPassword =
-        document.getElementById(
-            "currentPasswordInput"
-        ).value;
+const currentPassword =
+    document.getElementById(
+        "currentPasswordInput"
+    ).value;
 
-    const newPassword =
-        document.getElementById(
-            "newPasswordInput"
-        ).value;
+const newPassword =
+    document.getElementById(
+        "newPasswordInput"
+    ).value;
 
-    const confirmPassword =
-        document.getElementById(
-            "confirmPasswordInput"
-        ).value;
-
-
-    if (!currentPassword) {
-
-        alert(
-            "Current password is required."
-        );
-
-        return;
-
-    }
+const confirmPassword =
+    document.getElementById(
+        "confirmPasswordInput"
+    ).value;
 
 
-    if (!newPassword) {
-
-        alert(
-            "New password is required."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        newPassword !==
-        confirmPassword
-    ) {
-
-        alert(
-            "The new passwords do not match."
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Backend password update will be
-     * connected here.
-     */
+if (!currentPassword) {
 
     alert(
-        "Password change will be connected to the server next."
+        "Current password is required."
     );
+
+    return;
 
 }
 
+
+if (!newPassword) {
+
+    alert(
+        "New password is required."
+    );
+
+    return;
+
+}
+
+
+if (
+    newPassword !==
+    confirmPassword
+) {
+
+    alert(
+        "The new passwords do not match."
+    );
+
+    return;
+
+}
+
+
+/*
+ * Backend password update will be
+ * connected here.
+ */
+
+alert(
+    "Password change will be connected to the server next."
+);
+
+}
 
 /* =================================================
 SAVE BACKUP PASSWORD
 ================================================= */
 
 function saveBackupPassword(
-    event
+event
 ) {
 
-    event.preventDefault();
+event.preventDefault();
 
 
-    const currentBackupPassword =
-        document.getElementById(
-            "currentBackupPasswordInput"
-        ).value;
+const currentBackupPassword =
+    document.getElementById(
+        "currentBackupPasswordInput"
+    ).value;
 
-    const newBackupPassword =
-        document.getElementById(
-            "newBackupPasswordInput"
-        ).value;
+const newBackupPassword =
+    document.getElementById(
+        "newBackupPasswordInput"
+    ).value;
 
-    const confirmNewBackupPassword =
-        document.getElementById(
-            "confirmNewBackupPasswordInput"
-        ).value;
+const confirmNewBackupPassword =
+    document.getElementById(
+        "confirmNewBackupPasswordInput"
+    ).value;
 
-    const accountPassword =
-        document.getElementById(
-            "backupAccountPasswordInput"
-        ).value;
-
-
-    /*
-     * Current Backup Password is intentionally
-     * allowed to be blank when no Backup Password
-     * has been configured.
-     */
-
-    if (!newBackupPassword) {
-
-        alert(
-            "New Backup Password is required."
-        );
-
-        return;
-
-    }
+const accountPassword =
+    document.getElementById(
+        "backupAccountPasswordInput"
+    ).value;
 
 
-    if (!confirmNewBackupPassword) {
+/*
+ * Current Backup Password is intentionally
+ * allowed to be blank when no Backup Password
+ * has been configured.
+ */
 
-        alert(
-            "Please confirm your new Backup Password."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        newBackupPassword !==
-        confirmNewBackupPassword
-    ) {
-
-        alert(
-            "The new Backup Passwords do not match."
-        );
-
-        return;
-
-    }
-
-
-    if (!accountPassword) {
-
-        alert(
-            "Account Password is required."
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Actual verification will be handled
-     * by the server later.
-     *
-     * The server will eventually:
-     *
-     * 1. Verify the Account Password.
-     * 2. Determine whether a Backup Password
-     *    is currently configured.
-     * 3. If configured, verify the Current
-     *    Backup Password.
-     * 4. Derive the encryption key from the
-     *    new Backup Password.
-     * 5. Re-wrap the Entity Signing Key backup.
-     * 6. Store the updated encrypted backup.
-     *
-     * The Current Backup Password is not stored
-     * or verified in the browser.
-     */
-
-    void currentBackupPassword;
-
+if (!newBackupPassword) {
 
     alert(
-        "Backup password setup will be connected to the server next."
+        "New Backup Password is required."
     );
+
+    return;
 
 }
 
+
+if (!confirmNewBackupPassword) {
+
+    alert(
+        "Please confirm your new Backup Password."
+    );
+
+    return;
+
+}
+
+
+if (
+    newBackupPassword !==
+    confirmNewBackupPassword
+) {
+
+    alert(
+        "The new Backup Passwords do not match."
+    );
+
+    return;
+
+}
+
+
+if (!accountPassword) {
+
+    alert(
+        "Account Password is required."
+    );
+
+    return;
+
+}
+
+
+/*
+ * Actual verification will be handled
+ * by the server later.
+ *
+ * The server will eventually:
+ *
+ * 1. Verify the Account Password.
+ * 2. Determine whether a Backup Password
+ *    is currently configured.
+ * 3. If configured, verify the Current
+ *    Backup Password.
+ * 4. Derive the encryption key from the
+ *    new Backup Password.
+ * 5. Re-wrap the Entity Signing Key backup.
+ * 6. Store the updated encrypted backup.
+ *
+ * The Current Backup Password is not stored
+ * or verified in the browser.
+ */
+
+void currentBackupPassword;
+
+
+alert(
+    "Backup password setup will be connected to the server next."
+);
+
+}
 
 /* =================================================
 NAVIGATION
@@ -1937,11 +1909,10 @@ NAVIGATION
 
 function goToDashboard() {
 
-    window.location.href =
-        "dashboard.html";
+window.location.href =
+    "dashboard.html";
 
 }
-
 
 /* =================================================
 DEVELOPER MODAL
@@ -1949,33 +1920,66 @@ DEVELOPER MODAL
 
 function openDeveloperResponse() {
 
-    const modal =
-        document.getElementById(
-            "developerModal"
-        );
-
-
-    if (!modal) {
-        return;
-    }
-
-
-    modal.classList.add(
-        "open"
+const modal =
+    document.getElementById(
+        "developerModal"
     );
+
+
+if (!modal) {
+    return;
+}
+
+
+modal.classList.add(
+    "open"
+);
+
+}
+
+function closeDeveloperResponse(
+event
+) {
+
+if (
+    event &&
+    event.target &&
+    event.target.id !==
+        "developerModal"
+) {
+
+    return;
 
 }
 
 
-function closeDeveloperResponse(
-    event
-) {
+const modal =
+    document.getElementById(
+        "developerModal"
+    );
+
+
+if (!modal) {
+    return;
+}
+
+
+modal.classList.remove(
+    "open"
+);
+
+}
+
+/* =================================================
+ESCAPE KEY
+================================================= */
+
+document.addEventListener(
+"keydown",
+function(event) {
 
     if (
-        event &&
-        event.target &&
-        event.target.id !==
-            "developerModal"
+        event.key !== "Escape"
     ) {
 
         return;
@@ -1983,48 +1987,14 @@ function closeDeveloperResponse(
     }
 
 
-    const modal =
-        document.getElementById(
-            "developerModal"
-        );
+    closeAccountMenu();
 
+    closeDeveloperResponse();
 
-    if (!modal) {
-        return;
-    }
+    closeSigningKeyBackupPopup();
 
-
-    modal.classList.remove(
-        "open"
-    );
+    closeConfigurationSecurityPopup();
 
 }
 
-
-/* =================================================
-ESCAPE KEY
-================================================= */
-
-document.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (
-            event.key !== "Escape"
-        ) {
-
-            return;
-
-        }
-
-
-        closeAccountMenu();
-
-        closeDeveloperResponse();
-
-        closeSigningKeyBackupPopup();
-
-        closeSecurityPopup();
-
-    }
 );
