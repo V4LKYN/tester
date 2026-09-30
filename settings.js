@@ -554,7 +554,7 @@ sessionStorage.getItem(
 
 if (
 backupPasswordState ===
-"false"
+"true"
 ) {
 
 openChangeBackupPassword();
@@ -1866,7 +1866,7 @@ sessionStorage.getItem(
 
 if (
 backupPasswordState ===
-"false"
+"true"
 ) {
 
 saveChangedBackupPassword();
