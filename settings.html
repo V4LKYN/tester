@@ -1,4 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
 
 <meta
     name="viewport"
@@ -12,7 +17,13 @@
     href="settings.css"
 >
 
-</head><body><div class="dashboard-page"><!-- =================================================
+</head>
+
+<body>
+
+<div class="dashboard-page">
+
+<!-- =================================================
      HEADER
      ================================================= -->
 
@@ -238,7 +249,7 @@
 
 
                 <!-- =================================================
-                     CHANGE ACCOUNT PASSWORD
+                     PASSWORD SETTINGS
                      ================================================= -->
 
                 <button
@@ -423,11 +434,126 @@
 
 
         <!-- =================================================
-             ACCOUNT PASSWORD CARD
+             PASSWORD SETTINGS CARD
              ================================================= -->
 
         <section
             id="accountPasswordCard"
+            class="dashboard-card settings-form-card"
+            style="display: none;"
+        >
+
+            <div class="settings-form-header">
+
+                <div>
+
+                    <h2>
+                        Password Settings
+                    </h2>
+
+                    <p>
+                        Manage your account password and how password verification is handled during configuration.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-list">
+
+
+                <!-- =================================================
+                     CHANGE PASSWORD
+                     ================================================= -->
+
+                <button
+                    class="settings-item"
+                    type="button"
+                    onclick="openChangePassword()"
+                >
+
+                    <div class="settings-item-content">
+
+                        <div class="settings-item-title">
+                            Change Password
+                        </div>
+
+                        <div class="settings-item-description">
+                            Change the password used to access your merchant account.
+                        </div>
+
+                    </div>
+
+
+                    <span
+                        class="settings-item-arrow"
+                        aria-hidden="true"
+                    >
+                        ›
+                    </span>
+
+                </button>
+
+
+                <!-- =================================================
+                     CONFIGURING SECURITY
+                     ================================================= -->
+
+                <div class="settings-setting-row">
+
+                    <div class="settings-item-content">
+
+                        <div class="settings-item-title">
+                            Configuring Security
+                        </div>
+
+                        <div class="settings-item-description">
+                            Choose when your account password is required for configuration changes.
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-select-wrapper">
+
+                        <button
+                            id="configuringSecuritySetting"
+                            class="settings-select-button"
+                            type="button"
+                            onclick="openConfiguringSecurityPopup()"
+                            aria-haspopup="dialog"
+                            aria-expanded="false"
+                        >
+
+                            <span id="configuringSecuritySettingLabel">
+                                Ask Every Time
+                            </span>
+
+                            <span
+                                class="settings-select-chevron"
+                                aria-hidden="true"
+                            >
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CHANGE PASSWORD CARD
+             ================================================= -->
+
+        <section
+            id="changePasswordCard"
             class="dashboard-card settings-form-card"
             style="display: none;"
         >
@@ -517,7 +643,7 @@
                     <button
                         class="settings-secondary-button"
                         type="button"
-                        onclick="closeSettingsForm()"
+                        onclick="openAccountPassword()"
                     >
                         Cancel
                     </button>
@@ -605,7 +731,6 @@
                                 class="settings-select-chevron"
                                 aria-hidden="true"
                             >
-                                
                             </span>
 
                         </button>
@@ -657,112 +782,147 @@
              BACKUP PASSWORD CARD
              ================================================= -->
 
-       <section
-    id="backupPasswordCard"
-    class="dashboard-card settings-form-card"
-    style="display: none;"
->
-    <div class="settings-form-header">
-        <div>
-            <h2>
-                Backup Password
-            </h2>
-            <p>
-                Create or change the password used to protect your signing key backups.
-            </p>
-        </div>
-    </div>
+        <section
+            id="backupPasswordCard"
+            class="dashboard-card settings-form-card"
+            style="display: none;"
+        >
 
-    <form
-        id="backupPasswordForm"
-        class="settings-form"
-        onsubmit="saveBackupPassword(event)"
-    >
-        <div class="settings-field">
-            <label
-                for="currentBackupPasswordInput"
-            >
-                Current Backup Password
-            </label>
-            <input
-                id="currentBackupPasswordInput"
-                name="current_backup_password"
-                type="password"
-                autocomplete="current-password"
-            >
-<div class="signing-key-popup-notice">
-    <div class="signing-key-popup-notice-icon">
-        i
-    </div>
-    <div class="signing-key-popup-notice-text">
-        Leave blank if you haven't configured a Backup Password.
-    </div>
-</div>
-        </div>
+            <div class="settings-form-header">
 
-        <div class="settings-field">
-            <label
-                for="newBackupPasswordInput"
-            >
-                New Backup Password
-            </label>
-            <input
-                id="newBackupPasswordInput"
-                name="new_backup_password"
-                type="password"
-                autocomplete="new-password"
-                required
-            >
-        </div>
+                <div>
 
-        <div class="settings-field">
-            <label
-                for="confirmNewBackupPasswordInput"
-            >
-                Confirm New Backup Password
-            </label>
-            <input
-                id="confirmNewBackupPasswordInput"
-                name="confirm_new_backup_password"
-                type="password"
-                autocomplete="new-password"
-                required
-            >
-        </div>
+                    <h2>
+                        Backup Password
+                    </h2>
 
-        <div class="settings-field">
-            <label
-                for="backupAccountPasswordInput"
-            >
-                Account Password
-            </label>
-            <input
-                id="backupAccountPasswordInput"
-                name="account_password"
-                type="password"
-                autocomplete="current-password"
-                required
-            >
-        </div>
+                    <p>
+                        Create or change the password used to protect your signing key backups.
+                    </p>
 
-        <div class="settings-form-actions">
-            <button
-                class="settings-secondary-button"
-                type="button"
-                onclick="openSigningKeySettings()"
-            >
-                Cancel
-            </button>
+                </div>
 
-            <button
-                class="settings-primary-button"
-                type="submit"
+            </div>
+
+
+            <form
+                id="backupPasswordForm"
+                class="settings-form"
+                onsubmit="saveBackupPassword(event)"
             >
-                Set Backup Password
-            </button>
-        </div>
-    </form>
-</section>
+
+                <div class="settings-field">
+
+                    <label
+                        for="currentBackupPasswordInput"
+                    >
+                        Current Backup Password
+                    </label>
+
+                    <input
+                        id="currentBackupPasswordInput"
+                        name="current_backup_password"
+                        type="password"
+                        autocomplete="current-password"
+                    >
+
+                    <div class="signing-key-popup-notice">
+
+                        <div class="signing-key-popup-notice-icon">
+                            i
+                        </div>
+
+                        <div class="signing-key-popup-notice-text">
+                            Leave blank if you haven't configured a Backup Password.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-field">
+
+                    <label
+                        for="newBackupPasswordInput"
+                    >
+                        New Backup Password
+                    </label>
+
+                    <input
+                        id="newBackupPasswordInput"
+                        name="new_backup_password"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="settings-field">
+
+                    <label
+                        for="confirmNewBackupPasswordInput"
+                    >
+                        Confirm New Backup Password
+                    </label>
+
+                    <input
+                        id="confirmNewBackupPasswordInput"
+                        name="confirm_new_backup_password"
+                        type="password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="settings-field">
+
+                    <label
+                        for="backupAccountPasswordInput"
+                    >
+                        Account Password
+                    </label>
+
+                    <input
+                        id="backupAccountPasswordInput"
+                        name="account_password"
+                        type="password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="settings-form-actions">
+
+                    <button
+                        class="settings-secondary-button"
+                        type="button"
+                        onclick="openSigningKeySettings()"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        class="settings-primary-button"
+                        type="submit"
+                    >
+                        Set Backup Password
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </section>
 
 </main>
 
@@ -780,239 +940,421 @@
     Developer
 </button>
 
-</div><!-- =================================================
+</div>
+
+
+<!-- =================================================
      DEVELOPER RESPONSE MODAL
-     ================================================= --><div
+     ================================================= -->
+
+<div
     id="developerModal"
     class="developer-modal"
     onclick="closeDeveloperResponse(event)"
-><div
-    class="developer-modal-content"
-    onclick="event.stopPropagation()"
 >
 
-    <div class="developer-modal-header">
-
-        <h2>
-            Developer Response
-        </h2>
-
-
-        <button
-            class="developer-close"
-            type="button"
-            onclick="closeDeveloperResponse()"
-            aria-label="Close"
-        >
-            ×
-        </button>
-
-    </div>
-
-
     <div
-        id="developerMeta"
-        class="developer-meta"
+        class="developer-modal-content"
+        onclick="event.stopPropagation()"
     >
-        No request information.
+
+        <div class="developer-modal-header">
+
+            <h2>
+                Developer Response
+            </h2>
+
+
+            <button
+                class="developer-close"
+                type="button"
+                onclick="closeDeveloperResponse()"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="developerMeta"
+            class="developer-meta"
+        >
+            No request information.
+        </div>
+
+
+        <pre id="developerResponseText">No response yet.</pre>
+
     </div>
-
-
-    <pre id="developerResponseText">No response yet.</pre>
 
 </div>
 
-</div><!-- =================================================
+
+<!-- =================================================
      SIGNING KEY BACKUP POPUP
-     ================================================= --><div
+     ================================================= -->
+
+<div
     id="signingKeyBackupPopup"
     class="signing-key-popup"
     onclick="closeSigningKeyBackupPopup(event)"
-><div
-    class="signing-key-popup-content"
-    onclick="event.stopPropagation()"
 >
 
-    <div class="signing-key-popup-header">
+    <div
+        class="signing-key-popup-content"
+        onclick="event.stopPropagation()"
+    >
 
-        <h2>
-            Entity Signing Key Backup
-        </h2>
+        <div class="signing-key-popup-header">
 
-
-        <button
-            class="signing-key-popup-close"
-            type="button"
-            onclick="closeSigningKeyBackupPopup()"
-            aria-label="Close"
-        >
-            ×
-        </button>
-
-    </div>
-
-
-    <p class="signing-key-popup-description">
-        Choose how your entity signing keys are backed up and recovered.
-    </p>
-
-
-    <div class="signing-key-popup-options">
-
-
-        <!-- =================================================
-             BACK UP AUTOMATICALLY
-             ================================================= -->
-
-        <button
-            class="signing-key-popup-option"
-            type="button"
-            data-setting="automatic"
-            onclick="handleSigningKeyBackupSetting('automatic')"
-        >
-
-            <span class="signing-key-popup-option-content">
-
-                <span class="signing-key-popup-option-title">
-                    Back Up Automatically
-                </span>
-
-                <span class="signing-key-popup-option-description">
-                    Your signing keys are securely backed up for recovery. Anyone who gains access to your merchant account may also be able to recover and control your signing keys.
-                </span>
-
-            </span>
-
-
-            <span
-                class="signing-key-popup-radio"
-                aria-hidden="true"
-            ></span>
-
-        </button>
-
-
-        <!-- =================================================
-             I’LL MANAGE MY KEYS
-             ================================================= -->
-
-        <button
-            class="signing-key-popup-option"
-            type="button"
-            data-setting="self_managed"
-            onclick="handleSigningKeyBackupSetting('self_managed')"
-        >
-
-            <span class="signing-key-popup-option-content">
-
-                <span class="signing-key-popup-option-title">
-                    I’ll Manage My Keys
-                </span>
-
-                <span class="signing-key-popup-option-description">
-                    Your signing key is provided to you once and is not stored for recovery. You are fully responsible for securely storing and recovering your key. If it is lost, it cannot be recovered.
-                </span>
-
-            </span>
-
-
-            <span
-                class="signing-key-popup-radio"
-                aria-hidden="true"
-            ></span>
-
-        </button>
-
-
-        <!-- =================================================
-             ASK ME EACH TIME
-             ================================================= -->
-
-        <button
-            class="signing-key-popup-option"
-            type="button"
-            data-setting="ask_each_time"
-            onclick="handleSigningKeyBackupSetting('ask_each_time')"
-        >
-
-            <span class="signing-key-popup-option-content">
-
-                <span class="signing-key-popup-option-title">
-                    Ask Me Each Time
-                </span>
-
-                <span class="signing-key-popup-option-description">
-                    When a new entity is created, you will be asked whether you want to back up its signing key or manage it yourself.
-                </span>
-
-            </span>
-
-
-            <span
-                class="signing-key-popup-radio"
-                aria-hidden="true"
-            ></span>
-
-        </button>
-
-
-        <!-- =================================================
-             INFORMATION NOTICE
-             ================================================= -->
-
-        <div class="signing-key-popup-notice">
-
-            <span
-                class="signing-key-popup-notice-icon"
-                aria-hidden="true"
-            >
-                i
-            </span>
-
-            <span class="signing-key-popup-notice-text">
-                Changes to this setting only apply to entities created after the setting is updated. Previously configured entities will not be affected.
-            </span>
-
-        </div>
-
-
-        <!-- =================================================
-             SETTINGS ACTIONS
-             ================================================= -->
-
-        <div
-            id="signingKeyBackupActions"
-            class="signing-key-popup-actions"
-            style="display: none;"
-        >
-
-            <button
-                id="signingKeyBackupCancel"
-                class="settings-secondary-button"
-                type="button"
-                onclick="cancelSigningKeyBackupSetting()"
-            >
-                Cancel
-            </button>
+            <h2>
+                Entity Signing Key Backup
+            </h2>
 
 
             <button
-                id="signingKeyBackupSave"
-                class="settings-primary-button"
+                class="signing-key-popup-close"
                 type="button"
-                onclick="saveSigningKeyBackupSetting()"
+                onclick="closeSigningKeyBackupPopup()"
+                aria-label="Close"
             >
-                Save Changes
+                ×
             </button>
 
         </div>
 
+
+        <p class="signing-key-popup-description">
+            Choose how your entity signing keys are backed up and recovered.
+        </p>
+
+
+        <div class="signing-key-popup-options">
+
+
+            <!-- =================================================
+                 BACK UP AUTOMATICALLY
+                 ================================================= -->
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-setting="automatic"
+                onclick="handleSigningKeyBackupSetting('automatic')"
+            >
+
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        Back Up Automatically
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        Your signing keys are securely backed up for recovery. Anyone who gains access to your merchant account may also be able to recover and control your signing keys.
+                    </span>
+
+                </span>
+
+
+                <span
+                    class="signing-key-popup-radio"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- =================================================
+                 I’LL MANAGE MY KEYS
+                 ================================================= -->
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-setting="self_managed"
+                onclick="handleSigningKeyBackupSetting('self_managed')"
+            >
+
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        I’ll Manage My Keys
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        Your signing key is provided to you once and is not stored for recovery. You are fully responsible for securely storing and recovering your key. If it is lost, it cannot be recovered.
+                    </span>
+
+                </span>
+
+
+                <span
+                    class="signing-key-popup-radio"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- =================================================
+                 ASK ME EACH TIME
+                 ================================================= -->
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-setting="ask_each_time"
+                onclick="handleSigningKeyBackupSetting('ask_each_time')"
+            >
+
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        Ask Me Each Time
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        When a new entity is created, you will be asked whether you want to back up its signing key or manage it yourself.
+                    </span>
+
+                </span>
+
+
+                <span
+                    class="signing-key-popup-radio"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- =================================================
+                 INFORMATION NOTICE
+                 ================================================= -->
+
+            <div class="signing-key-popup-notice">
+
+                <span
+                    class="signing-key-popup-notice-icon"
+                    aria-hidden="true"
+                >
+                    i
+                </span>
+
+                <span class="signing-key-popup-notice-text">
+                    Changes to this setting only apply to entities created after the setting is updated. Previously configured entities will not be affected.
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 SETTINGS ACTIONS
+                 ================================================= -->
+
+            <div
+                id="signingKeyBackupActions"
+                class="signing-key-popup-actions"
+                style="display: none;"
+            >
+
+                <button
+                    id="signingKeyBackupCancel"
+                    class="settings-secondary-button"
+                    type="button"
+                    onclick="cancelSigningKeyBackupSetting()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    id="signingKeyBackupSave"
+                    class="settings-primary-button"
+                    type="button"
+                    onclick="saveSigningKeyBackupSetting()"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+
+        </div>
 
     </div>
 
 </div>
 
-</div><script src="settings.js"></script>
+
+<!-- =================================================
+     CONFIGURING SECURITY POPUP
+     ================================================= -->
+
+<div
+    id="configuringSecurityPopup"
+    class="signing-key-popup"
+    onclick="closeConfiguringSecurityPopup(event)"
+>
+
+    <div
+        class="signing-key-popup-content"
+        onclick="event.stopPropagation()"
+    >
+
+        <div class="signing-key-popup-header">
+
+            <h2>
+                Configuring Security
+            </h2>
+
+
+            <button
+                class="signing-key-popup-close"
+                type="button"
+                onclick="closeConfiguringSecurityPopup()"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <p class="signing-key-popup-description">
+            Choose when your account password is required before protected configuration actions.
+        </p>
+
+
+        <div class="signing-key-popup-options">
+
+
+            <!-- =================================================
+                 ASK EVERY TIME
+                 ================================================= -->
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-security-setting="ask_every_time"
+                onclick="handleConfiguringSecuritySetting('ask_every_time')"
+            >
+
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        Ask Every Time
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        Your account password is required each time a protected configuration action is performed.
+                    </span>
+
+                </span>
+
+
+                <span
+                    class="signing-key-popup-radio"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- =================================================
+                 TRUST SESSIONS
+                 ================================================= -->
+
+            <button
+                class="signing-key-popup-option"
+                type="button"
+                data-security-setting="trust_sessions"
+                onclick="handleConfiguringSecuritySetting('trust_sessions')"
+            >
+
+                <span class="signing-key-popup-option-content">
+
+                    <span class="signing-key-popup-option-title">
+                        Trust Sessions
+                    </span>
+
+                    <span class="signing-key-popup-option-description">
+                        After your password is verified, protected configuration actions will not require it again during the trusted session.
+                    </span>
+
+                </span>
+
+
+                <span
+                    class="signing-key-popup-radio"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- =================================================
+                 INFORMATION NOTICE
+                 ================================================= -->
+
+            <div class="signing-key-popup-notice">
+
+                <span
+                    class="signing-key-popup-notice-icon"
+                    aria-hidden="true"
+                >
+                    i
+                </span>
+
+                <span class="signing-key-popup-notice-text">
+                    Trusting a session is more convenient but increases the risk if you leave your account logged in and someone gains access to your device or active session.
+                </span>
+
+            </div>
+
+
+            <!-- =================================================
+                 SETTINGS ACTIONS
+                 ================================================= -->
+
+            <div
+                id="configuringSecurityActions"
+                class="signing-key-popup-actions"
+                style="display: none;"
+            >
+
+                <button
+                    id="configuringSecurityCancel"
+                    class="settings-secondary-button"
+                    type="button"
+                    onclick="cancelConfiguringSecuritySetting()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    id="configuringSecuritySave"
+                    class="settings-primary-button"
+                    type="button"
+                    onclick="saveConfiguringSecuritySetting()"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="settings.js"></script>
 
 </body>
 
