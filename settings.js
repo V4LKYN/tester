@@ -1866,7 +1866,7 @@ sessionStorage.getItem(
 
 if (
 backupPasswordState ===
-"true"
+"false"
 ) {
 
 saveChangedBackupPassword();
