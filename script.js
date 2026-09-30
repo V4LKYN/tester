@@ -1,10 +1,9 @@
 const API_BASE_URL =
-    "https://server-testing-production-7a62.up.railway.app";
+"https://server-testing-production-7a62.up.railway.app";
 
 let onboardingId = null;
 let merchantId = null;
 let authToken = null;
-
 
 // ---------------------------------------------------------
 // GENERAL STATUS
@@ -12,31 +11,31 @@ let authToken = null;
 
 function showStatus(message, type) {
 
-    const element =
-        document.getElementById("signupStatus");
+const element =
+    document.getElementById("signupStatus");
 
-    if (!element) {
-        return;
-    }
-
-    element.textContent = message;
-    element.className = "status " + type;
+if (!element) {
+    return;
 }
 
+element.textContent = message;
+element.className = "status " + type;
+
+}
 
 function clearStatus() {
 
-    const element =
-        document.getElementById("signupStatus");
+const element =
+    document.getElementById("signupStatus");
 
-    if (!element) {
-        return;
-    }
-
-    element.textContent = "";
-    element.className = "status";
+if (!element) {
+    return;
 }
 
+element.textContent = "";
+element.className = "status";
+
+}
 
 // ---------------------------------------------------------
 // DEVELOPER RESPONSE MODAL
@@ -44,84 +43,84 @@ function clearStatus() {
 
 function showDeveloperResponse(response, data) {
 
-    const meta =
-        document.getElementById("developerMeta");
+const meta =
+    document.getElementById("developerMeta");
 
-    const output =
-        document.getElementById("developerResponseText");
+const output =
+    document.getElementById("developerResponseText");
 
-    if (!meta || !output) {
-        return;
-    }
-
-    meta.textContent =
-        "HTTP " +
-        response.status +
-        " " +
-        response.statusText;
-
-    output.textContent =
-        JSON.stringify(data, null, 4);
+if (!meta || !output) {
+    return;
 }
 
+meta.textContent =
+    "HTTP " +
+    response.status +
+    " " +
+    response.statusText;
+
+output.textContent =
+    JSON.stringify(data, null, 4);
+
+}
 
 function showDeveloperError(error) {
 
-    const meta =
-        document.getElementById("developerMeta");
+const meta =
+    document.getElementById("developerMeta");
 
-    const output =
-        document.getElementById("developerResponseText");
+const output =
+    document.getElementById("developerResponseText");
 
-    if (!meta || !output) {
-        return;
-    }
-
-    meta.textContent = "Connection Error";
-
-    output.textContent =
-        JSON.stringify(
-            {
-                error: error.message
-            },
-            null,
-            4
-        );
+if (!meta || !output) {
+    return;
 }
 
+meta.textContent = "Connection Error";
+
+output.textContent =
+    JSON.stringify(
+        {
+            error: error.message
+        },
+        null,
+        4
+    );
+
+}
 
 function openDeveloperResponse() {
 
-    const modal =
-        document.getElementById("developerModal");
+const modal =
+    document.getElementById("developerModal");
 
-    if (!modal) {
-        return;
-    }
-
-    modal.classList.add("visible");
+if (!modal) {
+    return;
 }
 
+modal.classList.add("visible");
+
+}
 
 function closeDeveloperResponse(event) {
 
-    if (
-        event &&
-        event.target !== event.currentTarget
-    ) {
-        return;
-    }
-
-    const modal =
-        document.getElementById("developerModal");
-
-    if (!modal) {
-        return;
-    }
-
-    modal.classList.remove("visible");
+if (
+    event &&
+    event.target !== event.currentTarget
+) {
+    return;
 }
 
+const modal =
+    document.getElementById("developerModal");
+
+if (!modal) {
+    return;
+}
+
+modal.classList.remove("visible");
+
+}
 
 // ---------------------------------------------------------
 // AUTHENTICATION NAVIGATION
@@ -129,75 +128,75 @@ function closeDeveloperResponse(event) {
 
 function hideAllScreens() {
 
-    document
-        .querySelectorAll(".step")
-        .forEach(function(element) {
+document
+    .querySelectorAll(".step")
+    .forEach(function(element) {
 
-            element.classList.remove("active");
+        element.classList.remove("active");
 
-        });
+    });
+
 }
-
 
 function showAuthChoice() {
 
-    hideAllScreens();
+hideAllScreens();
 
-    clearStatus();
+clearStatus();
 
-    const screen =
-        document.getElementById("authChoice");
+const screen =
+    document.getElementById("authChoice");
 
-    if (!screen) {
-        return;
-    }
-
-    screen.classList.add("active");
+if (!screen) {
+    return;
 }
 
+screen.classList.add("active");
+
+}
 
 function showLogin() {
 
-    hideAllScreens();
+hideAllScreens();
 
-    clearStatus();
+clearStatus();
 
-    const screen =
-        document.getElementById("login");
+const screen =
+    document.getElementById("login");
 
-    if (!screen) {
-        return;
-    }
-
-    screen.classList.add("active");
-
-    const emailInput =
-        document.getElementById("loginEmail");
-
-    if (emailInput) {
-        emailInput.focus();
-    }
+if (!screen) {
+    return;
 }
 
+screen.classList.add("active");
+
+const emailInput =
+    document.getElementById("loginEmail");
+
+if (emailInput) {
+    emailInput.focus();
+}
+
+}
 
 function showSignup() {
 
-    hideAllScreens();
+hideAllScreens();
 
-    clearStatus();
+clearStatus();
 
-    const screen =
-        document.getElementById("signup");
+const screen =
+    document.getElementById("signup");
 
-    if (!screen) {
-        return;
-    }
-
-    screen.classList.add("active");
-
-    resetSignupState();
+if (!screen) {
+    return;
 }
 
+screen.classList.add("active");
+
+resetSignupState();
+
+}
 
 // ---------------------------------------------------------
 // SIGNUP FLOW
@@ -205,169 +204,169 @@ function showSignup() {
 
 function setSignupStep(step) {
 
-    document
-        .querySelectorAll(".signup-step")
-        .forEach(function(element) {
+document
+    .querySelectorAll(".signup-step")
+    .forEach(function(element) {
 
-            element.classList.remove("active");
-            element.style.display = "none";
+        element.classList.remove("active");
+        element.style.display = "none";
 
-        });
+    });
 
-    const target =
-        document.getElementById(
-            "signupStep" + step
-        );
+const target =
+    document.getElementById(
+        "signupStep" + step
+    );
 
-    if (target) {
+if (target) {
 
-        target.classList.add("active");
-        target.style.display = "block";
+    target.classList.add("active");
+    target.style.display = "block";
 
-    }
-
-    setFlowStep(step);
 }
 
+setFlowStep(step);
+
+}
 
 function setFlowStep(step) {
 
-    for (let i = 1; i <= 3; i++) {
+for (let i = 1; i <= 3; i++) {
 
-        const circle =
-            document.getElementById(
-                "flowCircle" + i
-            );
+    const circle =
+        document.getElementById(
+            "flowCircle" + i
+        );
 
-        const label =
-            document.getElementById(
-                "flowLabel" + i
-            );
+    const label =
+        document.getElementById(
+            "flowLabel" + i
+        );
 
-        if (circle) {
+    if (circle) {
 
-            circle.classList.remove(
-                "active",
-                "complete"
-            );
-
-        }
-
-        if (label) {
-
-            label.classList.remove("active");
-
-        }
-    }
-
-
-    const line1 =
-        document.getElementById("flowLine1");
-
-    const line2 =
-        document.getElementById("flowLine2");
-
-
-    if (line1) {
-
-        line1.classList.remove("complete");
+        circle.classList.remove(
+            "active",
+            "complete"
+        );
 
     }
 
+    if (label) {
 
-    if (line2) {
+        label.classList.remove("active");
 
-        line2.classList.remove("complete");
-
-    }
-
-
-    if (step >= 1) {
-
-        const circle1 =
-            document.getElementById("flowCircle1");
-
-        const label1 =
-            document.getElementById("flowLabel1");
-
-        if (circle1) {
-
-            circle1.classList.add(
-                step === 1
-                    ? "active"
-                    : "complete"
-            );
-
-        }
-
-        if (label1) {
-
-            label1.classList.add("active");
-
-        }
-    }
-
-
-    if (step >= 2) {
-
-        const circle2 =
-            document.getElementById("flowCircle2");
-
-        const label2 =
-            document.getElementById("flowLabel2");
-
-        if (circle2) {
-
-            circle2.classList.add(
-                step === 2
-                    ? "active"
-                    : "complete"
-            );
-
-        }
-
-        if (label2) {
-
-            label2.classList.add("active");
-
-        }
-
-        if (line1) {
-
-            line1.classList.add("complete");
-
-        }
-    }
-
-
-    if (step >= 3) {
-
-        const circle3 =
-            document.getElementById("flowCircle3");
-
-        const label3 =
-            document.getElementById("flowLabel3");
-
-        if (circle3) {
-
-            circle3.classList.add("complete");
-
-        }
-
-        if (label3) {
-
-            label3.classList.add("active");
-
-        }
-
-        if (line2) {
-
-            line2.classList.add("complete");
-
-        }
     }
 }
 
+
+const line1 =
+    document.getElementById("flowLine1");
+
+const line2 =
+    document.getElementById("flowLine2");
+
+
+if (line1) {
+
+    line1.classList.remove("complete");
+
+}
+
+
+if (line2) {
+
+    line2.classList.remove("complete");
+
+}
+
+
+if (step >= 1) {
+
+    const circle1 =
+        document.getElementById("flowCircle1");
+
+    const label1 =
+        document.getElementById("flowLabel1");
+
+    if (circle1) {
+
+        circle1.classList.add(
+            step === 1
+                ? "active"
+                : "complete"
+        );
+
+    }
+
+    if (label1) {
+
+        label1.classList.add("active");
+
+    }
+}
+
+
+if (step >= 2) {
+
+    const circle2 =
+        document.getElementById("flowCircle2");
+
+    const label2 =
+        document.getElementById("flowLabel2");
+
+    if (circle2) {
+
+        circle2.classList.add(
+            step === 2
+                ? "active"
+                : "complete"
+        );
+
+    }
+
+    if (label2) {
+
+        label2.classList.add("active");
+
+    }
+
+    if (line1) {
+
+        line1.classList.add("complete");
+
+    }
+}
+
+
+if (step >= 3) {
+
+    const circle3 =
+        document.getElementById("flowCircle3");
+
+    const label3 =
+        document.getElementById("flowLabel3");
+
+    if (circle3) {
+
+        circle3.classList.add("complete");
+
+    }
+
+    if (label3) {
+
+        label3.classList.add("active");
+
+    }
+
+    if (line2) {
+
+        line2.classList.add("complete");
+
+    }
+}
+
+}
 
 // ---------------------------------------------------------
 // FORM DATA
@@ -375,44 +374,44 @@ function setFlowStep(step) {
 
 function getFormData() {
 
-    const emailElement =
-        document.getElementById("email");
+const emailElement =
+    document.getElementById("email");
 
-    const firstNameElement =
-        document.getElementById("firstName");
+const firstNameElement =
+    document.getElementById("firstName");
 
-    const lastNameElement =
-        document.getElementById("lastName");
+const lastNameElement =
+    document.getElementById("lastName");
 
-    const passwordElement =
-        document.getElementById("password");
+const passwordElement =
+    document.getElementById("password");
 
 
-    return {
+return {
 
-        email:
-            emailElement
-                ? emailElement.value.trim()
-                : "",
+    email:
+        emailElement
+            ? emailElement.value.trim()
+            : "",
 
-        first_name:
-            firstNameElement
-                ? firstNameElement.value.trim()
-                : "",
+    first_name:
+        firstNameElement
+            ? firstNameElement.value.trim()
+            : "",
 
-        last_name:
-            lastNameElement
-                ? lastNameElement.value.trim()
-                : "",
+    last_name:
+        lastNameElement
+            ? lastNameElement.value.trim()
+            : "",
 
-        password:
-            passwordElement
-                ? passwordElement.value
-                : ""
+    password:
+        passwordElement
+            ? passwordElement.value
+            : ""
 
-    };
+};
+
 }
-
 
 // ---------------------------------------------------------
 // PASSWORD VALIDATION
@@ -420,63 +419,63 @@ function getFormData() {
 
 function validatePassword(password) {
 
-    if (password.length < 8) {
+if (password.length < 8) {
 
-        return (
-            "Password must be at least 8 characters."
-        );
+    return (
+        "Password must be at least 8 characters."
+    );
 
-    }
-
-
-    if (password.length > 128) {
-
-        return (
-            "Password cannot exceed 128 characters."
-        );
-
-    }
-
-
-    if (!/[A-Z]/.test(password)) {
-
-        return (
-            "Password must contain at least one uppercase letter."
-        );
-
-    }
-
-
-    if (!/[a-z]/.test(password)) {
-
-        return (
-            "Password must contain at least one lowercase letter."
-        );
-
-    }
-
-
-    if (!/[0-9]/.test(password)) {
-
-        return (
-            "Password must contain at least one number."
-        );
-
-    }
-
-
-    if (!/[^A-Za-z0-9]/.test(password)) {
-
-        return (
-            "Password must contain at least one special character."
-        );
-
-    }
-
-
-    return null;
 }
 
+
+if (password.length > 128) {
+
+    return (
+        "Password cannot exceed 128 characters."
+    );
+
+}
+
+
+if (!/[A-Z]/.test(password)) {
+
+    return (
+        "Password must contain at least one uppercase letter."
+    );
+
+}
+
+
+if (!/[a-z]/.test(password)) {
+
+    return (
+        "Password must contain at least one lowercase letter."
+    );
+
+}
+
+
+if (!/[0-9]/.test(password)) {
+
+    return (
+        "Password must contain at least one number."
+    );
+
+}
+
+
+if (!/[^A-Za-z0-9]/.test(password)) {
+
+    return (
+        "Password must contain at least one special character."
+    );
+
+}
+
+
+return null;
+
+}
 
 // ---------------------------------------------------------
 // START ONBOARDING
@@ -484,248 +483,248 @@ function validatePassword(password) {
 
 async function startOnboarding() {
 
-    const data =
-        getFormData();
+const data =
+    getFormData();
 
 
-    const confirmPasswordElement =
-        document.getElementById(
-            "confirmPassword"
-        );
-
-
-    const confirmPassword =
-        confirmPasswordElement
-            ? confirmPasswordElement.value
-            : "";
-
-
-    if (!data.email) {
-
-        showStatus(
-            "Email is required.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (!data.first_name) {
-
-        showStatus(
-            "First name is required.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (!data.last_name) {
-
-        showStatus(
-            "Last name is required.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (!data.password) {
-
-        showStatus(
-            "Password is required.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const passwordError =
-        validatePassword(
-            data.password
-        );
-
-
-    if (passwordError) {
-
-        showStatus(
-            passwordError,
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (
-        data.password !==
-        confirmPassword
-    ) {
-
-        showStatus(
-            "Passwords do not match.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.getElementById(
-            "startButton"
-        );
-
-
-    if (button) {
-
-        button.disabled = true;
-
-        button.textContent =
-            "Creating Account...";
-
-    }
-
-
-    showStatus(
-        "Creating account...",
-        "info"
+const confirmPasswordElement =
+    document.getElementById(
+        "confirmPassword"
     );
 
 
-    try {
-
-        const response =
-            await fetch(
-                API_BASE_URL +
-                "/api/v1/onboarding",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body:
-                        JSON.stringify(data)
-                }
-            );
+const confirmPassword =
+    confirmPasswordElement
+        ? confirmPasswordElement.value
+        : "";
 
 
-        const responseData =
-            await response.json();
+if (!data.email) {
+
+    showStatus(
+        "Email is required.",
+        "error"
+    );
+
+    return;
+}
 
 
-        showDeveloperResponse(
-            response,
-            responseData
+if (!data.first_name) {
+
+    showStatus(
+        "First name is required.",
+        "error"
+    );
+
+    return;
+}
+
+
+if (!data.last_name) {
+
+    showStatus(
+        "Last name is required.",
+        "error"
+    );
+
+    return;
+}
+
+
+if (!data.password) {
+
+    showStatus(
+        "Password is required.",
+        "error"
+    );
+
+    return;
+}
+
+
+const passwordError =
+    validatePassword(
+        data.password
+    );
+
+
+if (passwordError) {
+
+    showStatus(
+        passwordError,
+        "error"
+    );
+
+    return;
+}
+
+
+if (
+    data.password !==
+    confirmPassword
+) {
+
+    showStatus(
+        "Passwords do not match.",
+        "error"
+    );
+
+    return;
+}
+
+
+const button =
+    document.getElementById(
+        "startButton"
+    );
+
+
+if (button) {
+
+    button.disabled = true;
+
+    button.textContent =
+        "Creating Account...";
+
+}
+
+
+showStatus(
+    "Creating account...",
+    "info"
+);
+
+
+try {
+
+    const response =
+        await fetch(
+            API_BASE_URL +
+            "/api/v1/onboarding",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify(data)
+            }
         );
 
 
-        if (!response.ok) {
-
-            showStatus(
-                responseData.detail ||
-                "The server rejected the account creation request.",
-                "error"
-            );
-
-            return;
-        }
+    const responseData =
+        await response.json();
 
 
-        onboardingId =
-            responseData.onboarding_id;
+    showDeveloperResponse(
+        response,
+        responseData
+    );
 
 
-        if (!onboardingId) {
-
-            showStatus(
-                "The server did not return an onboarding ID.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        const emailDisplay =
-            document.getElementById(
-                "signupEmailDisplay"
-            );
-
-
-        if (emailDisplay) {
-
-            emailDisplay.textContent =
-                data.email;
-
-        }
-
-
-        const statusDisplay =
-            document.getElementById(
-                "onboardingStatusDisplay"
-            );
-
-
-        if (statusDisplay) {
-
-            statusDisplay.textContent =
-                responseData.status ||
-                "OTP_REQUIRED";
-
-        }
-
-
-        setSignupStep(2);
-
+    if (!response.ok) {
 
         showStatus(
-            "Enter the verification code sent to your email.",
-            "success"
-        );
-
-
-        const otp =
-            document.getElementById("otp");
-
-
-        if (otp) {
-
-            otp.focus();
-
-        }
-
-
-    } catch (error) {
-
-        showStatus(
-            "Could not connect to the Main Server.",
+            responseData.detail ||
+            "The server rejected the account creation request.",
             "error"
         );
 
-        showDeveloperError(error);
+        return;
+    }
 
 
-    } finally {
+    onboardingId =
+        responseData.onboarding_id;
 
-        if (button) {
 
-            button.disabled = false;
+    if (!onboardingId) {
 
-            button.textContent =
-                "Create Account";
+        showStatus(
+            "The server did not return an onboarding ID.",
+            "error"
+        );
 
-        }
+        return;
+    }
+
+
+    const emailDisplay =
+        document.getElementById(
+            "signupEmailDisplay"
+        );
+
+
+    if (emailDisplay) {
+
+        emailDisplay.textContent =
+            data.email;
+
+    }
+
+
+    const statusDisplay =
+        document.getElementById(
+            "onboardingStatusDisplay"
+        );
+
+
+    if (statusDisplay) {
+
+        statusDisplay.textContent =
+            responseData.status ||
+            "OTP_REQUIRED";
+
+    }
+
+
+    setSignupStep(2);
+
+
+    showStatus(
+        "Enter the verification code sent to your email.",
+        "success"
+    );
+
+
+    const otp =
+        document.getElementById("otp");
+
+
+    if (otp) {
+
+        otp.focus();
+
+    }
+
+
+} catch (error) {
+
+    showStatus(
+        "Could not connect to the Main Server.",
+        "error"
+    );
+
+    showDeveloperError(error);
+
+
+} finally {
+
+    if (button) {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Create Account";
+
     }
 }
 
+}
 
 // ---------------------------------------------------------
 // VERIFY ONBOARDING
@@ -733,467 +732,128 @@ async function startOnboarding() {
 
 async function verifyOnboarding() {
 
-    if (!onboardingId) {
-
-        showStatus(
-            "No onboarding session is active.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const otpElement =
-        document.getElementById("otp");
-
-
-    const otp =
-        otpElement
-            ? otpElement.value.trim()
-            : "";
-
-
-    if (!/^\d{6}$/.test(otp)) {
-
-        showStatus(
-            "Verification code must contain exactly 6 digits.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.getElementById(
-            "verifyButton"
-        );
-
-
-    if (button) {
-
-        button.disabled = true;
-
-        button.textContent =
-            "Verifying...";
-
-    }
-
+if (!onboardingId) {
 
     showStatus(
-        "Verifying your email...",
-        "info"
+        "No onboarding session is active.",
+        "error"
     );
 
-
-    try {
-
-        const response =
-            await fetch(
-
-                API_BASE_URL +
-                "/api/v1/onboarding/" +
-                encodeURIComponent(
-                    onboardingId
-                ) +
-                "/verify",
-
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body:
-                        JSON.stringify({
-                            otp: otp
-                        })
-                }
-            );
-
-
-        const responseData =
-            await response.json();
-
-
-        showDeveloperResponse(
-            response,
-            responseData
-        );
-
-
-        if (!response.ok) {
-
-            showStatus(
-                responseData.detail ||
-                "Email verification failed.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        merchantId =
-            responseData.merchant_id;
-
-
-        const resultStatus =
-            document.getElementById(
-                "resultStatus"
-            );
-
-
-        if (resultStatus) {
-
-            resultStatus.textContent =
-                responseData.status ||
-                "COMPLETED";
-
-        }
-
-
-        const resultMerchantId =
-            document.getElementById(
-                "resultMerchantId"
-            );
-
-
-        if (resultMerchantId) {
-
-            resultMerchantId.textContent =
-                merchantId ||
-                "Not returned";
-
-        }
-
-
-        setSignupStep(3);
-
-
-        showStatus(
-            "Your merchant account was created successfully.",
-            "success"
-        );
-
-
-    } catch (error) {
-
-        showStatus(
-            "Could not connect to the Main Server.",
-            "error"
-        );
-
-        showDeveloperError(error);
-
-
-    } finally {
-
-        if (button) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "Verify Email";
-
-        }
-    }
+    return;
 }
 
 
-// ---------------------------------------------------------
-// LOGIN
-// ---------------------------------------------------------
-
-async function login() {
-
-    const emailElement =
-        document.getElementById(
-            "loginEmail"
-        );
+const otpElement =
+    document.getElementById("otp");
 
 
-    const passwordElement =
-        document.getElementById(
-            "loginPassword"
-        );
+const otp =
+    otpElement
+        ? otpElement.value.trim()
+        : "";
 
 
-    const email =
-        emailElement
-            ? emailElement.value.trim()
-            : "";
-
-
-    const password =
-        passwordElement
-            ? passwordElement.value
-            : "";
-
-
-    if (!email) {
-
-        showStatus(
-            "Email is required.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    if (!password) {
-
-        showStatus(
-            "Password is required.",
-            "error"
-        );
-
-        return;
-    }
-
-
-    const button =
-        document.getElementById(
-            "loginButton"
-        );
-
-
-    if (button) {
-
-        button.disabled = true;
-
-        button.textContent =
-            "Signing In...";
-
-    }
-
+if (!/^\d{6}$/.test(otp)) {
 
     showStatus(
-        "Signing in...",
-        "info"
+        "Verification code must contain exactly 6 digits.",
+        "error"
     );
 
-
-    try {
-
-        const response =
-            await fetch(
-                API_BASE_URL +
-                "/api/v1/auth/login",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json"
-                    },
-
-                    body:
-                        JSON.stringify({
-                            email: email,
-                            password: password
-                        })
-                }
-            );
-
-
-        const responseData =
-            await response.json();
-
-
-        showDeveloperResponse(
-            response,
-            responseData
-        );
-
-
-        if (!response.ok) {
-
-            showStatus(
-                responseData.detail ||
-                "Invalid email or password.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        authToken =
-            responseData.access_token;
-
-
-        merchantId =
-            responseData.merchant_id;
-
-
-        if (!authToken) {
-
-            showStatus(
-                "The server did not return an authentication token.",
-                "error"
-            );
-
-            return;
-        }
-
-
-        // -------------------------------------------------
-        // STORE AUTHENTICATED SESSION
-        // -------------------------------------------------
-
-        sessionStorage.setItem(
-            "authToken",
-            authToken
-        );
-
-
-        sessionStorage.setItem(
-            "merchantId",
-            merchantId || ""
-        );
-
-
-        sessionStorage.setItem(
-            "merchantEmail",
-            responseData.email ||
-            email
-        );
-
-
-        sessionStorage.setItem(
-            "merchantFirstName",
-            responseData.first_name ||
-            ""
-        );
-
-
-        sessionStorage.setItem(
-            "merchantLastName",
-            responseData.last_name ||
-            ""
-        );
-
-
-        sessionStorage.setItem(
-            "merchantType",
-            responseData.type ||
-            ""
-        );
-
-
-        sessionStorage.setItem(
-            "merchantStatus",
-            responseData.status ||
-            ""
-        );
-
-
-        sessionStorage.setItem(
-            "merchantCreatedAt",
-            responseData.created_at ||
-            ""
-        );
-
-
-        sessionStorage.setItem(
-            "merchantUpdatedAt",
-            responseData.updated_at ||
-            ""
-        );
-
-
-        // -------------------------------------------------
-        // REDIRECT TO DASHBOARD
-        // -------------------------------------------------
-
-        const dashboardUrl =
-            new URL(
-                "dashboard.html",
-                window.location.href
-            ).href;
-
-
-        window.location.assign(
-            dashboardUrl
-        );
-
-
-        return;
-
-
-    } catch (error) {
-
-        showStatus(
-            "Could not connect to the Main Server.",
-            "error"
-        );
-
-        showDeveloperError(error);
-
-
-    } finally {
-
-        if (button) {
-
-            button.disabled = false;
-
-            button.textContent =
-                "Log In";
-
-        }
-    }
+    return;
 }
 
 
-// ---------------------------------------------------------
-// RESET SIGNUP
-// ---------------------------------------------------------
-
-function resetSignupState() {
-
-    onboardingId = null;
-    merchantId = null;
+const button =
+    document.getElementById(
+        "verifyButton"
+    );
 
 
-    const email =
-        document.getElementById("email");
+if (button) {
 
-    const firstName =
-        document.getElementById("firstName");
+    button.disabled = true;
 
-    const lastName =
-        document.getElementById("lastName");
+    button.textContent =
+        "Verifying...";
 
-    const password =
-        document.getElementById("password");
+}
 
-    const confirmPassword =
-        document.getElementById(
-            "confirmPassword"
+
+showStatus(
+    "Verifying your email...",
+    "info"
+);
+
+
+try {
+
+    const response =
+        await fetch(
+
+            API_BASE_URL +
+            "/api/v1/onboarding/" +
+            encodeURIComponent(
+                onboardingId
+            ) +
+            "/verify",
+
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify({
+                        otp: otp
+                    })
+            }
         );
 
-    const otp =
-        document.getElementById("otp");
 
-    const signupEmailDisplay =
-        document.getElementById(
-            "signupEmailDisplay"
+    const responseData =
+        await response.json();
+
+
+    showDeveloperResponse(
+        response,
+        responseData
+    );
+
+
+    if (!response.ok) {
+
+        showStatus(
+            responseData.detail ||
+            "Email verification failed.",
+            "error"
         );
 
-    const onboardingStatusDisplay =
-        document.getElementById(
-            "onboardingStatusDisplay"
-        );
+        return;
+    }
+
+
+    merchantId =
+        responseData.merchant_id;
+
 
     const resultStatus =
         document.getElementById(
             "resultStatus"
         );
+
+
+    if (resultStatus) {
+
+        resultStatus.textContent =
+            responseData.status ||
+            "COMPLETED";
+
+    }
+
 
     const resultMerchantId =
         document.getElementById(
@@ -1201,83 +861,446 @@ function resetSignupState() {
         );
 
 
-    if (email) {
-
-        email.value = "";
-
-    }
-
-
-    if (firstName) {
-
-        firstName.value = "John";
-
-    }
-
-
-    if (lastName) {
-
-        lastName.value = "Smith";
-
-    }
-
-
-    if (password) {
-
-        password.value = "";
-
-    }
-
-
-    if (confirmPassword) {
-
-        confirmPassword.value = "";
-
-    }
-
-
-    if (otp) {
-
-        otp.value = "";
-
-    }
-
-
-    if (signupEmailDisplay) {
-
-        signupEmailDisplay.textContent =
-            "—";
-
-    }
-
-
-    if (onboardingStatusDisplay) {
-
-        onboardingStatusDisplay.textContent =
-            "OTP_REQUIRED";
-
-    }
-
-
-    if (resultStatus) {
-
-        resultStatus.textContent =
-            "—";
-
-    }
-
-
     if (resultMerchantId) {
 
         resultMerchantId.textContent =
-            "—";
+            merchantId ||
+            "Not returned";
 
     }
 
 
-    setSignupStep(1);
+    setSignupStep(3);
+
+
+    showStatus(
+        "Your merchant account was created successfully.",
+        "success"
+    );
+
+
+} catch (error) {
+
+    showStatus(
+        "Could not connect to the Main Server.",
+        "error"
+    );
+
+    showDeveloperError(error);
+
+
+} finally {
+
+    if (button) {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Verify Email";
+
+    }
 }
 
+}
+
+// ---------------------------------------------------------
+// LOGIN
+// ---------------------------------------------------------
+
+async function login() {
+
+const emailElement =
+    document.getElementById(
+        "loginEmail"
+    );
+
+
+const passwordElement =
+    document.getElementById(
+        "loginPassword"
+    );
+
+
+const email =
+    emailElement
+        ? emailElement.value.trim()
+        : "";
+
+
+const password =
+    passwordElement
+        ? passwordElement.value
+        : "";
+
+
+if (!email) {
+
+    showStatus(
+        "Email is required.",
+        "error"
+    );
+
+    return;
+}
+
+
+if (!password) {
+
+    showStatus(
+        "Password is required.",
+        "error"
+    );
+
+    return;
+}
+
+
+const button =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+if (button) {
+
+    button.disabled = true;
+
+    button.textContent =
+        "Signing In...";
+
+}
+
+
+showStatus(
+    "Signing in...",
+    "info"
+);
+
+
+try {
+
+    const response =
+        await fetch(
+            API_BASE_URL +
+            "/api/v1/auth/login",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body:
+                    JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+            }
+        );
+
+
+    const responseData =
+        await response.json();
+
+
+    showDeveloperResponse(
+        response,
+        responseData
+    );
+
+
+    if (!response.ok) {
+
+        showStatus(
+            responseData.detail ||
+            "Invalid email or password.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    authToken =
+        responseData.access_token;
+
+
+    merchantId =
+        responseData.merchant_id;
+
+
+    if (!authToken) {
+
+        showStatus(
+            "The server did not return an authentication token.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    // -------------------------------------------------
+    // STORE AUTHENTICATED SESSION
+    // -------------------------------------------------
+
+    sessionStorage.setItem(
+        "authToken",
+        authToken
+    );
+
+
+    sessionStorage.setItem(
+        "merchantId",
+        merchantId || ""
+    );
+
+
+    sessionStorage.setItem(
+        "merchantEmail",
+        responseData.email ||
+        email
+    );
+
+
+    sessionStorage.setItem(
+        "merchantFirstName",
+        responseData.first_name ||
+        ""
+    );
+
+
+    sessionStorage.setItem(
+        "merchantLastName",
+        responseData.last_name ||
+        ""
+    );
+
+
+    sessionStorage.setItem(
+        "merchantType",
+        responseData.type ||
+        ""
+    );
+
+
+    sessionStorage.setItem(
+        "merchantStatus",
+        responseData.status ||
+        ""
+    );
+
+
+    sessionStorage.setItem(
+        "merchantCreatedAt",
+        responseData.created_at ||
+        ""
+    );
+
+
+    sessionStorage.setItem(
+        "merchantUpdatedAt",
+        responseData.updated_at ||
+        ""
+    );
+
+
+    // -------------------------------------------------
+    // STORE MERCHANT PREFERENCES
+    // -------------------------------------------------
+
+    sessionStorage.setItem(
+        "merchantTrustSessions",
+        String(
+            responseData.preferences?.trustsessions ??
+            false
+        )
+    );
+
+
+    sessionStorage.setItem(
+        "merchantSigningKeyBackup",
+        responseData.preferences?.signingkeybackup === null
+            ? "null"
+            : String(
+                responseData.preferences?.signingkeybackup ??
+                false
+            )
+    );
+
+
+    // -------------------------------------------------
+    // REDIRECT TO DASHBOARD
+    // -------------------------------------------------
+
+    const dashboardUrl =
+        new URL(
+            "dashboard.html",
+            window.location.href
+        ).href;
+
+
+    window.location.assign(
+        dashboardUrl
+    );
+
+
+    return;
+
+
+} catch (error) {
+
+    showStatus(
+        "Could not connect to the Main Server.",
+        "error"
+    );
+
+    showDeveloperError(error);
+
+
+} finally {
+
+    if (button) {
+
+        button.disabled = false;
+
+        button.textContent =
+            "Log In";
+
+    }
+}
+
+}
+
+// ---------------------------------------------------------
+// RESET SIGNUP
+// ---------------------------------------------------------
+
+function resetSignupState() {
+
+onboardingId = null;
+merchantId = null;
+
+
+const email =
+    document.getElementById("email");
+
+const firstName =
+    document.getElementById("firstName");
+
+const lastName =
+    document.getElementById("lastName");
+
+const password =
+    document.getElementById("password");
+
+const confirmPassword =
+    document.getElementById(
+        "confirmPassword"
+    );
+
+const otp =
+    document.getElementById("otp");
+
+const signupEmailDisplay =
+    document.getElementById(
+        "signupEmailDisplay"
+    );
+
+const onboardingStatusDisplay =
+    document.getElementById(
+        "onboardingStatusDisplay"
+    );
+
+const resultStatus =
+    document.getElementById(
+        "resultStatus"
+    );
+
+const resultMerchantId =
+    document.getElementById(
+        "resultMerchantId"
+    );
+
+
+if (email) {
+
+    email.value = "";
+
+}
+
+
+if (firstName) {
+
+    firstName.value = "John";
+
+}
+
+
+if (lastName) {
+
+    lastName.value = "Smith";
+
+}
+
+
+if (password) {
+
+    password.value = "";
+
+}
+
+
+if (confirmPassword) {
+
+    confirmPassword.value = "";
+
+}
+
+
+if (otp) {
+
+    otp.value = "";
+
+}
+
+
+if (signupEmailDisplay) {
+
+    signupEmailDisplay.textContent =
+        "—";
+
+}
+
+
+if (onboardingStatusDisplay) {
+
+    onboardingStatusDisplay.textContent =
+        "OTP_REQUIRED";
+
+}
+
+
+if (resultStatus) {
+
+    resultStatus.textContent =
+        "—";
+
+}
+
+
+if (resultMerchantId) {
+
+    resultMerchantId.textContent =
+        "—";
+
+}
+
+
+setSignupStep(1);
+
+}
 
 // ---------------------------------------------------------
 // DOM INITIALIZATION
@@ -1285,111 +1308,111 @@ function resetSignupState() {
 
 function initializePage() {
 
-    const developerModal =
-        document.getElementById(
-            "developerModal"
-        );
+const developerModal =
+    document.getElementById(
+        "developerModal"
+    );
 
 
-    if (developerModal) {
+if (developerModal) {
 
-        developerModal.classList.remove(
-            "visible"
-        );
+    developerModal.classList.remove(
+        "visible"
+    );
 
-        developerModal.style.display = "";
+    developerModal.style.display = "";
 
-    }
-
-
-    const otp =
-        document.getElementById("otp");
-
-
-    if (otp) {
-
-        otp.addEventListener(
-            "input",
-            function() {
-
-                this.value =
-                    this.value
-                        .replace(
-                            /\D/g,
-                            ""
-                        )
-                        .slice(
-                            0,
-                            6
-                        );
-
-            }
-        );
-
-
-        otp.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (
-                    event.key === "Enter"
-                ) {
-
-                    event.preventDefault();
-
-                    verifyOnboarding();
-
-                }
-
-            }
-        );
-    }
-
-
-    const loginPassword =
-        document.getElementById(
-            "loginPassword"
-        );
-
-
-    if (loginPassword) {
-
-        loginPassword.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (
-                    event.key === "Enter"
-                ) {
-
-                    event.preventDefault();
-
-                    login();
-
-                }
-
-            }
-        );
-    }
 }
 
+
+const otp =
+    document.getElementById("otp");
+
+
+if (otp) {
+
+    otp.addEventListener(
+        "input",
+        function() {
+
+            this.value =
+                this.value
+                    .replace(
+                        /\D/g,
+                        ""
+                    )
+                    .slice(
+                        0,
+                        6
+                    );
+
+        }
+    );
+
+
+    otp.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                event.preventDefault();
+
+                verifyOnboarding();
+
+            }
+
+        }
+    );
+}
+
+
+const loginPassword =
+    document.getElementById(
+        "loginPassword"
+    );
+
+
+if (loginPassword) {
+
+    loginPassword.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                event.preventDefault();
+
+                login();
+
+            }
+
+        }
+    );
+}
+
+}
 
 // ---------------------------------------------------------
 // INITIALIZATION
 // ---------------------------------------------------------
 
 if (
-    document.readyState ===
-    "loading"
+document.readyState ===
+"loading"
 ) {
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        initializePage
-    );
+document.addEventListener(
+    "DOMContentLoaded",
+    initializePage
+);
 
 } else {
 
-    initializePage();
+initializePage();
 
 }
