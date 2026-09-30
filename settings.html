@@ -15,14 +15,7 @@
 </head><body><div class="dashboard-page"><!-- =================================================
      HEADER
      ================================================= -->
-<script>  
-const loginData = JSON.parse(
-    sessionStorage.getItem("loginData") || "{}"
-);
 
-document.getElementById("loginResponseDebug").textContent =
-    JSON.stringify(loginData, null, 2);
-</script>
 
 <!-- TEMPORARY LOGIN DATA DEBUG -->
 <div style="
@@ -39,6 +32,15 @@ document.getElementById("loginResponseDebug").textContent =
 
     <pre id="loginResponseDebug">Loading...</pre>
 </div>
+
+<script>  
+const loginData = JSON.parse(
+    sessionStorage.getItem("loginData") || "{}"
+);
+
+document.getElementById("loginResponseDebug").textContent =
+    JSON.stringify(loginData, null, 2);
+</script>
 
 <header class="dashboard-header">
 
